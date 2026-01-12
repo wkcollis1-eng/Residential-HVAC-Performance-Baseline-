@@ -23,7 +23,13 @@ This repository documents a comprehensive energy performance baseline for a 2,44
 ├── METHODOLOGY.md               # Billing-aligned calculation methodology
 ├── SYSTEM_SPECIFICATIONS.md     # Equipment technical specifications
 ├── UTILITY_PROGRAM_ANALYSIS.md  # Why standard programs don't apply
-└── data/                        # Supporting datasets (if applicable)
+└── data/                        # Raw operational datasets (2021-2025)
+    ├── README.md                         # Dataset documentation
+    ├── monthly_hvac_runtime.csv          # Thermostat runtime data (2025)
+    ├── daily_temperature.csv             # Daily indoor/outdoor temps (2025)
+    ├── monthly_dhw_navien.csv            # Hot water consumption (2024-2025)
+    ├── monthly_electricity_eversource.csv # Utility billing (2021-2025)
+    └── monthly_gas_scg.csv               # Gas billing (2021-2025)
 ```
 
 ## Purpose
@@ -55,6 +61,20 @@ This baseline serves multiple objectives:
 - **HVAC Telemetry:** Honeywell Lyric T6 Pro thermostat runtime logs
 - **DHW Monitoring:** Navien NaviLink independent gas meter
 - **Analysis Period:** January 2022 - December 2025 (48 months)
+
+## 📊 Accessing the Raw Data
+
+All raw operational data used in this baseline analysis is available in the [`/data`](data/) directory:
+
+- **[data/README.md](data/README.md)** - Complete dataset documentation with data dictionary
+- **5 CSV files** containing 49 months of utility billing, 12 months of HVAC runtime, 365 days of temperature data, and 15 months of DHW metering
+- **Clean, validated, and anonymized** - ready for analysis and reproduction of baseline calculations
+
+**Quick access:**
+- Browse data files: https://github.com/wkcollis1-eng/Residential-HVAC-Performance-Baseline-/tree/main/data
+- Clone entire repository: `git clone https://github.com/wkcollis1-eng/Residential-HVAC-Performance-Baseline-.git`
+
+All data is released under MIT License for research, policy analysis, and engineering applications.
 
 ## Methodology Highlights
 
