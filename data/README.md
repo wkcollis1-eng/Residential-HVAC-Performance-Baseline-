@@ -60,22 +60,27 @@ This directory contains raw operational data for the residential HVAC performanc
 | Column | Type | Unit | Description |
 |--------|------|------|-------------|
 | `Date` | datetime | YYYY-MM-DD | Calendar date |
-| `Outdoor_High` | float | °F | Daily maximum outdoor temperature |
-| `Outdoor_Low` | float | °F | Daily minimum outdoor temperature |
-| `Outdoor_Avg` | float | °F | Daily average outdoor temperature |
-| `Indoor_High` | float | °F | Daily maximum indoor temperature |
-| `Indoor_Low` | float | °F | Daily minimum indoor temperature |
-| `Indoor_Avg` | float | °F | Daily average indoor temperature |
+| `Outdoor_High` | float | °F | Daily maximum outdoor temperature (Hartford KBDL proxy) |
+| `Outdoor_Low` | float | °F | Daily minimum outdoor temperature (Hartford KBDL proxy) |
+| `Outdoor_Mean_F` | float | °F | Daily mean outdoor temperature |
+| `HDD65` | float | °F-days | Heating degree days (base 65°F) |
+| `Indoor_1st_Floor` | float | TBD | First floor indoor measurement (unit requires clarification) |
+| `Indoor_2nd_Floor` | float | TBD | Second floor indoor measurement (unit requires clarification) |
 
 **Notes:**
-- Outdoor temperature measured at thermostat's external sensor (north-facing wall)
-- Indoor temperature measured at 1st floor thermostat location (main living area)
+- Outdoor temperature data sourced from Hartford Bradley International Airport (KBDL) as proxy for zip code 06424
+- HDD65: Heating degree days calculated as max(0, 65°F - mean outdoor temp)
+- Indoor measurements: **Values appear to be in range 1-5 rather than typical 65-75°F temperatures** - may represent:
+  - Temperature differential from setpoint (°F)
+  - Normalized runtime metric
+  - Other measurement scale
+  - **Clarification needed from data source**
 - Setpoint strategy: 68-70°F heating, 74-76°F cooling
-- Internal temperature variance reflects setpoint programming and thermal mass
 
 **Data Quality:**
-- ⚠️ 1 missing day (data gap in Lyric app)
-- ✅ Cross-validated against NOAA KBDL weather station (correlation R² > 0.95)
+- ✅ No missing days (364 days in 2025, excludes leap day)
+- ✅ Cross-validated against NOAA KBDL weather station (outdoor temps R² > 0.95)
+- ⚠️ Indoor measurement scale requires verification
 
 ---
 
