@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.2.2] - 2026-01-12
+
+### Added
+- **UTILITY_PROGRAM_ANALYSIS.md** - Comprehensive analysis of why standard utility efficiency programs don't apply to high-performance homes
+  - Quantified intervention ROI analysis (20-600 year paybacks for equipment measures)
+  - Program-specific limitations (WAP, Mass Save®, ENERGY STAR, Federal 25C)
+  - Heat pump conversion economic analysis (demonstrates negative ROI)
+  - Solar PV viability assessment (TSRF 55% below program thresholds)
+  - Definition of "Post-Program Efficiency" home class
+  - 3-phase operational optimization pathway (1-3 year ROI)
+
+### Changed
+- Updated README.md with prominent callout section explaining program gap
+- Added UTILITY_PROGRAM_ANALYSIS.md to repository structure documentation
+
+---
+
 ## [1.2.1] - 2026-01-11
 
 ### Added
@@ -103,7 +120,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Links
 
-- **Latest Release:** [v1.2.1](https://github.com/wkcollis1-eng/Residential-HVAC-Performance-Baseline-/releases/tag/v1.2.1)
+- **Latest Release:** [v1.2.2](https://github.com/wkcollis1-eng/Residential-HVAC-Performance-Baseline-/releases/tag/v1.2.2)
 - **All Releases:** [Releases Page](https://github.com/wkcollis1-eng/Residential-HVAC-Performance-Baseline-/releases)
 - **Issues:** [Issue Tracker](https://github.com/wkcollis1-eng/Residential-HVAC-Performance-Baseline-/issues)
 
