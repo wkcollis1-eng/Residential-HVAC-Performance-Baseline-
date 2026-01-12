@@ -229,11 +229,6 @@
 - **Branches:** Flex duct (R-6 insulation)
 - **Registers:** Standard steel (adjustable dampers)
 
-**Zoning Modifications:**
-- **2nd Floor Vents:** Manually closed ~50% (occupant preference)
-- **Static Pressure Impact:** Increases ECM blower power draw
-- **Monitoring Priority:** Track blower wattage for excessive back-pressure
-
 **Return Air:**
 - **1st Floor:** Central return (living room)
 - **2nd Floor:** Central return (hallway)
@@ -249,9 +244,9 @@
 
 **Assembly (exterior to interior):**
 1. Vinyl siding
-2. Continuous foam insulation (R-5 to R-10)
+2. Continuous insulation board (R-5 to R-10)
 3. Sheathing (OSB)
-4. 2×6 studs with cavity insulation (R-20 to R-21)
+4. 2×6 studs with batt cavity insulation (R-20 to R-21)
 5. Vapor barrier
 6. Drywall
 
@@ -259,13 +254,13 @@
 
 ### Ceiling/Attic
 
-**Insulation:** Blown fiberglass  
+**Insulation:** Blown-in fiberglass insulation  
 **R-Value:** R-49 to R-60  
 **Ventilation:** Ridge and soffit vents (passive)
 
 **Cathedral Ceiling (Living Room):**
 - **Height:** 14 feet
-- **Insulation:** Spray foam (R-30 to R-38)
+- **Insulation:** Batt insulation (R-30 to R-38)
 - **Challenge:** Potential stratification (monitored via setpoint stability)
 
 ### Windows
@@ -278,7 +273,7 @@
 ### Foundation/Basement
 
 **Type:** Poured concrete with interior insulation  
-**Wall Insulation:** R-15 (2" rigid foam or equivalent)  
+**Wall Insulation:** R-15 (2" rigid insulation board or equivalent)  
 **Floor:** Concrete slab (uninsulated)  
 **Condition:** Conditioned space (included in 2,440 sq. ft. total)
 
