@@ -22,6 +22,7 @@ This repository documents a comprehensive energy performance baseline for a 2,44
 ├── DATA_SUMMARY.md              # Quick-reference metrics and tables
 ├── METHODOLOGY.md               # Billing-aligned calculation methodology
 ├── SYSTEM_SPECIFICATIONS.md     # Equipment technical specifications
+├── UTILITY_PROGRAM_ANALYSIS.md  # Why standard programs don't apply
 └── data/                        # Supporting datasets (if applicable)
 ```
 
@@ -83,6 +84,22 @@ See [METHODOLOGY.md](METHODOLOGY.md) for complete calculation procedures.
 | Heating Intensity | 95.5 CCF/1k HDD | +10% |
 | Moisture Control Load | ~1,420 kWh/season | >1,800 kWh |
 | AC Power Draw | 4.9 kW | ±10% |
+
+## ⚠️ Why Standard Utility Programs Don't Apply
+
+This home's exceptional performance (41.7 kBTU/ft²-yr EUI, 33% better than regional average) places it **beyond the design envelope** of traditional utility efficiency programs.
+
+**Key Finding:** Standard interventions (insulation upgrades, equipment replacement) would yield <5% additional savings at costs exceeding 20-year payback periods. The remaining 21% of electrical consumption (1,420 kWh/year) is dominated by **site-specific moisture control**, which falls outside prescriptive utility rebate categories.
+
+**Alternative Optimization Path:** Operational monitoring and behavioral adaptation via circuit-level energy tracking delivers superior ROI (1-2 year payback) compared to equipment-based programs.
+
+**📄 See [UTILITY_PROGRAM_ANALYSIS.md](UTILITY_PROGRAM_ANALYSIS.md) for:**
+- Quantified intervention ROI analysis (attic insulation, window replacement, heat pump conversion, etc.)
+- Program-specific limitations (Mass Save®, ENERGY STAR, Federal 25C credits)
+- The "Post-Program Efficiency" home class definition
+- Recommended 3-phase optimization pathway
+
+---
 
 ## Applications
 
