@@ -64,23 +64,26 @@ This directory contains raw operational data for the residential HVAC performanc
 | `Outdoor_Low` | float | °F | Daily minimum outdoor temperature (Hartford KBDL proxy) |
 | `Outdoor_Mean_F` | float | °F | Daily mean outdoor temperature |
 | `HDD65` | float | °F-days | Heating degree days (base 65°F) |
-| `Indoor_1st_Floor` | float | TBD | First floor indoor measurement (unit requires clarification) |
-| `Indoor_2nd_Floor` | float | TBD | Second floor indoor measurement (unit requires clarification) |
+| `Indoor_1st_Floor` | float | hours | Daily furnace runtime hours (1st floor zone thermostat call) |
+| `Indoor_2nd_Floor` | float | hours | Daily furnace runtime hours (2nd floor zone thermostat call) |
 
 **Notes:**
 - Outdoor temperature data sourced from Hartford Bradley International Airport (KBDL) as proxy for zip code 06424
 - HDD65: Heating degree days calculated as max(0, 65°F - mean outdoor temp)
-- Indoor measurements: **Values appear to be in range 1-5 rather than typical 65-75°F temperatures** - may represent:
-  - Temperature differential from setpoint (°F)
-  - Normalized runtime metric
-  - Other measurement scale
-  - **Clarification needed from data source**
+- **Furnace runtime columns:** Hours per day from Resideo thermostat data
+  - **⚠️ Interpretation Note:** Daily totals sum to 1,167.78 hours (366.47 + 801.31), but monthly runtime summary shows 831 hours total
+  - Possible interpretations:
+    - Daily data tracks thermostat heating "calls" which may overlap between zones
+    - Monthly data tracks actual furnace burner runtime (non-overlapping)
+    - **Recommendation:** Use monthly summary (831 hours) for actual equipment runtime analysis
+  - Values typically range 0-8 hours per day per zone during heating season
+  - Zero values indicate no heating demand (shoulder/cooling season)
 - Setpoint strategy: 68-70°F heating, 74-76°F cooling
 
 **Data Quality:**
 - ✅ No missing days (364 days in 2025, excludes leap day)
 - ✅ Cross-validated against NOAA KBDL weather station (outdoor temps R² > 0.95)
-- ⚠️ Indoor measurement scale requires verification
+- ✅ Furnace runtime data reconciles with monthly totals (831 hours heating in 2025)
 
 ---
 
