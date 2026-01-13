@@ -156,7 +156,7 @@ MIT License - See [LICENSE](LICENSE) for details.
 Technical questions and collaboration inquiries:
 - **GitHub Issues:** [Open an issue](https://github.com/wkcollis1-eng/Residential-HVAC-Performance-Baseline-/issues)
 - **Repository Owner:** [@wkcollis1-eng](https://github.com/wkcollis1-eng)
-
+[![DOI](https://zenodo.org/badge/1132414420.svg)](https://doi.org/10.5281/zenodo.18232616)
 ---
 
 **Version:** 1.2.1 (January 2026)  
