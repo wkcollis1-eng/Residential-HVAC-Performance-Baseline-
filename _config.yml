@@ -8,7 +8,7 @@ author: William K. Collis
 
 # Theme (GitHub Pages supported themes)
 # Options: minima, cayman, slate, minimal, architect, hacker, leap-day, merlot, midnight, modernist, tactile, time-machine
-theme: cayman
+theme: jekyll-theme-cayman
 
 # Enable GitHub metadata for automatic navigation
 repository: wkcollis1-eng/Residential-HVAC-Performance-Baseline-
