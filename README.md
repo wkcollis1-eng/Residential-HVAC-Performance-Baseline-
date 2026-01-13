@@ -3,6 +3,7 @@
 **A Four-Year Longitudinal Study of High-Efficiency Residential Energy Systems in Climate Zone 5A**
 
 [![DOI](https://zenodo.org/badge/1132414420.svg)](https://doi.org/10.5281/zenodo.18232616)
+
 [![DOI](https://img.shields.io/badge/Version-1.2.1-blue.svg)](https://github.com/wkcollis1-eng/Residential-HVAC-Performance-Baseline-)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
