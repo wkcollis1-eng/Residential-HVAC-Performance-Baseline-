@@ -3,8 +3,11 @@
 **A Four-Year Longitudinal Study of High-Efficiency Residential Energy Systems in Climate Zone 5A**
 
 [![DOI](https://zenodo.org/badge/1132414420.svg)](https://doi.org/10.5281/zenodo.18232616)
-[![DOI](https://img.shields.io/badge/Version-1.2.1-blue.svg)](https://github.com/wkcollis1-eng/Residential-HVAC-Performance-Baseline-)
+[![Version](https://img.shields.io/badge/Version-1.3.0-blue.svg)](https://github.com/wkcollis1-eng/Residential-HVAC-Performance-Baseline-)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2024.1+-41BDF5?logo=homeassistant&logoColor=white)](https://www.home-assistant.io/)
+[![Climate Zone](https://img.shields.io/badge/IECC%20Climate%20Zone-5A-green.svg)](https://basc.pnnl.gov/images/iecc-climate-zone-map)
+[![Data Period](https://img.shields.io/badge/Data-2022--2026-orange.svg)](data/)
 
 ## Overview
 
@@ -14,35 +17,170 @@ This repository documents a comprehensive energy performance baseline for a 2,44
 - **Site EUI:** 41.7 kBTU/ft²-yr (33% better than regional average)
 - **Heating Intensity:** 95.5 CCF/1k HDD (CV: 7.0% over 4 years)
 - **Envelope UA:** 480 BTU/hr-°F (21-34% superior to 2021 IECC code-minimum)
-- **Annual Electricity:** 6,730 kWh ($1,946)
+- **Annual Electricity:** 6,730 kWh (65% below average for home size)
 
-## Repository Structure
+## 🏗️ System Architecture
+
+```mermaid
+flowchart TB
+    subgraph inputs["📡 Data Sources"]
+        T1["🌡️ 1F Thermostat<br/>Honeywell T6 Pro"]
+        T2["🌡️ 2F Thermostat<br/>Honeywell T6 Pro"]
+        PW["🌤️ Pirate Weather API"]
+        OM["🌤️ Open-Meteo API"]
+        CN["📊 Climate Norms<br/>18-year historical"]
+    end
+
+    subgraph ha["🏠 Home Assistant Core"]
+        direction TB
+        RT["Runtime Tracking<br/>• 1F/2F heat cycles<br/>• Furnace runtime<br/>• Zone overlap"]
+        DD["Degree Day Calc<br/>• HDD65/CDD65<br/>• 7-day rolling<br/>• Monthly cumulative"]
+        SPC["Statistical Process Control<br/>• Rolling mean ± 2σ<br/>• Anomaly detection<br/>• Control charts"]
+        REC["Recovery Analysis<br/>• Setback recovery time<br/>• Weather-adjusted rates<br/>• Per-zone tracking"]
+    end
+
+    subgraph outputs["📤 Outputs"]
+        CSV["📁 CSV Reports<br/>Daily + Monthly"]
+        ALERT["🚨 Alerts<br/>Efficiency deviation<br/>Filter replacement"]
+        DASH["📊 Dashboards<br/>ApexCharts + Mushroom"]
+        GH["🐙 GitHub Archive"]
+    end
+
+    T1 --> RT
+    T2 --> RT
+    PW --> DD
+    OM --> DD
+    CN --> SPC
+    RT --> SPC
+    DD --> SPC
+    RT --> REC
+    
+    SPC --> CSV
+    SPC --> ALERT
+    SPC --> DASH
+    CSV --> GH
+```
+
+## 🎯 What Makes This Different
+
+| Traditional Monitoring | This Approach |
+|------------------------|---------------|
+| "Your furnace ran 4 hours today" | "Your furnace ran 12% more than expected for today's weather" |
+| Static efficiency thresholds | Rolling ±2σ control limits that adapt to your home |
+| Single-zone analysis | **Chaining Index** quantifies multi-zone coordination |
+| Compare to yesterday | Compare to 18-year climate normals for this date |
+| Equipment-focused | **Post-Program Efficiency** framework for already-efficient homes |
+
+## 🚀 Quick Start (Home Assistant Users)
+
+Want to add these metrics to your own Home Assistant setup? Start with these high-value sensors:
+
+### Option 1: Full Package (Recommended)
+
+Drop the single-file package into your Home Assistant:
+
+```bash
+# Download the package
+curl -o /config/packages/hvac_baseline.yaml \
+  https://raw.githubusercontent.com/wkcollis1-eng/Residential-HVAC-Performance-Baseline-/main/homeassistant/packages/hvac_baseline.yaml
+
+# Add to configuration.yaml (if not already using packages)
+# homeassistant:
+#   packages: !include_dir_named packages
+```
+
+Then restart Home Assistant. See [`homeassistant/README.md`](homeassistant/README.md) for customization.
+
+### Option 2: Individual Sensors
+
+#### Runtime per HDD (5 minutes)
+The single most useful efficiency metric. Add to your `configuration.yaml`:
+
+```yaml
+template:
+  - sensor:
+      - name: "HVAC Runtime per HDD Today"
+        unique_id: hvac_runtime_per_hdd_today
+        unit_of_measurement: "min/HDD"
+        state: >
+          {% set runtime_hours = states('sensor.YOUR_HEAT_RUNTIME_TODAY') | float(0) %}
+          {% set outdoor_mean = (states('sensor.YOUR_OUTDOOR_HIGH') | float(0) + 
+                                 states('sensor.YOUR_OUTDOOR_LOW') | float(0)) / 2 %}
+          {% set hdd = [65 - outdoor_mean, 0] | max %}
+          {{ ((runtime_hours * 60) / hdd) | round(1) if hdd > 0 else 0 }}
+```
+
+**Interpretation:** A consistent value (±15%) indicates stable efficiency. Sudden increases suggest filter issues, duct problems, or envelope changes.
+
+#### Zone Balance Alert (10 minutes)
+For multi-zone systems—know when zones are fighting each other:
+
+```yaml
+template:
+  - sensor:
+      - name: "HVAC Zone Balance Ratio"
+        unique_id: hvac_zone_balance_ratio
+        unit_of_measurement: "%"
+        state: >
+          {% set z1 = states('sensor.ZONE1_RUNTIME_TODAY') | float(0) %}
+          {% set z2 = states('sensor.ZONE2_RUNTIME_TODAY') | float(0) %}
+          {% set total = z1 + z2 %}
+          {{ ((z2 / total) * 100) | round(1) if total > 0 else 50 }}
+          
+  - binary_sensor:
+      - name: "HVAC Zone Imbalance Alert"
+        state: >
+          {% set ratio = states('sensor.hvac_zone_balance_ratio') | float(50) %}
+          {{ ratio < 35 or ratio > 65 }}
+```
+
+#### Chaining Index (Novel Metric)
+Measures how often zone calls overlap into single furnace cycles:
+
+```yaml
+template:
+  - sensor:
+      - name: "HVAC Chaining Index"
+        unique_id: hvac_chaining_index
+        icon: mdi:link-variant
+        state: >
+          {% set zone_calls = states('sensor.ZONE1_CYCLES') | int(0) + 
+                              states('sensor.ZONE2_CYCLES') | int(0) %}
+          {% set furnace_cycles = states('sensor.FURNACE_CYCLES') | int(0) %}
+          {{ (zone_calls / furnace_cycles) | round(2) if furnace_cycles > 0 else 1.0 }}
+```
+
+**Interpretation:** 
+- **1.0** = No overlap (zones never call together)
+- **1.5** = Moderate coordination (some back-to-back calls)
+- **2.0** = Perfect chaining (zones always call together)
+
+## 📁 Repository Structure
 
 ```
-├── BASELINE_REPORT.md          # Complete technical analysis
+├── BASELINE_REPORT.md           # Complete technical analysis
 ├── DATA_SUMMARY.md              # Quick-reference metrics and tables
 ├── METHODOLOGY.md               # Billing-aligned calculation methodology
 ├── SYSTEM_SPECIFICATIONS.md     # Equipment technical specifications
 ├── UTILITY_PROGRAM_ANALYSIS.md  # Why standard programs don't apply
+├── homeassistant/               # 🆕 Home Assistant implementation
+│   ├── README.md                # Setup and customization guide
+│   ├── packages/
+│   │   └── hvac_baseline.yaml   # Single-file drop-in package
+│   ├── dashboards/
+│   │   └── energy_performance.yaml
+│   └── scripts/
+│       └── climate_norms_today.py
 └── data/                        # Raw operational datasets (2021-2025)
-    ├── README.md                         # Dataset documentation
-    ├── monthly_hvac_runtime.csv          # Thermostat runtime data (2025)
-    ├── daily_temperature.csv             # Daily indoor/outdoor temps (2025)
-    ├── monthly_dhw_navien.csv            # Hot water consumption (2024-2025)
-    ├── monthly_electricity_eversource.csv # Utility billing (2021-2025)
-    └── monthly_gas_scg.csv               # Gas billing (2021-2025)
+    ├── README.md                # Dataset documentation
+    ├── monthly_hvac_runtime.csv
+    ├── daily_temperature.csv
+    ├── monthly_dhw_navien.csv
+    ├── monthly_electricity_eversource.csv
+    └── monthly_gas_scg.csv
 ```
 
-## Purpose
-
-This baseline serves multiple objectives:
-
-1. **Anomaly Detection:** Establish investigation thresholds for future performance deviations
-2. **Energy Monitoring ROI:** Quantify value proposition for circuit-level monitoring ($326 unresolved residual load)
-3. **Contractor Communication:** Provide verifiable baseline for HVAC maintenance and upgrades
-4. **Research Reference:** Document real-world performance of 2021-vintage high-efficiency systems
-
-## Property Context
+## 🏠 Property Context
 
 | Attribute | Specification |
 |-----------|---------------|
@@ -52,43 +190,12 @@ This baseline serves multiple objectives:
 | Occupancy | 2 residents |
 | Primary Heating | American Standard Silver 95 (96% AFUE) condensing gas furnace |
 | Primary Cooling | American Standard Silver 14 (4-ton, 14 SEER) split system |
+| Zoning | 2-zone (1F/2F) with Honeywell T6 Pro thermostats |
 | Moisture Control | Santa Fe Classic dehumidifier (110 PPD, 700W) |
 | DHW | Navien NPE-series condensing tankless |
+| Notable | Cathedral ceiling on 2F (~15% additional heat loss) |
 
-## Data Sources
-
-- **Utility Billing:** Eversource (electricity), Southern Connecticut Gas (natural gas)
-- **Weather:** Hartford Bradley International Airport (KBDL) NOAA data
-- **HVAC Telemetry:** Honeywell Lyric T6 Pro thermostat runtime logs
-- **DHW Monitoring:** Navien NaviLink independent gas meter
-- **Analysis Period:** January 2022 - December 2025 (48 months)
-
-## 📊 Accessing the Raw Data
-
-All raw operational data used in this baseline analysis is available in the [`/data`](data/) directory:
-
-- **[data/README.md](data/README.md)** - Complete dataset documentation with data dictionary
-- **5 CSV files** containing 49 months of utility billing, 12 months of HVAC runtime, 365 days of temperature data, and 15 months of DHW metering
-- **Clean, validated, and anonymized** - ready for analysis and reproduction of baseline calculations
-
-**Quick access:**
-- Browse data files: https://github.com/wkcollis1-eng/Residential-HVAC-Performance-Baseline-/tree/main/data
-- Clone entire repository: `git clone https://github.com/wkcollis1-eng/Residential-HVAC-Performance-Baseline-.git`
-
-All data is released under MIT License for research, policy analysis, and engineering applications.
-
-## Methodology Highlights
-
-This analysis employs a **Fully Billing-Aligned** approach that reconciles asynchronous utility meter read dates with calendar-year weather normalization. Key innovations include:
-
-- HDD-neutral band optimization to resolve heating balance point (59°F)
-- Billing-period electricity decomposition to isolate seasonal HVAC loads
-- Multi-source heat accounting (furnace + fireplace) for UA derivation
-- Statistical validation via 4-year coefficient of variation analysis
-
-See [METHODOLOGY.md](METHODOLOGY.md) for complete calculation procedures.
-
-## Key Performance Metrics
+## 📊 Key Performance Metrics
 
 ### Four-Year Statistical Summary
 
@@ -96,71 +203,87 @@ See [METHODOLOGY.md](METHODOLOGY.md) for complete calculation procedures.
 |--------|------------|-------------|---------|--------|
 | Heating Intensity (CCF/1k HDD) | 95.5 | 89.1 | 6.2 | 7.0% |
 | Annual Site EUI (kBTU/ft²-yr) | 41.7 | 40.8 | 2.1 | 5.1% |
+| Runtime per HDD (min/HDD) | 10.6 | — | — | — |
 
-### 2025 Baseline Thresholds
+### 2026 Investigation Thresholds
 
-| Metric | Baseline Value | Investigation Threshold |
-|--------|----------------|-------------------------|
-| Annual Site EUI | 41.7 kBTU/ft²-yr | ±5% |
-| Heating Intensity | 95.5 CCF/1k HDD | +10% |
-| Moisture Control Load | ~1,420 kWh/season | >1,800 kWh |
-| AC Power Draw | 4.9 kW | ±10% |
+| Metric | Baseline Value | Alert Threshold | Action |
+|--------|----------------|-----------------|--------|
+| Runtime per HDD | 10.6 min/HDD | >Mean + 2σ | Check filter, ducts |
+| Zone Balance | 50% (±15%) | <35% or >65% | Investigate dampers |
+| Chaining Index | 1.2–1.5 | <1.1 or >1.8 | Review schedules |
+| Recovery Rate | ~3 min/°F | >Mean + 2σ | Envelope issue |
+| Heating Efficiency | 95.5 CCF/1k HDD | +10% | Equipment check |
 
 ## ⚠️ Why Standard Utility Programs Don't Apply
 
 This home's exceptional performance (41.7 kBTU/ft²-yr EUI, 33% better than regional average) places it **beyond the design envelope** of traditional utility efficiency programs.
 
-**Key Finding:** Standard interventions (insulation upgrades, equipment replacement) would yield <5% additional savings at costs exceeding 20-year payback periods. The remaining 21% of electrical consumption (1,420 kWh/year) is dominated by **site-specific moisture control**, which falls outside prescriptive utility rebate categories.
-
-**Alternative Optimization Path:** Operational monitoring and behavioral adaptation via circuit-level energy tracking delivers superior ROI (1-2 year payback) compared to equipment-based programs.
+**Key Finding:** Standard interventions (insulation upgrades, equipment replacement) would yield <5% additional savings at costs exceeding 20-year payback periods. The remaining optimization opportunities are in **operational monitoring**, not equipment replacement.
 
 **📄 See [UTILITY_PROGRAM_ANALYSIS.md](UTILITY_PROGRAM_ANALYSIS.md) for:**
-- Quantified intervention ROI analysis (attic insulation, window replacement, heat pump conversion, etc.)
-- Program-specific limitations (Mass Save®, ENERGY STAR, Federal 25C credits)
+- Quantified intervention ROI analysis
+- Program-specific limitations (Mass Save®, ENERGY STAR, Federal 25C)
 - The "Post-Program Efficiency" home class definition
-- Recommended 3-phase optimization pathway
+- Recommended monitoring-first optimization pathway
 
----
+## 🔬 Methodology Highlights
 
-## Applications
+This analysis employs a **Fully Billing-Aligned** approach with innovations including:
 
-### Current
-- Justification for whole-house energy monitor investment (Fusion Solar 16-CT system)
-- Diagnostic baseline for HVAC contractor communications
-- Performance verification for high-efficiency equipment
+- **Statistical Process Control (SPC):** Rolling ±2σ control limits adapted from manufacturing quality control
+- **Climate Norms Integration:** 18-year historical weather data for context-aware anomaly detection  
+- **Multi-Zone Coordination Metrics:** Chaining Index and Zone Overlap quantification
+- **Billing-Period Reconciliation:** Aligns asynchronous utility meter reads with calendar-year weather
 
-### Future
-- Template for residential energy auditing best practices
-- Case study for Climate Zone 5A new construction performance
-- Longitudinal tracking of equipment degradation curves
+See [METHODOLOGY.md](METHODOLOGY.md) for complete calculation procedures.
 
-## Citation
+## 📈 Data Access
 
-If you use this methodology or data in your work, please cite:
+All raw operational data is available in [`/data`](data/):
 
+- **49 months** of utility billing (electricity + gas)
+- **12 months** of thermostat runtime telemetry
+- **365 days** of temperature data
+- **15 months** of DHW metering
+
+```bash
+git clone https://github.com/wkcollis1-eng/Residential-HVAC-Performance-Baseline-.git
 ```
-Collis, W. K. (2026). Residential HVAC Performance Baseline: A Four-Year 
-Longitudinal Study in Climate Zone 5A. GitHub Repository. 
-https://github.com/wkcollis1-eng/Residential-HVAC-Performance-Baseline-
+
+All data released under MIT License for research, policy analysis, and engineering applications.
+
+## 📚 Citation
+
+If you use this methodology or data in your work:
+
+```bibtex
+@misc{collis2026hvac,
+  author = {Collis, William K.},
+  title = {Residential HVAC Performance Baseline: A Four-Year Longitudinal Study in Climate Zone 5A},
+  year = {2026},
+  publisher = {GitHub},
+  url = {https://github.com/wkcollis1-eng/Residential-HVAC-Performance-Baseline-},
+  doi = {10.5281/zenodo.18232616}
+}
 ```
 
-## Contributing
+## 🤝 Contributing
 
-This is a living baseline document. Contributions that improve methodology transparency, add supplementary analysis, or provide comparative datasets are welcome. See issues for current discussion topics.
+Contributions welcome! Particularly interested in:
+- Comparative datasets from other climate zones
+- Alternative SPC methodologies
+- Dashboard improvements
+- Multi-fuel system adaptations
 
-## License
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
-MIT License - See [LICENSE](LICENSE) for details.
+## 📬 Contact
 
-## Contact
-
-Technical questions and collaboration inquiries:
 - **GitHub Issues:** [Open an issue](https://github.com/wkcollis1-eng/Residential-HVAC-Performance-Baseline-/issues)
 - **Repository Owner:** [@wkcollis1-eng](https://github.com/wkcollis1-eng)
 
 ---
 
-**Version:** 1.2.1 (January 2026)  
-**Status:** Active Baseline - Ongoing monitoring through 2026
-
-
+**Version:** 1.3.0 (January 2026)  
+**Status:** Active Baseline — Ongoing monitoring through 2026
