@@ -1,6 +1,6 @@
 # HVAC Performance Update: January 2026
 
-**Version:** 1.3.0  
+**Version:** 1.3.2  
 **Date:** February 2, 2026  
 **Property:** 2,440 sq. ft. Colonial, Climate Zone 5A, Central Connecticut
 
@@ -347,7 +347,7 @@ With Navien DHW metering (Oct 2024 - Dec 2025 data), the 2025 baseline should be
 
 ---
 
-**Document Version:** 1.3.0  
+**Document Version:** 1.3.2  
 **Analysis Date:** February 2, 2026  
 **Data Coverage:** January 2022 - January 2026 (49 months)  
 **Author:** William K. Collis
