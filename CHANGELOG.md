@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [1.3.0] - 2026-02-02
+## [1.3.2] - 2026-02-02
 
 ### Added
 - **January 2026 Data Integration**
@@ -46,12 +46,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Added separate thresholds for space heating and DHW
   - Added note on using runtime efficiency for real-time validation
 
-- **DATA_SUMMARY.md** updated to v1.3.0
+- **DATA_SUMMARY.md** updated to v1.3.2
   - Added DHW optimization section
   - Corrected baseline heating intensity
   - Added space heat vs DHW decomposition tables
 
-- **README.md** updated to v1.3.0
+- **README.md** updated to v1.3.2
   - Added DHW optimization highlight
   - Corrected key findings with Navien-metered values
   - Updated investigation thresholds
@@ -121,7 +121,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## Data Files Updated in v1.3.0
+## Data Files Updated in v1.3.2
 
 | File | Previous End | Current End | Records Added |
 |------|--------------|-------------|---------------|
@@ -141,7 +141,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 | v1.1.0 | 2022-2023 | 90.3 | 41.5 | 5.1% |
 | v1.2.0 | 2022-2024 | 86.9 | 40.4 | 6.2% |
 | v1.2.1 | 2022-2025 | 89.1 | 40.8 | 7.0% |
-| **v1.3.0** | **2022-2026*** | **89.1** | **40.8** | **7.0%** |
+| **v1.3.2** | **2022-2026*** | **89.1** | **40.8** | **7.0%** |
 
 *Through January 2026 only; annual metrics unchanged until full year complete
 
