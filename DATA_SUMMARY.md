@@ -1,6 +1,6 @@
 # Data Summary: Quick Reference Tables
 
-**Version:** 1.3.0  
+**Version:** 1.3.2  
 **Period:** 2022-2026 (49 months through January 2026)  
 **Property:** 2,440 sq. ft. Colonial, Climate Zone 5A, Central Connecticut
 
