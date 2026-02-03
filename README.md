@@ -132,7 +132,7 @@ curl -o /config/packages/hvac_baseline.yaml \
 ### Option 2: Core Sensor (5 minutes)
 
 The single most useful efficiency metric:
-{% raw %}
+<!-- {% raw %} -->
 ```yaml
 template:
   - sensor:
@@ -145,7 +145,7 @@ template:
                                  states('sensor.YOUR_OUTDOOR_LOW') | float(0)) / 2 %}
           {% set hdd = [65 - outdoor_mean, 0] | max %}
           {{ ((runtime_hours * 60) / hdd) | round(1) if hdd > 0 else 0 }}
-{% endraw %}
+<!-- {% endraw %} -->
 ```
 
 ## 📁 Repository Structure
