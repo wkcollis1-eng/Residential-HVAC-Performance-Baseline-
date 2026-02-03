@@ -145,6 +145,7 @@ template:
                                  states('sensor.YOUR_OUTDOOR_LOW') | float(0)) / 2 %}
           {% set hdd = [65 - outdoor_mean, 0] | max %}
           {{ ((runtime_hours * 60) / hdd) | round(1) if hdd > 0 else 0 }}
+{% endraw %}
 ```
 
 ## 📁 Repository Structure
