@@ -132,7 +132,7 @@ curl -o /config/packages/hvac_baseline.yaml \
 ### Option 2: Core Sensor (5 minutes)
 
 The single most useful efficiency metric:
-
+{% raw %}
 ```yaml
 template:
   - sensor:
