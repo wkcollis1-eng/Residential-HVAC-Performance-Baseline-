@@ -120,6 +120,8 @@ flowchart TB
 
 ## 🚀 Quick Start (Home Assistant Users)
 
+For the full Home Assistant configuration that powers the sensors, dashboards, and automation used to generate this dataset, see the companion repo: [wkcollis1-eng/home-assistant-config](https://github.com/wkcollis1-eng/home-assistant-config).
+
 ### Option 1: Full Package (Recommended)
 
 ```bash
