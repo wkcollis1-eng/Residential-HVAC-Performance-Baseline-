@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.3.2] - 2026-02-02
 
 ### Added
+
 - **January 2026 Data Integration**
   - Extended all datasets through January 31, 2026 (49 months total)
   - Added daily temperature data for January 2026 (31 days)
@@ -36,6 +37,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Space heat vs DHW decomposition using Navien data
 
 ### Changed
+
 - **Heating Intensity Baseline Corrected**
   - Old: 95.5 CCF/1kHDD (using estimated DHW)
   - New: 90.3 CCF/1kHDD (using Navien-metered DHW)
@@ -57,6 +59,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Updated investigation thresholds
 
 ### Validated
+
 - **Baseline Integrity Confirmed**
   - Heating intensity: 122.1 vs 121.8 CCF/1kHDD (+0.2% YoY)
   - Space heating: +8.7% tracks HDD +8.5% (perfect weather correlation)
@@ -69,17 +72,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.2.1] - 2026-01-11
 
 ### Added
+
 - Fully billing-aligned methodology implementation
 - Four-year statistical validation (CV < 8%)
 - Real-time monitoring integration (Home Assistant)
 - REALTIME_MONITORING_2026.md documentation
 
 ### Changed
+
 - DHW baseline adjusted to billing-aligned value (188 CCF vs 268 CCF)
 - Heating intensity recalculated with precise billing periods
 - Updated all annual summary tables
 
 ### Fixed
+
 - Billing period misalignment in 2024 data
 - DHW/space heating separation methodology
 
@@ -88,11 +94,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.2.0] - 2025-12-15
 
 ### Added
+
 - Preliminary 2025 annual data
 - Dehumidifier load modeling (294 kWh identified, 1,126 kWh residual)
 - Energy monitoring ROI analysis
 
 ### Changed
+
 - Refined electricity decomposition methodology
 - Updated investigation thresholds for 2026
 
@@ -101,11 +109,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.1.0] - 2024-01-15
 
 ### Added
+
 - Two-year dataset (2022-2023)
 - Refined HDD correlation methodology
 - Balance point determination (59°F)
 
 ### Changed
+
 - Updated baseline metrics with 2023 data
 - Improved regression analysis for DHW separation
 
@@ -114,6 +124,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.0.0] - 2023-01-20
 
 ### Added
+
 - Initial baseline established from 2022 data
 - Core documentation structure
 - Equipment specifications
@@ -150,12 +161,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Upcoming (Planned)
 
 ### [1.4.0] - Expected April 2026
+
 - Post-winter 2025-2026 season summary
 - February-March 2026 data integration
 - Annual heating intensity recalculation
 - Dehumidifier season ramp-up validation
 
 ### [2.0.0] - Expected January 2027
+
 - Five-year comprehensive baseline review
 - Statistical analysis update with full 2026 data
 - Potential methodology refinements
