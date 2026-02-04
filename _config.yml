@@ -3,12 +3,14 @@
 
 # Site settings
 title: Residential HVAC Performance Baseline
-description: A Four-Year Longitudinal Study of High-Efficiency Residential Energy Systems in Climate Zone 5A
+description: A Five-Year Longitudinal Study of High-Efficiency Residential Energy Systems in Climate Zone 5A
 author: William K. Collis
 
 # Theme (GitHub Pages supported themes)
-# Options: minima, cayman, slate, minimal, architect, hacker, leap-day, merlot, midnight, modernist, tactile, time-machine
 theme: jekyll-theme-cayman
+
+# Show download buttons for zip/tar
+show_downloads: true
 
 # Enable GitHub metadata for automatic navigation
 repository: wkcollis1-eng/Residential-HVAC-Performance-Baseline-
@@ -23,6 +25,7 @@ kramdown:
 plugins:
   - jekyll-github-metadata
   - jekyll-relative-links
+  - jekyll-seo-tag
 
 # Navigation (optional - enables relative links to work)
 relative_links:
@@ -33,6 +36,8 @@ relative_links:
 exclude:
   - .gitignore
   - LICENSE
+  - CITATION.cff
+  - homeassistant/
 
 # Include data files
 include:
@@ -41,3 +46,12 @@ include:
 # Site URL (GitHub will set this automatically)
 url: "https://wkcollis1-eng.github.io"
 baseurl: "/Residential-HVAC-Performance-Baseline-"
+
+# SEO and social
+twitter:
+  card: summary
+social:
+  name: William K. Collis
+  links:
+    - https://github.com/wkcollis1-eng
+    - https://substack.com/@billcollis
