@@ -1,6 +1,6 @@
 # Comprehensive Analysis of Residential Energy Performance and HVAC System Integration
 
-**A Diagnostic Baseline Report for the Connecticut Climate Zone**
+## A Diagnostic Baseline Report for the Connecticut Climate Zone
 
 **Version:** 1.2.1  
 **Date:** January 2026  
@@ -16,6 +16,7 @@ The establishment of a definitive energy performance baseline for a high-efficie
 For a two-occupant household, the observed electricity baseload of 9.7 kWh/day and Domestic Hot Water (DHW) consumption of 0.533 CCF/day are consistent with national post-2020 residential benchmarks for high-efficiency homes. This analysis integrates verified utility consumption, high-resolution HVAC runtime logs, and internal DHW monitoring to establish a revised baseline as of January 2026. This revision (v1.2.1) adopts a **Fully Billing-Aligned methodology** to reconcile asynchronous utility data with calendar-year performance.
 
 **Key Performance Indicators (2025 Baseline):**
+
 - **Site Energy Use Intensity (EUI):** 41.7 kBTU/ft²-yr
 - **Heating Intensity:** 95.5 CCF/1,000 HDD (33% better than regional average)
 - **Building Load Coefficient (UA):** 480 BTU/hr-°F (21-34% superior to 2021 IECC code-minimum)
@@ -26,12 +27,12 @@ For a two-occupant household, the observed electricity baseload of 9.7 kWh/day a
 
 ## Table of Contents
 
-1. [Mechanical Systems Infrastructure](#mechanical-systems-infrastructure)
-2. [Year-Over-Year Performance Analysis](#year-over-year-performance-analysis)
-3. [Electricity Load Decomposition](#electricity-load-decomposition)
+1. [Mechanical Systems Infrastructure](#mechanical-systems-infrastructure-and-technical-specifications)
+2. [Year-Over-Year Performance Analysis](#year-over-year-weather-normalized-efficiency-analysis-2022-2025)
+3. [Electricity Load Decomposition](#electricity-load-decomposition-2025)
 4. [Thermodynamic Envelope Analysis](#thermodynamic-envelope-analysis)
-5. [Domestic Hot Water Performance](#domestic-hot-water-performance)
-6. [System Integrity & Maintenance](#system-integrity-and-maintenance)
+5. [Domestic Hot Water Performance](#domestic-hot-water-dhw-performance-analysis)
+6. [System Integrity & Maintenance](#system-integrity-and-long-term-maintenance-insights)
 7. [Energy Monitoring ROI Analysis](#energy-monitoring-roi-analysis)
 8. [Baseline Summary Metrics](#baseline-summary-metrics)
 
@@ -44,6 +45,7 @@ The property utilizes a sophisticated integration of high-efficiency mechanical 
 ### Primary Heating and Cooling Equipment
 
 **Heating System:**
+
 - **Model:** American Standard Silver 95 series (S9X1C100U5PSBA)
 - **Type:** Single-stage condensing gas furnace
 - **Efficiency:** 95-96% AFUE
@@ -52,6 +54,7 @@ The property utilizes a sophisticated integration of high-efficiency mechanical 
 - **Operational Characteristic:** Full modulation not available; delivers 100% capacity on all heating calls
 
 **Cooling System:**
+
 - **Model:** American Standard Silver 14 (4A7A4048L1000AA)
 - **Type:** Split-system air conditioner
 - **Capacity:** 48,000 BTU/hr (4-ton)
@@ -61,6 +64,7 @@ The property utilizes a sophisticated integration of high-efficiency mechanical 
 - **Expansion Device:** Thermostatic expansion valve (TXV) for precise refrigerant regulation
 
 **Supplemental Heating:**
+
 - **Type:** Natural gas direct-vent fireplace (living room)
 - **Efficiency:** 65-70% steady-state (manufacturer specification)
 - **2025 Delivered Heat:** 3.6 MMBTU
@@ -69,6 +73,7 @@ The property utilizes a sophisticated integration of high-efficiency mechanical 
 ### Specialized Moisture Control System
 
 **Basement Dehumidifier:**
+
 - **Model:** Santa Fe Classic
 - **Capacity:** 110 pints per day moisture removal
 - **Power Draw:** 700W (6.4A) during active compression
@@ -79,6 +84,7 @@ The property utilizes a sophisticated integration of high-efficiency mechanical 
 ### Domestic Hot Water (DHW) System
 
 **Water Heater:**
+
 - **Type:** Navien NPE-series condensing tankless
 - **Efficiency:** 95%+ AFUE
 - **Monitoring:** Independent gas meter (NaviLink system)
@@ -258,6 +264,7 @@ For a two-occupant household:
 ### Furnace Blower Performance and Static Pressure
 
 **Equipment Context:**
+
 - **Motor Type:** Constant-torque ECM (Electronically Commutated Motor)
 - **Rated Power:** 1 hp (746W maximum)
 - **Measured Baseline:** 0.21 kW (210W) during typical heating operation
@@ -279,6 +286,7 @@ Monitoring the blower's real-time wattage provides an early-warning system for e
 ### Dehumidifier Operational Optimization
 
 **Current Operation:**
+
 - **Setpoint:** 45% RH (fixed humidity control)
 - **Basement Conditions:** 65°F average temperature
 - **Equivalent Dew Point:** 43°F
@@ -289,6 +297,7 @@ Monitoring the blower's real-time wattage provides an early-warning system for e
 Transitioning from fixed RH control to **dew point control** at 52°F target (approximately 63% RH at 65°F) using a Shelly H&T sensor and smart plug:
 
 **Expected Outcomes:**
+
 - **Duty Cycle Reduction:** ~25% (based on psychrometric modeling)
 - **Energy Savings:** ~355 kWh/year
 - **Cost Savings:** ~$105/year
@@ -340,6 +349,7 @@ A whole-house energy monitor is uniquely suited to verify the "Residual" electri
 **Method:** Track furnace blower circuit wattage in real-time
 
 **Thresholds:**
+
 - **Baseline:** 210W (current operation)
 - **Warning:** >300W (investigate vent closures/filter)
 - **Critical:** >400W (excessive static pressure, motor strain)
@@ -355,6 +365,7 @@ A whole-house energy monitor is uniquely suited to verify the "Residual" electri
 **Baseline:** 4.9 kW steady-state
 
 **Degradation Indicators:**
+
 - **Power Draw:** >10% increase (refrigerant loss, compressor wear)
 - **Runtime Efficiency:** Decreasing cooling per kWh consumed
 - **Cycling Behavior:** Increasing short-cycle frequency
