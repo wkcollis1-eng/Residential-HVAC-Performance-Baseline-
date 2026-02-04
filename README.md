@@ -3,7 +3,7 @@
 **A Five-Year Longitudinal Study of High-Efficiency Residential Energy Systems in Climate Zone 5A**
 
 [![DOI](https://zenodo.org/badge/1132414420.svg)](https://doi.org/10.5281/zenodo.18232616)
-[![Version](https://img.shields.io/badge/Version-1.3.2-blue.svg)](https://github.com/wkcollis1-eng/Residential-HVAC-Performance-Baseline-)
+[![Version](https://img.shields.io/badge/Version-1.4.0-blue.svg)](https://github.com/wkcollis1-eng/Residential-HVAC-Performance-Baseline-)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2024.1+-41BDF5?logo=homeassistant&logoColor=white)](https://www.home-assistant.io/)
 [![Climate Zone](https://img.shields.io/badge/IECC%20Climate%20Zone-5A-green.svg)](https://basc.pnnl.gov/images/iecc-climate-zone-map)
