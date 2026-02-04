@@ -40,7 +40,7 @@ These dashboards are built using:
 
 ### Technical Architecture
 
-```
+```text
 ┌─────────────────────────────────────────────────────────┐
 │  Honeywell Lyric T6 Pro Thermostat (2 zones)           │
 └──────────────────┬──────────────────────────────────────┘
@@ -70,7 +70,7 @@ These dashboards are built using:
 │  Long-term Analysis                                     │
 │  └─ This repository (baseline calculations & reports)  │
 └─────────────────────────────────────────────────────────┘
-```
+```text
 
 The complete configuration including sensor definitions, automations, dashboard YAML, and export scripts is available in the [home-assistant-config](https://github.com/wkcollis1-eng/home-assistant-config) repository.
 
