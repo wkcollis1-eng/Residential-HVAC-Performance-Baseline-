@@ -27,6 +27,7 @@
 ## DHW Recirculation Optimization (January 2026)
 
 ### Change Implemented
+
 **Date:** Mid-January 2026  
 **Schedule:** 24 hr/day → 15 hr/day (OFF 9 PM - 6 AM)
 
