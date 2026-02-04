@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+message: "If you use this analysis methodology or data, please cite as below."
+authors:
+  - family-names: Collis
+    given-names: William K.
+type: dataset
+title: "Residential HVAC Performance Baseline: A Five-Year Longitudinal Study of High-Efficiency Residential Energy Systems in Climate Zone 5A"
+version: 1.4.0
+doi: 10.5281/zenodo.18232616
+date-released: 2026-01-30
+url: "https://github.com/wkcollis1-eng/Residential-HVAC-Performance-Baseline-"
+repository-code: "https://github.com/wkcollis1-eng/Residential-HVAC-Performance-Baseline-"
+abstract: >-
+  This repository documents a comprehensive energy performance baseline for a 
+  2,440 sq. ft. high-efficiency residential structure in Central Connecticut 
+  (Climate Zone 5A). The analysis integrates 49 months of verified utility data 
+  (January 2022 - January 2026), high-resolution HVAC runtime telemetry, and 
+  independent domestic hot water monitoring to establish diagnostic performance 
+  thresholds using Statistical Process Control methodology.
+keywords:
+  - HVAC
+  - residential energy
+  - degree days
+  - building science
+  - statistical process control
+  - energy efficiency
+  - home automation
+  - heating analysis
+  - climate zone 5A
+  - utility monitoring
+license: MIT
