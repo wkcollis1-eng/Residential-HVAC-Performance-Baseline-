@@ -1,7 +1,7 @@
 # HVAC Performance Update: January 2026
 
-**Version:** 1.3.2  
-**Date:** February 2, 2026  
+**Version:** 1.3.2
+**Date:** February 2, 2026
 **Property:** 2,440 sq. ft. Colonial, Climate Zone 5A, Central Connecticut
 
 ---
@@ -11,6 +11,7 @@
 This update extends the four-year baseline (2022-2025) with January 2026 data, incorporating the real-time monitoring system implemented in early January. The analysis validates baseline performance under extreme cold conditions and documents a successful DHW optimization.
 
 **Key January 2026 Findings:**
+
 - **Total Gas Consumption:** 168 CCF (+4.3% YoY)
 - **Weather Severity:** 1,230 HDD65 (+8.5% YoY — significantly colder)
 - **Space Heating:** 150.2 CCF (+8.7% YoY — tracks weather perfectly)
@@ -39,8 +40,8 @@ This update extends the four-year baseline (2022-2025) with January 2026 data, i
 
 ### Change Implemented
 
-**Date:** Mid-January 2026  
-**Change:** Navien recirculation schedule reduced from 24 hr/day to 15 hr/day  
+**Date:** Mid-January 2026
+**Change:** Navien recirculation schedule reduced from 24 hr/day to 15 hr/day
 **Schedule:** OFF between 9:00 PM and 6:00 AM
 
 ### Measured Impact
@@ -55,7 +56,7 @@ This update extends the four-year baseline (2022-2025) with January 2026 data, i
 
 The relationship between recirculation reduction and gas savings reveals the true standby loss fraction:
 
-```
+```text
 Recirculation time reduction: 37.5% (9 hrs off / 24 hrs)
 DHW gas reduction observed:   22.2%
 
@@ -66,6 +67,7 @@ Implied calculation:
 **Finding:** Approximately **59% of DHW gas consumption** was attributable to recirculation standby losses — significantly higher than Navien's factory estimate of 23%.
 
 **Explanation:** The elevated standby losses are consistent with:
+
 - Cold basement location (~55-60°F ambient)
 - Long pipe runs to fixtures
 - Winter inlet water temperatures (~45°F)
@@ -83,6 +85,7 @@ Implied calculation:
 ### Comfort Impact Assessment
 
 The 9-hour overnight shutoff (9 PM - 6 AM) should have minimal comfort impact:
+
 - Low hot water demand period
 - First morning draw will have ~30 second delay (acceptable)
 - Could reduce to 12hr schedule (6 PM - 6 AM) if no comfort issues observed
@@ -104,18 +107,19 @@ The 9-hour overnight shutoff (9 PM - 6 AM) should have minimal comfort impact:
 | **HVAC Runtime** | — | 220 hrs | — | 10.7 min/HDD |
 
 **Key Insight:** The 8.7% increase in space heating gas perfectly tracks the 8.5% increase in HDD. The +0.2% heating intensity variance is well within the baseline CV of 7.0%, confirming:
+
 1. No equipment degradation
-2. No envelope compromise  
+2. No envelope compromise
 3. Baseline methodology validated
 
 ### Gas Consumption Decomposition
 
-```
+```text
 January 2026 Total Gas: 168.0 CCF
 ├── Space Heating:      150.2 CCF (89.4%)
 └── Domestic Hot Water:  17.8 CCF (10.6%)
 
-January 2025 Total Gas: 161.0 CCF  
+January 2025 Total Gas: 161.0 CCF
 ├── Space Heating:      138.2 CCF (85.8%)
 └── Domestic Hot Water:  22.8 CCF (14.2%)
 ```
@@ -217,12 +221,14 @@ The most severe sustained cold in the 5-year dataset:
 | **8-Day** | **-2** | **11.4** | **429** | **80.1h** | **11.2** |
 
 **Cold Snap Metrics:**
+
 - **8-Day HDD:** 429 (35% of monthly total in 26% of days)
 - **Average Runtime:** 10.0 hours/day (vs 7.1h monthly average)
 - **Runtime Efficiency:** 11.2 min/HDD (within ±2σ of 10.9 baseline)
 - **Minimum Temperature:** -2°F (January 31)
 
 **Equipment Performance:**
+
 - ✅ No efficiency alerts triggered
 - ✅ No recovery rate degradation
 - ✅ Runtime stayed within statistical control limits
@@ -347,7 +353,7 @@ With Navien DHW metering (Oct 2024 - Dec 2025 data), the 2025 baseline should be
 
 ---
 
-**Document Version:** 1.3.2  
-**Analysis Date:** February 2, 2026  
-**Data Coverage:** January 2022 - January 2026 (49 months)  
+**Document Version:** 1.3.2
+**Analysis Date:** February 2, 2026
+**Data Coverage:** January 2022 - January 2026 (49 months)
 **Author:** William K. Collis
