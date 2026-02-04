@@ -193,6 +193,40 @@ template:
 | Monthly DHW (Jan) | 22.8 CCF | >25.1 | >26.2 |
 | Zone Imbalance | 50% ±5% | <42% or >58% | <38% or >62% |
 
+
+## Live Monitoring Implementation
+
+The baseline analysis feeds into a real-time Home Assistant monitoring system that tracks performance against established thresholds using Statistical Process Control (SPC). This implementation demonstrates how the calculated baselines translate into operational anomaly detection.
+
+### Dashboard Overview
+
+The monitoring system provides continuous validation of system performance:
+
+![Performance Gauges](./images/dashboard_performance_gauges.png)
+*Real-time performance tracking against baseline targets with color-coded status indicators*
+
+![Efficiency Tracking](./images/dashboard_efficiency_tracking.png)
+*Statistical Process Control monitoring showing 7-day rolling means and ±2σ bounds derived from baseline analysis*
+
+![System Alerts](./images/dashboard_system_alerts.png)
+*Automated health checks ensuring data capture integrity and alerting on efficiency degradation*
+
+### Key Monitoring Features
+
+* **HDD/CDD Tracking** - Heating/cooling degree days with 7-day rolling averages
+* **Efficiency Monitoring** - Runtime per HDD with auto-calculated ±2σ statistical bounds
+* **Recovery Rate Analysis** - Setback recovery tracking with weather adjustment
+* **Zone Balance Analysis** - 1F/2F runtime distribution and cycle overlap detection
+* **Filter Tracking** - Runtime-based maintenance alerts
+* **Anomaly Detection** - Automated alerts when performance drifts beyond baseline thresholds
+
+**Full monitoring configuration and implementation details:**  
+📂 [home-assistant-config](https://github.com/wkcollis1-eng/home-assistant-config)
+
+For additional dashboard views and implementation notes, see [DASHBOARD_EXAMPLES.md](./DASHBOARD_EXAMPLES.md).
+
+---
+
 ## ⚠️ Why Standard Utility Programs Don't Apply
 
 This home's exceptional performance (41.7 kBTU/ft²-yr EUI, 33% better than regional average) places it **beyond the design envelope** of traditional utility efficiency programs.
