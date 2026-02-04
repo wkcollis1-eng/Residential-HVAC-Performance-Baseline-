@@ -7,6 +7,7 @@ This directory contains a complete Home Assistant implementation of the HVAC Per
 ### Option 1: Single-File Package (Recommended)
 
 1. **Download the package:**
+
    ```bash
    mkdir -p /config/packages
    curl -o /config/packages/hvac_baseline.yaml \
@@ -14,6 +15,7 @@ This directory contains a complete Home Assistant implementation of the HVAC Per
    ```
 
 2. **Enable packages in `configuration.yaml`:**
+
    ```yaml
    homeassistant:
      packages: !include_dir_named packages
@@ -87,18 +89,21 @@ If you have a single-zone system:
 The package assumes you have daily high/low temperature sensors. Common sources:
 
 **Pirate Weather (HACS):**
+
 ```yaml
 sensor.OUTDOOR_TEMP_HIGH_TODAY: sensor.pirate_weather_today_high
 sensor.OUTDOOR_TEMP_LOW_TODAY: sensor.pirate_weather_today_low
 ```
 
 **OpenWeatherMap:**
+
 ```yaml
 sensor.OUTDOOR_TEMP_HIGH_TODAY: sensor.openweathermap_forecast_temperature_high
 sensor.OUTDOOR_TEMP_LOW_TODAY: sensor.openweathermap_forecast_temperature_low
 ```
 
 **NWS (National Weather Service):**
+
 ```yaml
 # NWS provides forecasts via attributes - you may need template sensors
 ```
@@ -107,6 +112,7 @@ sensor.OUTDOOR_TEMP_LOW_TODAY: sensor.openweathermap_forecast_temperature_low
 
 **Filter replacement interval:**
 Default is 1000 hours. Adjust in `sensor.hvac_filter_hours_remaining`:
+
 ```yaml
 {{ (YOUR_HOURS - states('input_number.hvac_filter_runtime_hours') | float(0)) | round(0) }}
 ```
@@ -122,6 +128,7 @@ Default is ±2σ. For tighter control, change to 1.5σ in the upper/lower bound 
 ### "Unknown" Values After Restart
 
 The rolling windows need time to populate. After a fresh install:
+
 - HDD rolling sum: 7 days
 - Runtime/HDD statistics: 4+ days for alerts to enable
 
@@ -132,16 +139,19 @@ Check `sensor.hvac_runtime_per_hdd_data_count`. Alerts require ≥4 valid data p
 ### Incorrect HDD Values
 
 Verify your outdoor temperature sensors are reporting in Fahrenheit. The HDD calculation assumes °F:
-```
+
+```text
 HDD = max(65 - mean_temp, 0)
 ```
 
 ### Zone Balance Always 50%
 
 Ensure both thermostat binary sensors are correctly detecting heating state. Check:
+
 ```yaml
 {{ state_attr('climate.YOUR_THERMOSTAT', 'hvac_action') }}
 ```
+
 Should return `heating` when actively heating.
 
 ## Data Export
@@ -166,6 +176,7 @@ automation:
 ## Dashboard
 
 A sample Lovelace dashboard using ApexCharts is available in `dashboards/energy_performance.yaml`. Requires:
+
 - [ApexCharts Card](https://github.com/RomRider/apexcharts-card) (HACS)
 - [Mushroom Cards](https://github.com/piitaya/lovelace-mushroom) (HACS, optional)
 
