@@ -31,6 +31,7 @@ This document provides additional views of the Home Assistant monitoring system 
 ## Implementation Notes
 
 These dashboards are built using:
+
 - **Platform:** Home Assistant 2024.x with YAML configuration
 - **Sensor Framework:** Template sensors for all calculations
 - **UI Components:** Custom Lovelace cards (gauge, history-graph, entities, markdown)
@@ -92,6 +93,7 @@ All statistical bounds (±2σ), target values, and alert thresholds shown in the
 ### Statistical Process Control Implementation
 
 The efficiency tracking dashboard implements SPC using:
+
 - **Center line:** 7-day rolling mean (smooths daily weather noise)
 - **Upper control limit:** Mean + 2σ (14 min/HDD as of Feb 2026)
 - **Lower control limit:** Mean - 2σ (6 min/HDD as of Feb 2026)
@@ -103,26 +105,34 @@ Control limits are recalculated weekly using the trailing 30-day dataset. This a
 ## Use Cases
 
 ### 1. Real-time Anomaly Detection
+
 When runtime/HDD exceeds the upper control limit for 2+ consecutive days, the system generates an alert for investigation. Potential causes:
+
 - Dirty air filter (most common)
 - Thermostat miscalibration
 - Duct leakage
 - Extreme outdoor temperatures not reflected in HDD calculation
 
 ### 2. Equipment Degradation Tracking
+
 Comparing current 7-day mean (9.2 min/HDD) against historical baseline (9.1 min/HDD from 2022-2025) provides early indication of:
+
 - Heat exchanger fouling
 - Blower motor wear
 - Duct system deterioration
 
 ### 3. Contractor Communication
+
 Dashboard screenshots provide verifiable data for HVAC service calls:
+
 - "System is running 18% longer than baseline - recommend filter check"
 - "Zone balance has shifted to 68% 2F - check damper operation"
 - "Recovery rate degraded from 4.2°F/hr to 3.1°F/hr - possible refrigerant issue"
 
 ### 4. Energy Monitoring ROI Justification
+
 The unresolved 21% baseload (1,420 kWh/year, $326 annually) drives the business case for circuit-level monitoring. Dashboard demonstrates:
+
 - HVAC loads are well-characterized and efficient
 - Mystery load is elsewhere in the electrical system
 - Whole-home monitoring (Fusion Solar 16-CT) is justified to identify optimization opportunities
@@ -132,6 +142,7 @@ The unresolved 21% baseload (1,420 kWh/year, $326 annually) drives the business 
 ## Future Enhancements
 
 Planned monitoring additions:
+
 - **Circuit-level electricity tracking** via Fusion Solar monitor (16 CTs)
 - **DHW efficiency monitoring** using Navien NaviLink gas meter integration
 - **Predictive maintenance alerts** using equipment runtime hours and manufacturer service intervals
