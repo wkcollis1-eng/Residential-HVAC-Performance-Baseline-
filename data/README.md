@@ -11,6 +11,7 @@
 This directory contains raw operational data for the residential HVAC performance baseline study. All data has been cleaned, validated, and formatted for analysis reproducibility. Personal identifying information has been removed while preserving analytical utility.
 
 **Property Context:**
+
 - Location: Central Connecticut, Climate Zone 5A
 - Construction: 2021, Two-story Colonial
 - Conditioned Area: 2,440 sq. ft.
@@ -21,6 +22,7 @@ This directory contains raw operational data for the residential HVAC performanc
 ## Dataset Files
 
 ### 1. `monthly_hvac_runtime.csv`
+
 **Description:** HVAC equipment runtime hours extracted from Honeywell Lyric T6 Pro thermostat telemetry
 
 **Period:** January 2025 - December 2025 (12 months)  
@@ -36,12 +38,14 @@ This directory contains raw operational data for the residential HVAC performanc
 | `Heating_Hours` | integer | hours | Furnace burner runtime during month |
 
 **Notes:**
+
 - Runtime represents actual equipment operation (burner on / compressor on)
 - Does not include fan-only circulation time
 - Single-stage equipment: all runtime is at full capacity
 - 2025 total: Heating = 831 hours, Cooling = 346 hours
 
 **Data Quality:**
+
 - ✅ No missing values
 - ✅ Validated against utility consumption patterns
 - ✅ Consistent with degree-day analysis
@@ -49,6 +53,7 @@ This directory contains raw operational data for the residential HVAC performanc
 ---
 
 ### 2. `daily_temperature.csv`
+
 **Description:** Daily temperature readings from thermostat sensors (indoor and outdoor)
 
 **Period:** January 1, 2025 - December 31, 2025 (365 days)  
@@ -68,6 +73,7 @@ This directory contains raw operational data for the residential HVAC performanc
 | `Indoor_2nd_Floor` | float | hours | Daily HVAC runtime hours (heating + cooling) for 2nd floor zone |
 
 **Notes:**
+
 - Outdoor temperature data sourced from Hartford Bradley International Airport (KBDL) as proxy for zip code 06424
 - HDD65: Heating degree days calculated as max(0, 65°F - mean outdoor temp)
 - **HVAC runtime columns:** Combined heating and cooling hours per day from Resideo thermostat data
@@ -79,6 +85,7 @@ This directory contains raw operational data for the residential HVAC performanc
 - Setpoint strategy: 68-70°F heating, 74-76°F cooling
 
 **Data Quality:**
+
 - ✅ No missing days (364 days in 2025, excludes leap day)
 - ✅ Cross-validated against NOAA KBDL weather station (outdoor temps R² > 0.95)
 - ✅ HVAC runtime reconciles with monthly totals: 1,167.78 daily vs 1,177 monthly (0.8% difference)
@@ -86,6 +93,7 @@ This directory contains raw operational data for the residential HVAC performanc
 ---
 
 ### 3. `monthly_dhw_navien.csv`
+
 **Description:** Domestic hot water (DHW) gas consumption and operating metrics from Navien tankless water heater
 
 **Period:** October 2024 - December 2025 (15 months)  
@@ -102,12 +110,14 @@ This directory contains raw operational data for the residential HVAC performanc
 | `Recirculation_Hours` | integer | hours | Recirculation pump runtime |
 
 **Notes:**
+
 - Independent metering isolates DHW from space heating gas consumption
 - CCF = hundred cubic feet of natural gas (~100,000 BTU per CCF)
 - Recirculation pump maintains hot water in distribution loop (standby losses ~23%)
 - 2025 annual total: 220.8 CCF (from meter), 188 CCF (billing-aligned calculation)
 
 **Data Quality:**
+
 - ✅ No missing values for available period
 - ⚠️ 15% variance between meter reading and billing-aligned calculation (see baseline report)
 - ✅ Consistent with seasonal inlet water temperature patterns
@@ -115,6 +125,7 @@ This directory contains raw operational data for the residential HVAC performanc
 ---
 
 ### 4. `monthly_electricity_eversource.csv`
+
 **Description:** Whole-house electricity consumption from utility billing records
 
 **Period:** December 2021 - December 2025 (49 billing periods)  
@@ -133,17 +144,20 @@ This directory contains raw operational data for the residential HVAC performanc
 | `Cost_Per_kWh` | float | $/kWh | Average cost per kWh (calculated) |
 
 **Notes:**
+
 - Billing periods do not align with calendar months (15-day phase shift typical)
 - Rates include both supply and delivery charges (~$0.29/kWh average in 2025)
 - 2025 calendar-year total: 6,730 kWh (via billing-aligned methodology)
 - Fixed charges (~$11/month) included in total but not in per-kWh rate
 
 **Data Quality:**
+
 - ✅ No missing values
 - ✅ Validated against utility account history
 - ✅ Rate calculations verified against tariff schedules
 
 **Load Breakdown (2025 calendar year via billing-aligned analysis):**
+
 - Baseload: 3,532 kWh (52%)
 - Space Cooling: 1,694 kWh (25%)
 - Moisture Control: ~1,420 kWh (21%)
@@ -153,6 +167,7 @@ This directory contains raw operational data for the residential HVAC performanc
 ---
 
 ### 5. `monthly_gas_scg.csv`
+
 **Description:** Whole-house natural gas consumption from utility billing records
 
 **Period:** December 2021 - December 2025 (49 billing periods)  
@@ -171,6 +186,7 @@ This directory contains raw operational data for the residential HVAC performanc
 | `Cost_Per_CCF` | float | $/CCF | Average cost per CCF (calculated) |
 
 **Notes:**
+
 - CCF = hundred cubic feet of natural gas (~100,000 BTU per CCF)
 - Billing periods do not align with calendar months
 - Rates vary seasonally (winter ~$1.50/CCF, summer ~$1.00/CCF average)
@@ -178,11 +194,13 @@ This directory contains raw operational data for the residential HVAC performanc
 - Includes all gas consumption: space heating (furnace + fireplace), DHW, gas range
 
 **Data Quality:**
+
 - ✅ No missing values
 - ✅ Validated against utility account history
 - ✅ Cross-checked against Navien independent DHW meter
 
 **Load Breakdown (2025 calendar year via billing-aligned analysis):**
+
 - Space Heating (Furnace): 547 CCF (69.5%)
 - Space Heating (Fireplace): 52 CCF (6.6%)
 - Domestic Hot Water: 188 CCF (23.9%)
@@ -194,16 +212,19 @@ This directory contains raw operational data for the residential HVAC performanc
 ### Validation Methods
 
 **1. Internal Consistency Checks:**
+
 - ✅ HVAC runtime hours validated against temperature data (heating runtime correlates with HDD)
 - ✅ Electricity cooling load validated against cooling runtime (4.9 kW average draw)
 - ✅ Gas consumption validated against heating runtime and AFUE (96% furnace efficiency)
 
 **2. External Cross-Validation:**
+
 - ✅ Thermostat outdoor temperature vs. NOAA KBDL weather station (R² > 0.95)
 - ✅ Utility billing totals vs. calendar-year aggregations (within 2%)
 - ✅ Navien meter vs. billing-aligned DHW calculation (15% variance documented)
 
 **3. Statistical Validation:**
+
 - ✅ Four-year coefficient of variation (CV) < 8% for all major metrics
 - ✅ Weather-normalized heating intensity stable within 7% (2022-2025)
 - ✅ No outliers beyond 2σ in daily temperature or runtime data
@@ -265,19 +286,21 @@ If you use this dataset in your research, please cite:
   howpublished = {\url{https://github.com/wkcollis1-eng/Residential-HVAC-Performance-Baseline-/tree/main/data}},
   version = {1.2.2}
 }
-```
+```text
 
 ---
 
 ## Privacy and Data Protection
 
 **Anonymization:**
+
 - ✅ No personal identifying information (names, addresses removed)
 - ✅ Location generalized to "Central Connecticut"
 - ✅ Utility account numbers removed
 - ✅ Only operational metrics retained
 
 **Data Sharing:**
+
 - This dataset is released under MIT License
 - Suitable for academic research, policy analysis, and engineering studies
 - Not suitable for individual property assessment (aggregated only)
@@ -287,10 +310,12 @@ If you use this dataset in your research, please cite:
 ## Contact
 
 **Questions about the dataset:**
+
 - Open an issue: https://github.com/wkcollis1-eng/Residential-HVAC-Performance-Baseline-/issues
 - Repository owner: @wkcollis1-eng
 
 **Reporting data quality issues:**
+
 - Please include: filename, row/column, observed issue, expected value
 - Data corrections will be versioned and documented in CHANGELOG.md
 
@@ -299,12 +324,14 @@ If you use this dataset in your research, please cite:
 ## Version History
 
 **v1.2.2 (January 2026):**
+
 - Initial public data release
 - Cleaned and validated 2025 operational data
 - Added 2022-2025 utility billing history
 - Documented known limitations and validation methods
 
 **Future Additions:**
+
 - 2026 data (planned: January 2027)
 - Circuit-level electricity monitoring (if implemented)
 - Enhanced blower motor telemetry (static pressure tracking)
