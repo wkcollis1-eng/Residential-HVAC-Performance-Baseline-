@@ -53,9 +53,9 @@ If you don't want to commit images to the repository:
 4. Copy these URLs
 5. Replace the image paths in the markdown file:
 
-```markdown
-![Climate Comparison](https://user-images.githubusercontent.com/YOUR_USER_ID/XXXXX/climate_comparison.png)
-```
+   ```markdown
+   ![Climate Comparison](https://user-images.githubusercontent.com/YOUR_USER_ID/XXXXX/climate_comparison.png)
+   ```
 
 6. Close the issue (or keep it as "Documentation Images" reference)
 
