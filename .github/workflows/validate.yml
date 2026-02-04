@@ -1,0 +1,96 @@
+name: Validate Documentation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "**.md"
+      - "**.yaml"
+      - "**.yml"
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  markdown-lint:
+    name: Lint Markdown
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Lint Markdown files
+        uses: DavidAnson/markdownlint-cli2-action@v14
+        with:
+          globs: "**/*.md"
+          config: |
+            {
+              "MD013": false,
+              "MD033": false,
+              "MD041": false,
+              "MD024": { "siblings_only": true }
+            }
+
+  yaml-lint:
+    name: Lint YAML
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          
+      - name: Install yamllint
+        run: pip install yamllint
+        
+      - name: Lint YAML files
+        run: |
+          yamllint -d "{extends: relaxed, rules: {line-length: disable}}" homeassistant/ || true
+
+  link-check:
+    name: Check Links
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Check links in Markdown
+        uses: lycheeverse/lychee-action@v1
+        with:
+          args: --verbose --no-progress --accept 200,204,206,301,302,403,429 --exclude-mail "**/*.md"
+          fail: false
+
+  validate-ha-package:
+    name: Validate Home Assistant Package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          
+      - name: Install dependencies
+        run: pip install pyyaml
+        
+      - name: Validate YAML syntax
+        run: |
+          python << 'EOF'
+          import yaml
+          import sys
+          try:
+              with open('homeassistant/packages/hvac_baseline.yaml', 'r') as f:
+                  yaml.safe_load(f)
+              print('✅ hvac_baseline.yaml is valid YAML')
+          except yaml.YAMLError as e:
+              print(f'❌ YAML Error: {e}')
+              sys.exit(1)
+          except FileNotFoundError:
+              print('⚠️ Package file not found')
+              sys.exit(0)
+          EOF
