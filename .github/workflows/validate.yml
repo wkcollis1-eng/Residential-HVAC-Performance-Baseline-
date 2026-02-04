@@ -19,17 +19,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         
+      - name: Create markdownlint config
+        run: |
+          cat > .markdownlint.json << 'EOF'
+          {
+            "MD013": false,
+            "MD033": false,
+            "MD041": false,
+            "MD024": { "siblings_only": true }
+          }
+          EOF
+        
       - name: Lint Markdown files
         uses: DavidAnson/markdownlint-cli2-action@v14
         with:
           globs: "**/*.md"
-          config: |
-            {
-              "MD013": false,
-              "MD033": false,
-              "MD041": false,
-              "MD024": { "siblings_only": true }
-            }
 
   yaml-lint:
     name: Lint YAML
