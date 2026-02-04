@@ -22,9 +22,9 @@ This directory contains a complete Home Assistant implementation of the HVAC Per
    ```
 
 3. **Customize entity IDs:**
-   
+
    Open `hvac_baseline.yaml` and replace the placeholder entities:
-   
+
    | Placeholder | Replace With | Example |
    |-------------|--------------|---------|
    | `climate.THERMOSTAT_1F` | Your 1st floor thermostat | `climate.living_room` |
