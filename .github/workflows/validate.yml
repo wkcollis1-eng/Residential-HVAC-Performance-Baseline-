@@ -4,9 +4,9 @@ on:
   push:
     branches: [main]
     paths:
-      - "**.md"
-      - "**.yaml"
-      - "**.yml"
+      - "**/*.md"
+      - "**/*.yaml"
+      - "**/*.yml"
   pull_request:
     branches: [main]
   workflow_dispatch:
@@ -19,26 +19,25 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Create markdownlint-cli2 config (disable cosmetic rules)
+      # NOTE: This file is a *markdownlint* config object (base config for markdownlint-cli2 --config)
+      - name: Create markdownlint config (disable cosmetic rules)
         run: |
-          cat > .markdownlint-cli2.jsonc << 'EOF'
+          cat > .markdownlint.jsonc << 'EOF'
           {
-            "config": {
-              "MD004": false,
-              "MD012": false,
-              "MD022": false,
-              "MD031": false,
-              "MD032": false,
-              "MD034": false,
-              "MD036": false,
-              "MD040": false,
+            "MD004": false,
+            "MD012": false,
+            "MD022": false,
+            "MD031": false,
+            "MD032": false,
+            "MD034": false,
+            "MD036": false,
+            "MD040": false,
 
-              "MD013": false,
-              "MD024": { "siblings_only": true },
-              "MD033": false,
-              "MD041": false,
-              "MD060": false
-            }
+            "MD013": false,
+            "MD024": { "siblings_only": true },
+            "MD033": false,
+            "MD041": false,
+            "MD060": false
           }
           EOF
 
@@ -46,7 +45,7 @@ jobs:
         uses: DavidAnson/markdownlint-cli2-action@v14
         with:
           globs: "**/*.md"
-          config: ".markdownlint-cli2.jsonc"
+          config: ".markdownlint.jsonc"
 
   yaml-lint:
     name: Lint YAML (non-cosmetic)
