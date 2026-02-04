@@ -2,9 +2,9 @@
 
 ## A Diagnostic Baseline Report for the Connecticut Climate Zone
 
-**Version:** 1.2.1  
-**Date:** January 2026  
-**Author:** William K. Collis  
+**Version:** 1.2.1
+**Date:** January 2026
+**Author:** William K. Collis
 **Property Location:** Central Connecticut, Climate Zone 5A
 
 ---
@@ -94,7 +94,7 @@ The property utilizes a sophisticated integration of high-efficiency mechanical 
 
 ## Year-Over-Year Weather-Normalized Efficiency Analysis (2022-2025)
 
-The correction of historical consumption against meteorological data from Hartford Bradley International Airport (KBDL) identifies the home's heating efficiency signature. 
+The correction of historical consumption against meteorological data from Hartford Bradley International Airport (KBDL) identifies the home's heating efficiency signature.
 
 ### Terminology
 
@@ -155,9 +155,10 @@ The electricity load has been audited at the billing-period level to isolate sea
 ### Technical Accounting Notes
 
 **Furnace Blower Runtime (*):**
-The 84 kWh allocation at 0.21 kW draw implies approximately 400 effective full-load hours. However, the 831 hours of cumulative furnace runtime reflects total burner call time derived from high-resolution thermostat logs, which capture all heating cycles including short cycling and shoulder-season calls. 
+The 84 kWh allocation at 0.21 kW draw implies approximately 400 effective full-load hours. However, the 831 hours of cumulative furnace runtime reflects total burner call time derived from high-resolution thermostat logs, which capture all heating cycles including short cycling and shoulder-season calls.
 
 **Explanation of Discrepancy:** The ECM blower operates at variable speeds:
+
 - **High-fire heating mode:** ~0.21 kW (400 hours tracked)
 - **Low-speed circulation mode:** ~0.10 kW (potentially embedded in Residual)
 - **Intermittent fan-only calls:** Not captured in this allocation
@@ -170,6 +171,7 @@ The 1,126 kWh Residual occurs almost exclusively during the April–October wind
 ### Baseload Composition
 
 The 9.7 kWh/day (3,532 kWh annual) baseload represents:
+
 - Refrigeration (kitchen + garage units)
 - Electronics and computing (home office, networking equipment)
 - Lighting (LED throughout)
@@ -196,6 +198,7 @@ The building's thermal integrity is quantified by the **Building Load Coefficien
 ### UA Calculation Methodology
 
 The UA value is derived from:
+
 1. **Delivered Heat:** 57.5 MMBTU (furnace) + 3.6 MMBTU (fireplace) = 61.1 MMBTU total
 2. **Temperature Differential:** 6,270 HDD65 baseline → 5,294 HDD59 (adjusted for 59°F balance point)
 3. **Heat Loss Rate:** UA = 61.1 MMBTU ÷ (24 hr/day × 5,294 HDD) = 480 BTU/hr-°F
@@ -210,6 +213,7 @@ The UA value is derived from:
 | IECC 2021 Code-Minimum UA | 610-725 BTU/hr-°F | 21-34% worse than measured |
 
 **Performance Interpretation:** The UA of 480 BTU/hr-°F indicates a very tight thermal envelope. This is achieved through:
+
 - Continuous exterior foam insulation (R-5 to R-10 depending on wall section)
 - High-performance windows (U-0.27 to U-0.30)
 - Comprehensive air sealing (estimated <3 ACH50 based on performance)
@@ -220,6 +224,7 @@ The UA value is derived from:
 ### Balance Point Resolution
 
 The 59°F balance point indicates that the home requires no heating when outdoor temperatures exceed 59°F, as internal gains from occupants, appliances, and solar exposure meet the total heat loss. This is consistent with:
+
 - High envelope integrity (low UA)
 - Moderate internal gains (two occupants, typical appliance usage)
 - South-facing window orientation (passive solar contribution)
@@ -243,6 +248,7 @@ For 2025, DHW gas consumption was calibrated from low-HDD billing cycles at a ra
 The 32.8 CCF variance is an unresolved measurement gap that likely accumulates during winter billing periods when increased recirculation standby losses (estimated at 23% of total DHW per Navien NPE-series factory guidance) are difficult to isolate from the primary space heating load.
 
 **Contributing Factors:**
+
 1. **Inlet Water Temperature:** Winter inlet water temperatures (~45°F) require higher burner input than summer (~65°F), potentially affecting meter calibration accuracy
 2. **Recirculation Standby Loss:** The active recirculation pump maintains hot water in distribution lines, creating thermal losses that are metered as DHW but may partially contribute to space heating via incidental pipe radiation
 3. **Billing Period Misalignment:** The Navien meter records calendar-year consumption while utility billing follows offset meter read dates
@@ -252,6 +258,7 @@ The 32.8 CCF variance is an unresolved measurement gap that likely accumulates d
 ### DHW Performance Context
 
 For a two-occupant household:
+
 - **Daily Usage:** 0.533 CCF/day (53.3 gallons equivalent at 70°F temperature rise)
 - **Annual Cost:** ~$350 (gas) + ~$50 (electric recirculation pump)
 - **Efficiency:** 95%+ AFUE via condensing technology
@@ -272,11 +279,12 @@ For a two-occupant household:
 
 **Operational Concern:**
 
-Occupant modifications—specifically closing 2nd-floor vents by approximately 50%—increase system back-pressure. Constant-torque ECMs respond to increased static pressure by **increasing wattage draw** to maintain target CFM. 
+Occupant modifications—specifically closing 2nd-floor vents by approximately 50%—increase system back-pressure. Constant-torque ECMs respond to increased static pressure by **increasing wattage draw** to maintain target CFM.
 
 **Diagnostic Value of Monitoring:**
 
 Monitoring the blower's real-time wattage provides an early-warning system for excessive static pressure:
+
 - **Baseline:** 210W (current operation)
 - **Concern Threshold:** >300W (indicates >50% increase in back-pressure)
 - **Critical Threshold:** >400W (risk of premature motor failure)
@@ -304,17 +312,18 @@ Transitioning from fixed RH control to **dew point control** at 52°F target (ap
 - **Implementation Cost:** ~$50 (Shelly H&T + Plug)
 - **Simple Payback:** 5.7 months
 
-**Technical Justification:** 
+**Technical Justification:**
 
 At 65°F basement temperature, a 45% RH setpoint (43°F dew point) provides no additional moisture protection compared to a 52°F dew point (63% RH) for mold prevention or comfort. The lower setpoint only increases compressor runtime without commensurate benefit. Dew point control eliminates this inefficiency while maintaining equivalent moisture protection across seasonal temperature variations.
 
 ### Air Conditioner Longevity Tracking
 
-**Equipment:** American Standard Silver 14 (4-ton, 14 SEER)  
-**Baseline Power Draw:** 4.9 kW  
+**Equipment:** American Standard Silver 14 (4-ton, 14 SEER)
+**Baseline Power Draw:** 4.9 kW
 **Operational History:** 2022-2025 (4 cooling seasons)
 
 **Degradation Indicators to Monitor:**
+
 1. **Power Draw Increase:** >10% rise above 4.9 kW baseline suggests compressor wear or refrigerant loss
 2. **Runtime Efficiency:** Decreasing cooling per kWh indicates declining SEER performance
 3. **Short Cycling:** Increasing start/stop cycles suggest control or refrigerant issues
@@ -336,6 +345,7 @@ A whole-house energy monitor is uniquely suited to verify the "Residual" electri
 **Hypothesis:** Majority attributable to unmeasured dehumidifier operation beyond modeled baseline
 
 **Monitoring Strategy:**
+
 - Dedicated CT clamp on Santa Fe Classic breaker
 - April-October seasonal tracking
 - Compare measured vs. modeled (294 kWh) baseline
@@ -382,7 +392,7 @@ A whole-house energy monitor is uniquely suited to verify the "Residual" electri
 | Baseline Verification | — | Documentation value | High |
 | **Total Annual Value** | **$125-$526** | **$8,586+** | — |
 
-**Monitor Investment:** $400-$600 (Fusion Energy 16-CT or equivalent)  
+**Monitor Investment:** $400-$600 (Fusion Energy 16-CT or equivalent)
 **Simple Payback:** 1.1 to 4.8 years (depending on mystery load findings)
 
 ---
@@ -408,6 +418,7 @@ The coefficient of variation (CV) below 8% for all major metrics provides high c
 - **Electricity Baseload:** CV < 3% (2022-2025 average: 9.6 kWh/day)
 
 **Interpretation:** Any future deviation beyond investigation thresholds indicates either:
+
 1. Equipment degradation (requires diagnostic/maintenance)
 2. Occupant behavior change (document for future baseline adjustment)
 3. Envelope compromise (investigate air sealing, insulation)
@@ -445,7 +456,7 @@ The coefficient of variation (CV) below 8% for all major metrics provides high c
 
 ---
 
-**Document Status:** Active baseline (v1.2.1)  
-**Next Update:** January 2027 (5-year comprehensive review)  
-**Prepared by:** William K. Collis, P.E. (pending)  
+**Document Status:** Active baseline (v1.2.1)
+**Next Update:** January 2027 (5-year comprehensive review)
+**Prepared by:** William K. Collis, P.E. (pending)
 **Date:** January 11, 2026
