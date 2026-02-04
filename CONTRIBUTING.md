@@ -154,11 +154,11 @@ This data is freely available under the MIT License. If you use this methodology
 
 Please cite as:
 
-```
+```text
 Collis, W. K. (2026). Residential HVAC Performance Baseline: A Four-Year 
 Longitudinal Study in Climate Zone 5A. GitHub Repository. 
 https://github.com/wkcollis1-eng/Residential-HVAC-Performance-Baseline-
-```
+```text
 
 ---
 
