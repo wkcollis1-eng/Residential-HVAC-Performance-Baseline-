@@ -124,7 +124,7 @@ Click through the links in README.md to ensure:
 
 ## Customization Tips
 
-### Before Uploading, Consider:
+### Before Uploading, Consider
 
 1. **Email Address:** The CONTRIBUTING.md references email via GitHub profile. Update if you want a specific contact method.
 
