@@ -99,7 +99,7 @@ The correction of historical consumption against meteorological data from Hartfo
 ### Terminology
 
 - **Heating Degree Days (HDD):** Cumulative degrees that average daily temperature falls below 65°F
-- **CCF:** Hundred cubic feet of natural gas (1 CCF ≈ 100,000 BTU)
+- **CCF:** Hundred cubic feet of natural gas (1 CCF ≈ 103,700 BTU; historical calculations in this report used the simplified 100,000 BTU/CCF convention)
 - **Heating Intensity:** CCF consumed per 1,000 HDD (efficiency metric normalized for weather severity)
 
 ### Four-Year Performance Summary
@@ -430,7 +430,7 @@ The coefficient of variation (CV) below 8% for all major metrics provides high c
 ### A. Glossary of Technical Terms
 
 - **AFUE (Annual Fuel Utilization Efficiency):** Percentage of fuel energy converted to useful heat over a full heating season
-- **CCF (Hundred Cubic Feet):** Unit of natural gas measurement; 1 CCF ≈ 100,000 BTU (varies by gas composition)
+- **CCF (Hundred Cubic Feet):** Unit of natural gas measurement; 1 CCF ≈ 103,700 BTU (pipeline natural gas). Historical calculations in this report used the simplified 100,000 BTU/CCF (1 therm) convention; going-forward analyses use 103,700 BTU/CCF.
 - **CV (Coefficient of Variation):** Standard deviation divided by mean, expressed as percentage; measures relative variability
 - **ECM (Electronically Commutated Motor):** Variable-speed DC motor with integrated controls for efficiency
 - **EUI (Energy Use Intensity):** Total energy consumption per square foot of conditioned space per year

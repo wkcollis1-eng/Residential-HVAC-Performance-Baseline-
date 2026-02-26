@@ -19,7 +19,7 @@
 | **Monthly Electricity (January)** | 461 kWh | 515 kWh | ✅ +11.7% YoY |
 | **Monthly HDD65 (January)** | 1,134 | 1,230 | ⚠️ +8.5% colder |
 
-*Corrected using Navien DHW metering (previously 95.5 with estimated DHW)  
+*Primary baseline (Navien-corrected). Replaces billing-aligned estimate of 89.1 CCF/1k HDD. See Performance Summary table note below.
 †January intensity elevated vs annual due to billing period capturing peak cold
 
 ---
@@ -76,6 +76,11 @@
 | **4-Yr Mean** | **89.1** | **40.8** | **38%** |
 | **Std Dev** | **6.2** | **2.1** | — |
 | **CV (%)** | **7.0%** | **5.1%** | — |
+
+> **Primary Baseline (going forward):** 90.3 CCF/1k HDD — derived using Navien DHW metering
+> for accurate heating gas separation. The billing-aligned 4-year mean of 89.1 above reflects
+> the estimated DHW method used prior to the Navien metering operational improvement.
+> All Home Assistant monitoring and investigation thresholds use the 90.3 Navien-corrected value.
 
 ---
 

@@ -213,8 +213,9 @@ Residual = Total Annual kWh - Baseload - AC - Blower - Modeled Dehumidifier
 ### Input Parameters
 
 1. **Total Delivered Heat (MMBTU):**
-   - Furnace: Space Heating CCF × 100k BTU/CCF × AFUE
+   - Furnace: Space Heating CCF × BTU/CCF × AFUE
    - Fireplace: Independently measured via fuel consumption × efficiency
+   - *Historical values below use 100k BTU/CCF × 0.96 AFUE; going-forward standard is 103,700 BTU/CCF × 0.95 AFUE (submittal-verified)*
 
 2. **Heating Degree Days (HDD):** Weather-normalized demand
 
@@ -246,6 +247,15 @@ UA = 61.1 MMBTU × 1,000,000 BTU/MMBTU ÷ (24 × 5,294)
 UA = 61,100,000 ÷ 127,056
 UA = 481 BTU/hr-°F ≈ 480 BTU/hr-°F
 ```
+
+> **Corrections (February 2026 audit):**
+> - The AFUE value above (0.96) reflects the series marketing rating ("up to 96%").
+>   The tested AFUE per manufacturer submittal (S9X1C100U-SUB-1D-EN) is **0.95** (95.0%).
+> - The BTU/CCF value above (100,000) is the simplified therm convention.
+>   The precise energy content of pipeline natural gas is **103,700 BTU/CCF**.
+> - With corrected values (103,700 × 0.95 + 3.6 MMBTU fireplace), the equivalent UA is **493 BTU/hr-°F**.
+>   Going forward, all Home Assistant sensor formulas use these corrected values.
+>   Historical calculations in this document are preserved as-published for reproducibility.
 
 **Step 4: Area Normalization**
 
