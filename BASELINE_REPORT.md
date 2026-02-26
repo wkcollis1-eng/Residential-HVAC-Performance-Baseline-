@@ -123,6 +123,13 @@ The correction of historical consumption against meteorological data from Hartfo
 
 The coefficient of variation (CV) below 8% for all major metrics confirms exceptional baseline stability.
 
+> **Baseline Correction Note (February 2026):**
+> The 4-year mean of 89.1 CCF/1k HDD reflects billing-aligned methodology used throughout this analysis.
+> For operational monitoring, the recommended going-forward baseline is **90.3 CCF/1k HDD** (Navien-corrected),
+> which isolates the DHW component more precisely using the independent NaviLink meter data rather than
+> regression-based estimates. This corrected value is used in all Home Assistant sensor formulas.
+> See DATA_SUMMARY.md and JANUARY_2026_UPDATE.md for detailed derivation.
+
 ### Causal Analysis of 2024–2025 Variance
 
 While 2025 remained **33% more efficient than the regional average** (145 CCF/1k HDD per EIA Connecticut residential data), the normalized heating intensity rose from 80.3 to 95.5 CCF/1k HDD (+19%). This shift indicates that the 18% increase in weather severity in 2025 was accompanied by a non-linear efficiency loss.

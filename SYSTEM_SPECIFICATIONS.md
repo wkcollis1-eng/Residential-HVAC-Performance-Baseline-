@@ -16,11 +16,14 @@
 **Type:** Single-stage condensing gas furnace
 
 **Performance Specifications:**
-- **AFUE:** 95-96%
-- **Input Capacity:** 100,000 BTU/hr
-- **Output Capacity:** 95,000-96,000 BTU/hr
+- **AFUE (Marketing):** "up to 96%" (series marketing claim)
+- **AFUE (Submittal-Verified):** 95.0% (per S9X1C100U-SUB-1D-EN; used in all calculations)
+- **Input Capacity:** 100,000 BTU/hr (nameplate)
+- **Output Capacity:** 95,000 BTU/hr (at 95% AFUE)
+- **Effective Heating Rate:** 60,556 BTU/hr (empirical; accounts for cycling losses, duct losses, and part-load operation)
 - **Modulation:** Single-stage (no modulation)
 - **Fuel:** Natural gas
+- **BTU/CCF:** 103,700 (pipeline natural gas energy content; used in all calculations)
 
 **Blower Specifications:**
 - **Motor Type:** 1 hp constant-torque ECM (Electronically Commutated Motor)
@@ -39,7 +42,7 @@
 **Installation Details:**
 - **Location:** Basement mechanical room
 - **Ductwork:** Sheet metal trunk with flex branches
-- **Filter Size:** 20×25×5 MERV 13 media filter
+- **Filter Size:** 20×25×5 MERV 11 media filter
 - **Filter Replacement:** Every 6-9 months
 
 **2025 Performance:**
@@ -193,28 +196,42 @@
 
 ## Thermostat and Controls
 
-### Primary Thermostat
+### Zone Configuration
 
-**Manufacturer:** Honeywell  
-**Model:** Lyric T6 Pro WiFi Programmable  
+**Configuration:** 2-zone (1F/2F) with independent schedule control
+**Damper System:** Motorized zone dampers in trunk ductwork
+**Control Logic:** Either thermostat call activates furnace; zone dampers direct airflow
+
+### Thermostats (2 units)
+
+**Manufacturer:** Honeywell
+**Model:** Lyric T6 Pro WiFi Programmable
 **Type:** Digital programmable with remote monitoring
+
+**Zone Assignments:**
+- **1st Floor (1F):** Living areas, kitchen, main level
+- **2nd Floor (2F):** Bedrooms, upper level
 
 **Capabilities:**
 - **Connectivity:** WiFi-enabled, cloud logging
-- **Data Logging:** High-resolution runtime telemetry
-- **Zones:** Single-zone control (whole-house)
+- **Data Logging:** High-resolution runtime telemetry per zone
 - **Smart Features:** Geofencing, adaptive scheduling
 
 **2025 Configuration:**
 - **Heating Setpoint:** 68-70°F (occupied), 65°F (sleep)
 - **Cooling Setpoint:** 74-76°F
 - **Fan Mode:** Auto (no continuous circulation)
-- **Schedule:** Programmable with manual overrides
+- **Schedule:** Independent programmable schedules per zone
+
+**2025 Performance:**
+- **Zone Balance:** 53.2% to 2F (slight 2F bias due to cathedral ceiling heat loss)
+- **Chaining Index:** 1.38 (moderate zone coordination)
+- **Zone Overlap:** 19% concurrent operation
 
 **Data Exports:**
 - **Furnace Runtime:** 831 burner hours (2025)
-- **Temperature Logs:** 15-minute intervals
-- **Equipment Cycling:** Start/stop timestamps
+- **Temperature Logs:** 15-minute intervals per zone
+- **Equipment Cycling:** Start/stop timestamps per zone
 
 ---
 

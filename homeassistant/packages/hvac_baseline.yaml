@@ -44,7 +44,21 @@
 # INPUT NUMBERS - System Constants & Rolling Window Storage
 # =============================================================================
 input_number:
-  # --- SYSTEM CONSTANTS (adjust to your equipment) ---
+  # ===========================================================================
+  # SYSTEM CONSTANTS - PLACEHOLDER VALUES
+  # ===========================================================================
+  # IMPORTANT: The values below are PLACEHOLDERS for demonstration.
+  # You MUST replace them with your system's calibrated values!
+  #
+  # To determine your values:
+  # - Furnace BTU/hr: Check your furnace nameplate or spec sheet
+  # - Building UA: Derived from heating data analysis (see METHODOLOGY.md)
+  # - Balance Point: Typically 55-62°F for high-efficiency homes
+  #
+  # See the baseline repository documentation for calibration procedures:
+  # https://github.com/wkcollis1-eng/Residential-HVAC-Performance-Baseline-
+  # ===========================================================================
+
   hvac_furnace_btu_hr:
     name: Furnace BTU/hr Rating
     min: 40000
@@ -53,7 +67,7 @@ input_number:
     unit_of_measurement: "BTU/hr"
     mode: box
     icon: mdi:fire
-    initial: 60000  # Adjust to your furnace's input rating
+    initial: 60000  # PLACEHOLDER - Replace with your furnace's input rating
 
   hvac_building_ua_baseline:
     name: Building UA Baseline
@@ -63,7 +77,7 @@ input_number:
     unit_of_measurement: "BTU/hr-°F"
     mode: box
     icon: mdi:home-thermometer
-    initial: 450  # Derived from your heating data
+    initial: 450  # PLACEHOLDER - Derive from your heating data analysis
 
   hvac_balance_point:
     name: Heating Balance Point
@@ -73,7 +87,7 @@ input_number:
     unit_of_measurement: "°F"
     mode: box
     icon: mdi:thermometer-lines
-    initial: 59  # Temperature where no heating needed
+    initial: 59  # PLACEHOLDER - Calibrate based on your home's thermal characteristics
 
   # --- 7-DAY HDD ROLLING WINDOW ---
   hdd_day_1:
