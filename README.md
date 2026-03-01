@@ -14,12 +14,12 @@
 This repository documents a comprehensive energy performance baseline for a 2,440 sq. ft. high-efficiency residential structure in Central Connecticut (Climate Zone 5A). The analysis integrates **50 months** of verified utility data (January 2022 - February 2026), high-resolution HVAC runtime telemetry, and independent domestic hot water monitoring to establish diagnostic performance thresholds.
 
 **Key Findings (Updated February 2026):**
-- **Site EUI:** 41.7 kBTU/ft²-yr (33% better than regional average)
+- **Site EUI (12-mo rolling):** 42.8 kBTU/ft²-yr (31% better than regional average)
+- **Baseline Site EUI:** 41.7 kBTU/ft²-yr — current +2.6% due to colder winter
 - **Heating Intensity:** 90.3 CCF/1k HDD (corrected with Navien DHW metering)
 - **Envelope UA:** 480 BTU/hr-°F (21-34% superior to 2021 IECC code-minimum)
-- **Annual Electricity:** 6,730 kWh (65% below average for home size)
+- **12-mo Electricity:** 6,741 kWh (65% below average for home size)
 - **DHW Optimization:** -22% sustained YoY from recirculation schedule change (~$77/year savings)
-- **2025-2026 Heating Season:** 720 runtime hours across 4,529 HDD with 9.5 min/HDD efficiency
 
 ## 🆕 February 2026 Update Highlights
 
