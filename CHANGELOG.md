@@ -7,6 +7,45 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.4.0] - 2026-03-01
+
+### Added
+
+- **February 2026 Data Integration**
+  - Extended all datasets through February 28, 2026 (50 months total)
+  - Added daily temperature data for February 2026 (28 days)
+  - Added HVAC runtime data (158 heating hours)
+  - Added DHW Navien monitoring (14.14 CCF)
+  - Weather data sourced from timeanddate.com for Chester, CT (06424)
+
+- **New Analysis Document**
+  - `FEBRUARY_2026_UPDATE.md` - Complete MoM, YoY, and seasonal analysis
+  - Early February cold snap analysis (Feb 7-9, 2026)
+  - 2025-2026 heating season cumulative summary
+  - DHW optimization continued validation
+
+### Changed
+
+- **Data Files Updated**
+  - `daily_temperature.csv` - Added 28 February records
+  - `monthly_hvac_runtime.csv` - Added Feb 2026 (1F: 72h, 2F: 86h)
+  - `monthly_dhw_navien.csv` - Added Feb 2026 (14.14 CCF, 11 hrs, 28 recirc hrs)
+
+### Validated
+
+- **DHW Optimization Continues to Hold**
+  - February 2026: 14.14 CCF vs 18.12 CCF Feb 2025 (-22.0%)
+  - Recirculation hours: 28 vs 53 (-47.2%)
+  - Cumulative Jan-Feb savings: 9.05 CCF (~$14.50)
+  - On track for projected $77/year savings
+
+- **System Performance**
+  - Runtime efficiency: 8.8 min/HDD (19% better than 10.9 baseline)
+  - Zone balance: 54.4% (within 50±5% target)
+  - Heating intensity: 149.4 CCF/1kHDD (billing artifacts, runtime confirms health)
+
+---
+
 ## [1.3.2] - 2026-02-02
 
 ### Added
@@ -132,15 +171,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## Data Files Updated in v1.3.2
+## Data Files Updated in v1.4.0
 
 | File | Previous End | Current End | Records Added |
 |------|--------------|-------------|---------------|
-| daily_temperature.csv | 2025-12-31 | 2026-01-31 | 31 days |
-| monthly_hvac_runtime.csv | 2025-12 | 2026-01 | 2 records (zones) |
-| monthly_dhw_navien.csv | 2025-12 | 2026-01 | 1 record |
-| monthly_gas_scg.csv | 2025-12 | 2026-01 | 1 record |
-| monthly_electricity_eversource.csv | 2025-12 | 2026-01 | 1 record |
+| daily_temperature.csv | 2026-01-31 | 2026-02-28 | 28 days |
+| monthly_hvac_runtime.csv | 2026-01 | 2026-02 | 2 records (zones) |
+| monthly_dhw_navien.csv | 2026-01 | 2026-02 | 1 record |
+| monthly_gas_scg.csv | 2026-01 | 2026-02 | Pending utility bill |
+| monthly_electricity_eversource.csv | 2026-01 | 2026-02 | Pending utility bill |
 
 ---
 
@@ -152,19 +191,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 | v1.1.0 | 2022-2023 | 90.3 | 41.5 | 5.1% |
 | v1.2.0 | 2022-2024 | 86.9 | 40.4 | 6.2% |
 | v1.2.1 | 2022-2025 | 89.1 | 40.8 | 7.0% |
-| **v1.3.2** | **2022-2026*** | **89.1** | **40.8** | **7.0%** |
+| v1.3.2 | 2022-2026* | 89.1 | 40.8 | 7.0% |
+| **v1.4.0** | **2022-2026*** | **89.1** | **40.8** | **7.0%** |
 
-*Through January 2026 only; annual metrics unchanged until full year complete
+*Through February 2026; annual metrics unchanged until full year complete
 
 ---
 
 ## Upcoming (Planned)
 
-### [1.4.0] - Expected April 2026
+### [1.5.0] - Expected April 2026
 
 - Post-winter 2025-2026 season summary
-- February-March 2026 data integration
-- Annual heating intensity recalculation
+- March 2026 data integration
+- Complete heating season analysis
 - Dehumidifier season ramp-up validation
 
 ### [2.0.0] - Expected January 2027
