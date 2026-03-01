@@ -11,41 +11,41 @@
 
 ## Overview
 
-This repository documents a comprehensive energy performance baseline for a 2,440 sq. ft. high-efficiency residential structure in Central Connecticut (Climate Zone 5A). The analysis integrates **49 months** of verified utility data (January 2022 - January 2026), high-resolution HVAC runtime telemetry, and independent domestic hot water monitoring to establish diagnostic performance thresholds.
+This repository documents a comprehensive energy performance baseline for a 2,440 sq. ft. high-efficiency residential structure in Central Connecticut (Climate Zone 5A). The analysis integrates **50 months** of verified utility data (January 2022 - February 2026), high-resolution HVAC runtime telemetry, and independent domestic hot water monitoring to establish diagnostic performance thresholds.
 
-**Key Findings (Updated January 2026):**
+**Key Findings (Updated February 2026):**
 - **Site EUI:** 41.7 kBTU/ft²-yr (33% better than regional average)
 - **Heating Intensity:** 90.3 CCF/1k HDD (corrected with Navien DHW metering)
 - **Envelope UA:** 480 BTU/hr-°F (21-34% superior to 2021 IECC code-minimum)
 - **Annual Electricity:** 6,730 kWh (65% below average for home size)
-- **DHW Optimization:** -22% from recirculation schedule change (~$77/year savings)
-- **January 2026 Validation:** System performed within baseline during extreme cold (1,230 HDD)
+- **DHW Optimization:** -22% sustained YoY from recirculation schedule change (~$77/year savings)
+- **2025-2026 Heating Season:** 720 runtime hours across 4,529 HDD with 9.5 min/HDD efficiency
 
-## 🆕 January 2026 Update Highlights
+## 🆕 February 2026 Update Highlights
 
-The January 2026 cold snap (including -2°F minimum on Jan 31) provided the most rigorous test of system performance in the 5-year dataset:
+February 2026 continued the colder-than-normal 2025-2026 heating season, with an early-month cold snap (Feb 7-9) reaching 0°F:
 
-| Metric | Jan 2025 | Jan 2026 | YoY Change | Status |
+| Metric | Feb 2025 | Feb 2026 | YoY Change | Status |
 |--------|----------|----------|------------|--------|
-| Total Gas | 161 CCF | 168 CCF | +4.3% | ✅ |
-| Space Heating | 138.2 CCF | 150.2 CCF | +8.7% | ✅ Tracks weather |
-| DHW (Navien) | 22.8 CCF | 17.8 CCF | **-22.2%** | ✅ Optimized |
-| Weather Severity | 1,134 HDD | 1,230 HDD | +8.5% | ⚠️ Colder |
-| Heating Efficiency | 121.8 CCF/1kHDD | 122.1 CCF/1kHDD | **+0.2%** | ✅ Flat |
-| HVAC Runtime | — | 220 hrs (10.7 min/HDD) | — | ✅ Baseline |
+| Total Gas | 154 CCF | 175 CCF | +13.6% | ✅ Weather-driven |
+| Space Heating | 135.9 CCF | 160.9 CCF | +18.4% | ✅ Tracks weather |
+| DHW (Navien) | 18.1 CCF | 14.1 CCF | **-22.0%** | ✅ Savings hold |
+| Weather Severity | 940 HDD | 1,077 HDD | +14.6% | ⚠️ Colder |
+| HVAC Runtime | 138 hrs | 158 hrs (8.8 min/HDD) | +14.5% | ✅ Excellent |
 
 **Key Insights:**
-1. **Space heating tracked weather perfectly:** +8.7% gas vs +8.5% HDD — essentially 1:1
-2. **Heating intensity flat YoY:** +0.2% variance (well within 7% CV baseline)
-3. **DHW optimization success:** Recirculation schedule change (24hr→15hr) saved 22%
+1. **DHW savings sustained:** -22% YoY continues from January optimization
+2. **Runtime efficiency excellent:** 8.8 min/HDD is 19% better than baseline
+3. **Season totals:** 720 heating hours across 4,529 HDD (Oct-Feb)
 
-### DHW Recirculation Optimization
+### DHW Recirculation Optimization (Ongoing)
 
-**Finding:** 59% of DHW gas was going to recirculation standby losses (vs 23% factory estimate)  
-**Action:** Reduced recirc schedule from 24 hr/day to 15 hr/day (off 9 PM - 6 AM)  
-**Projected Savings:** ~$77/year with zero hardware cost
+**Cumulative Savings (Jan-Feb 2026):** 9.05 CCF (~$14.50)
+**On Track For:** ~$77/year projected annual savings
+**Schedule:** 15 hr/day (off 9 PM - 6 AM) — no comfort issues reported
 
-See [JANUARY_2026_UPDATE.md](JANUARY_2026_UPDATE.md) for complete analysis.
+See [FEBRUARY_2026_UPDATE.md](FEBRUARY_2026_UPDATE.md) for complete analysis.
+See [JANUARY_2026_UPDATE.md](JANUARY_2026_UPDATE.md) for DHW optimization details.
 
 ## 🏗️ System Architecture
 
@@ -101,14 +101,14 @@ flowchart TB
 
 ## 📊 Five-Year Performance Summary
 
-| Metric | 2022 | 2023 | 2024 | 2025 | Jan 2026 |
+| Metric | 2022 | 2023 | 2024 | 2025 | 2026 YTD |
 |--------|------|------|------|------|----------|
-| Annual Gas (CCF) | 815 | 764 | 694 | 787 | 168* |
-| Annual Elec (kWh) | 6,824 | 6,591 | 6,543 | 6,730 | 515* |
-| Heating Intensity | 89.8 | 90.8 | 80.3 | 95.5 | 123.6* |
+| Annual Gas (CCF) | 815 | 764 | 694 | 787 | 343* |
+| Annual Elec (kWh) | 6,824 | 6,591 | 6,543 | 6,730 | 919* |
+| Heating Intensity | 89.8 | 90.8 | 80.3 | 95.5 | 135.0* |
 | Site EUI | 42.1 | 40.8 | 38.2 | 41.7 | — |
 
-*January 2026 only (partial year)
+*Jan-Feb 2026 only (partial year)
 
 ### Statistical Stability (4-Year Baseline)
 
@@ -155,18 +155,19 @@ template:
 ├── DATA_SUMMARY.md               # Quick-reference metrics and tables
 ├── METHODOLOGY.md                # Billing-aligned calculation methodology
 ├── SYSTEM_SPECIFICATIONS.md      # Equipment technical specifications
-├── JANUARY_2026_UPDATE.md        # 🆕 January 2026 performance analysis
+├── JANUARY_2026_UPDATE.md        # January 2026 performance analysis
+├── FEBRUARY_2026_UPDATE.md       # 🆕 February 2026 performance analysis
 ├── REALTIME_MONITORING_2026.md   # Home Assistant implementation details
 ├── homeassistant/                # Home Assistant configuration
 │   ├── packages/
 │   │   └── hvac_baseline.yaml
 │   └── dashboards/
 └── data/                         # Raw operational datasets
-    ├── daily_temperature.csv     # 🆕 Updated through Jan 2026
-    ├── monthly_hvac_runtime.csv  # 🆕 Updated through Jan 2026
-    ├── monthly_dhw_navien.csv    # 🆕 Updated through Jan 2026
+    ├── daily_temperature.csv     # 🆕 Updated through Feb 2026
+    ├── monthly_hvac_runtime.csv  # 🆕 Updated through Feb 2026
+    ├── monthly_dhw_navien.csv    # 🆕 Updated through Feb 2026
     ├── monthly_electricity_eversource.csv
-    └── monthly_gas_scg.csv       # 🆕 Updated through Jan 2026
+    └── monthly_gas_scg.csv
 ```
 
 ## 🏠 Property Context
@@ -237,11 +238,17 @@ See [UTILITY_PROGRAM_ANALYSIS.md](UTILITY_PROGRAM_ANALYSIS.md) for detailed anal
 
 ## 📬 Recent Updates
 
+### v1.4.0 (March 2026)
+- Added February 2026 data and analysis
+- Extended dataset to 50 months
+- DHW optimization savings sustained at -22% YoY
+- Runtime efficiency: 8.8 min/HDD (19% better than baseline)
+- 2025-2026 heating season cumulative: 720 hrs / 4,529 HDD
+
 ### v1.3.2 (February 2026)
 - Added January 2026 data and analysis
 - Extended dataset to 49 months
 - Validated baseline under extreme cold conditions (1,230 HDD)
-- Confirmed -3.3% YoY efficiency improvement despite 8.4% colder weather
 - Real-time monitoring integration documented
 
 ### v1.2.1 (January 2026)
@@ -279,6 +286,6 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ---
 
-**Version:** 1.3.2 (February 2026)  
-**Status:** Active Baseline — 49 months of validated data  
-**Next Update:** March 2026 (post-winter season summary)
+**Version:** 1.4.0 (March 2026)
+**Status:** Active Baseline — 50 months of validated data
+**Next Update:** April 2026 (post-winter season summary)
