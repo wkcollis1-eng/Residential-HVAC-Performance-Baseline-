@@ -7,6 +7,51 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.5.0] - 2026-03-16
+
+### Added
+
+- **`data/monthly_summary.csv`** — Derived monthly metrics table (14 rows, Jan 2025–Feb 2026)
+  - Columns: Month, HDD65, Gas_CCF, DHW_CCF, Space_Heat_CCF, Heating_Intensity_CCF_1kHDD,
+    Gas_Cost, Gas_CPP, Elec_kWh, Elec_Cost, Heat_1F_Hrs, Heat_2F_Hrs, Heat_Total_Hrs,
+    Cool_1F_Hrs, Cool_2F_Hrs, Cool_Total_Hrs, Runtime_Per_HDD_Min, Zone_Balance_1F_Pct,
+    DHW_Op_Hrs, DHW_Recirc_Hrs
+  - Derived from all five source CSVs — single-file reference for validation and reporting
+  - Heating_Intensity suppressed for months with HDD ≤ 100 (summer months)
+
+- **`scripts/validate_month.py`** — Pre-commit monthly validation script
+  - Implements V-HVAC-1 through V-HVAC-8 from CLAUDE.md
+  - Checks: runtime/HDD ±2σ, heating efficiency ±15%, UA proxy ±5%, HDD vs normal,
+    zone balance 45–55%, DHW YoY ≤ +5%, daily row count = days-in-month, runtime 2 rows/month
+  - HALT-level failures block commit; FLAG-level require confirmation; exits 0/1 accordingly
+  - Usage: `python3 scripts/validate_month.py [YYYY-MM-DD]`
+
+- **`UPDATES.md`** — Consolidated monthly update log (replaces individual month files)
+  - Newest month prepended to top; structured MoM/YoY tables per month
+  - Contains January 2026 and February 2026 updates
+
+- **`CLAUDE.md`** — Machine-optimized session context for Claude Code
+  - Canonical constants, CSV schemas, prohibited actions, monthly update procedure
+  - References engineering-monthly-update skill
+  - Includes sentinel comments in README for targeted metric updates
+
+### Changed
+
+- **`README.md`**
+  - Added `<!-- METRICS_START -->` / `<!-- METRICS_END -->` sentinels around Key Findings block
+  - Added `<!-- HIGHLIGHTS_START -->` / `<!-- HIGHLIGHTS_END -->` sentinels around monthly highlights
+  - Updated directory listing to include new files; removed individual month file references
+  - Monthly analysis link updated to `UPDATES.md`
+
+### Notes
+
+- `JANUARY_2026_UPDATE.md` and `FEBRUARY_2026_UPDATE.md` retained for backwards compatibility
+  and GitHub Pages SEO; content now also available in `UPDATES.md`
+- `monthly_summary.csv` is a derived file — do not edit manually; regenerate from source CSVs
+  if source data changes
+
+---
+
 ## [1.4.0] - 2026-03-01
 
 ### Added

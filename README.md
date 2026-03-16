@@ -13,6 +13,7 @@
 
 This repository documents a comprehensive energy performance baseline for a 2,440 sq. ft. high-efficiency residential structure in Central Connecticut (Climate Zone 5A). The analysis integrates **50 months** of verified utility data (January 2022 - February 2026), high-resolution HVAC runtime telemetry, and independent domestic hot water monitoring to establish diagnostic performance thresholds.
 
+<!-- METRICS_START -->
 **Key Findings (Updated February 2026):**
 - **Site EUI (12-mo rolling):** 42.8 kBTU/ft²-yr (31% better than regional average)
 - **Baseline Site EUI:** 41.7 kBTU/ft²-yr — current +2.6% due to colder winter
@@ -20,7 +21,9 @@ This repository documents a comprehensive energy performance baseline for a 2,44
 - **Envelope UA:** 480 BTU/hr-°F (21-34% superior to 2021 IECC code-minimum)
 - **12-mo Electricity:** 6,741 kWh (65% below average for home size)
 - **DHW Optimization:** -22% sustained YoY from recirculation schedule change (~$77/year savings)
+<!-- METRICS_END -->
 
+<!-- HIGHLIGHTS_START -->
 ## 🆕 February 2026 Update Highlights
 
 February 2026 continued the colder-than-normal 2025-2026 heating season, with an early-month cold snap (Feb 7-9) reaching 0°F:
@@ -44,8 +47,8 @@ February 2026 continued the colder-than-normal 2025-2026 heating season, with an
 **On Track For:** ~$77/year projected annual savings
 **Schedule:** 15 hr/day (off 9 PM - 6 AM) — no comfort issues reported
 
-See [FEBRUARY_2026_UPDATE.md](FEBRUARY_2026_UPDATE.md) for complete analysis.
-See [JANUARY_2026_UPDATE.md](JANUARY_2026_UPDATE.md) for DHW optimization details.
+See [UPDATES.md](UPDATES.md) for complete monthly analysis.
+<!-- HIGHLIGHTS_END -->
 
 ## 🏗️ System Architecture
 
@@ -152,20 +155,22 @@ template:
 ```
 ├── README.md                     # This file
 ├── BASELINE_REPORT.md            # Complete technical analysis (17,000+ words)
+├── UPDATES.md                    # 🆕 Monthly update log (all months, newest-first)
 ├── DATA_SUMMARY.md               # Quick-reference metrics and tables
 ├── METHODOLOGY.md                # Billing-aligned calculation methodology
 ├── SYSTEM_SPECIFICATIONS.md      # Equipment technical specifications
-├── JANUARY_2026_UPDATE.md        # January 2026 performance analysis
-├── FEBRUARY_2026_UPDATE.md       # 🆕 February 2026 performance analysis
 ├── REALTIME_MONITORING_2026.md   # Home Assistant implementation details
+├── scripts/
+│   └── validate_month.py         # 🆕 Pre-commit validation (V-HVAC-1 through V-HVAC-8)
 ├── homeassistant/                # Home Assistant configuration
 │   ├── packages/
 │   │   └── hvac_baseline.yaml
 │   └── dashboards/
 └── data/                         # Raw operational datasets
-    ├── daily_temperature.csv     # 🆕 Updated through Feb 2026
-    ├── monthly_hvac_runtime.csv  # 🆕 Updated through Feb 2026
-    ├── monthly_dhw_navien.csv    # 🆕 Updated through Feb 2026
+    ├── monthly_summary.csv       # 🆕 Derived monthly metrics (all-in-one reference)
+    ├── daily_temperature.csv     # Updated through Feb 2026
+    ├── monthly_hvac_runtime.csv  # Updated through Feb 2026
+    ├── monthly_dhw_navien.csv    # Updated through Feb 2026
     ├── monthly_electricity_eversource.csv
     └── monthly_gas_scg.csv
 ```
