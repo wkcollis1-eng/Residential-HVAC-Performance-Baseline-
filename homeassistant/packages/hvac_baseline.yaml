@@ -429,7 +429,7 @@ template:
         unit_of_measurement: "cycles"
         state_class: measurement
         state: >
-          {{ states('sensor.hvac_1f_heat_cycles_today') | int(0) + 
+          {{ states('sensor.hvac_1f_heat_cycles_today') | int(0) +
              states('sensor.hvac_2f_heat_cycles_today') | int(0) }}
 
       # --- CHAINING INDEX (Novel Multi-Zone Metric) ---
@@ -438,7 +438,7 @@ template:
         state_class: measurement
         icon: mdi:link-variant
         state: >
-          {% set zone_calls = states('sensor.hvac_1f_heat_cycles_today') | int(0) + 
+          {% set zone_calls = states('sensor.hvac_1f_heat_cycles_today') | int(0) +
                               states('sensor.hvac_2f_heat_cycles_today') | int(0) %}
           {% set furnace_cycles = states('sensor.hvac_furnace_cycles_today') | int(0) %}
           {% if furnace_cycles > 0 %}

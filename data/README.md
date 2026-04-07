@@ -1,7 +1,7 @@
 # Residential HVAC Performance Baseline - Dataset Documentation
 
-**Version:** 1.2.2  
-**Data Period:** 2021-12 through 2025-12  
+**Version:** 1.2.2
+**Data Period:** 2021-12 through 2025-12
 **Last Updated:** January 12, 2026
 
 ---
@@ -25,9 +25,9 @@ This directory contains raw operational data for the residential HVAC performanc
 
 **Description:** HVAC equipment runtime hours extracted from Honeywell Lyric T6 Pro thermostat telemetry
 
-**Period:** January 2025 - December 2025 (12 months)  
-**Rows:** 24  
-**Source:** Resideo/Honeywell Lyric app export  
+**Period:** January 2025 - December 2025 (12 months)
+**Rows:** 24
+**Source:** Resideo/Honeywell Lyric app export
 **Frequency:** Monthly aggregation
 
 **Columns:**
@@ -56,9 +56,9 @@ This directory contains raw operational data for the residential HVAC performanc
 
 **Description:** Daily temperature readings from thermostat sensors (indoor and outdoor)
 
-**Period:** January 1, 2025 - December 31, 2025 (365 days)  
-**Rows:** 364  
-**Source:** Resideo/Honeywell Lyric app export  
+**Period:** January 1, 2025 - December 31, 2025 (365 days)
+**Rows:** 364
+**Source:** Resideo/Honeywell Lyric app export
 **Frequency:** Daily aggregation (high/low/average)
 
 **Columns:**
@@ -96,9 +96,9 @@ This directory contains raw operational data for the residential HVAC performanc
 
 **Description:** Domestic hot water (DHW) gas consumption and operating metrics from Navien tankless water heater
 
-**Period:** October 2024 - December 2025 (15 months)  
-**Rows:** 15  
-**Source:** Navien NaviLink independent gas meter  
+**Period:** October 2024 - December 2025 (15 months)
+**Rows:** 15
+**Source:** Navien NaviLink independent gas meter
 **Frequency:** Monthly reading
 
 **Columns:**
@@ -128,9 +128,9 @@ This directory contains raw operational data for the residential HVAC performanc
 
 **Description:** Whole-house electricity consumption from utility billing records
 
-**Period:** December 2021 - December 2025 (49 billing periods)  
-**Rows:** 49  
-**Source:** Eversource Energy utility bills  
+**Period:** December 2021 - December 2025 (49 billing periods)
+**Rows:** 49
+**Source:** Eversource Energy utility bills
 **Frequency:** Monthly billing cycles (28-34 days per period)
 
 **Columns:**
@@ -170,9 +170,9 @@ This directory contains raw operational data for the residential HVAC performanc
 
 **Description:** Whole-house natural gas consumption from utility billing records
 
-**Period:** December 2021 - December 2025 (49 billing periods)  
-**Rows:** 49  
-**Source:** Southern Connecticut Gas Company utility bills  
+**Period:** December 2021 - December 2025 (49 billing periods)
+**Rows:** 49
+**Source:** Southern Connecticut Gas Company utility bills
 **Frequency:** Monthly billing cycles (28-34 days per period)
 
 **Columns:**
@@ -338,6 +338,6 @@ If you use this dataset in your research, please cite:
 
 ---
 
-**Last Updated:** January 12, 2026  
-**Data Quality Review:** Validated against baseline report v1.2.1  
+**Last Updated:** January 12, 2026
+**Data Quality Review:** Validated against baseline report v1.2.1
 **License:** MIT (see repository LICENSE file)

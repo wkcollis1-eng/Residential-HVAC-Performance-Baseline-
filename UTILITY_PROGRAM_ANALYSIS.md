@@ -1,6 +1,6 @@
 # Why This Home Is Not a Candidate for Standard Utility Programs
 
-**Version:** 1.2.1  
+**Version:** 1.2.1
 **Last Updated:** January 2026
 
 ---
@@ -21,7 +21,7 @@ In summary, this home resides in a performance regime beyond the design envelope
 
 **For detailed analysis including:**
 - Quantified intervention ROI calculations
-- Heat pump conversion economics  
+- Heat pump conversion economics
 - Solar PV viability assessment
 - Alternative optimization pathway
 
@@ -29,7 +29,7 @@ See the complete document in the repository.
 
 ---
 
-**Document Status:** v1.2.1 - Abbreviated version  
-**Full Analysis:** Available in repository  
-**Prepared by:** William K. Collis  
+**Document Status:** v1.2.1 - Abbreviated version
+**Full Analysis:** Available in repository
+**Prepared by:** William K. Collis
 **Date:** January 12, 2026

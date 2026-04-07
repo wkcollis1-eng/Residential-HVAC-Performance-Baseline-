@@ -160,6 +160,6 @@ Planned monitoring additions:
 
 ---
 
-**Last Updated:** February 2026  
-**Configuration Version:** Home Assistant 2024.12  
+**Last Updated:** February 2026
+**Configuration Version:** Home Assistant 2024.12
 **Monitoring Active Since:** January 2025

@@ -19,8 +19,8 @@
 
 This document presents the real-time monitoring infrastructure implemented in January 2026 to complement the four-year baseline analysis documented in this repository. The system provides high-resolution (5-minute) HVAC telemetry integrated with 18-year climate normals to enable real-time performance deviation detection.
 
-**Implementation Date:** January 7, 2026  
-**Platform:** Home Assistant with custom sensors and automations  
+**Implementation Date:** January 7, 2026
+**Platform:** Home Assistant with custom sensors and automations
 **Data Sources:**
 - Honeywell Lyric T6 Pro thermostat (runtime telemetry)
 - NOAA KBDL weather station (temperature, HDD calculations)
@@ -113,7 +113,7 @@ With floor areas of 935 sq ft (1F) and 1,505 sq ft (2F):
 
 **Data Validation:**
 - Pirate Weather: 13°F
-- Open-Meteo Live: 15.6°F  
+- Open-Meteo Live: 15.6°F
 - Feels Like: 13°F
 - Sources show <3°F variance (acceptable for residential monitoring)
 
@@ -231,8 +231,8 @@ With floor areas of 935 sq ft (1F) and 1,505 sq ft (2F):
 
 ### Event Overview
 
-**Date:** January 20, 2026  
-**Conditions:** Coldest day of month, persistent cold snap (Jan 14-20)  
+**Date:** January 20, 2026
+**Conditions:** Coldest day of month, persistent cold snap (Jan 14-20)
 **Key Metric:** 43.7 HDD (23.4% above 18-year climate normal of 35.4 HDD)
 
 ### Performance Timeline
@@ -529,7 +529,7 @@ The real-time monitoring system successfully bridges the gap between annual bill
 
 ---
 
-**Version:** 1.0.0  
-**Date:** January 20, 2026  
-**Author:** W. K. Collis  
+**Version:** 1.0.0
+**Date:** January 20, 2026
+**Author:** W. K. Collis
 **Repository:** [Residential HVAC Performance Baseline](https://github.com/wkcollis1-eng/Residential-HVAC-Performance-Baseline-)

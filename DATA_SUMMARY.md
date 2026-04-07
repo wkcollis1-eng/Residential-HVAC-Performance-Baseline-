@@ -1,7 +1,7 @@
 # Data Summary: Quick Reference Tables
 
-**Version:** 1.3.2  
-**Period:** 2022-2026 (49 months through January 2026)  
+**Version:** 1.3.2
+**Period:** 2022-2026 (49 months through January 2026)
 **Property:** 2,440 sq. ft. Colonial, Climate Zone 5A, Central Connecticut
 
 ---
@@ -28,7 +28,7 @@
 
 ### Change Implemented
 
-**Date:** Mid-January 2026  
+**Date:** Mid-January 2026
 **Schedule:** 24 hr/day → 15 hr/day (OFF 9 PM - 6 AM)
 
 ### Measured Impact
@@ -40,7 +40,7 @@
 
 ### Key Finding
 
-**Implied recirculation standby loss: 59% of total DHW gas**  
+**Implied recirculation standby loss: 59% of total DHW gas**
 (vs Navien factory estimate of 23%)
 
 ### Projected Annual Savings
@@ -62,7 +62,7 @@
 | 2025 | 6,270 | 787 | 599 | 188* | 6,730 |
 | 2026† | 1,230 | 168 | 152 | 18 | 515 |
 
-*2025 DHW adjusted to billing-aligned methodology  
+*2025 DHW adjusted to billing-aligned methodology
 †2026 = January only (partial year)
 
 ### Weather-Normalized Efficiency
@@ -285,6 +285,6 @@
 
 ---
 
-**Last Updated:** February 2, 2026  
-**Data Quality:** Validated against 4-year historical baseline (CV < 8% all major metrics)  
+**Last Updated:** February 2, 2026
+**Data Quality:** Validated against 4-year historical baseline (CV < 8% all major metrics)
 **Next Update:** March 2026 (post-winter season summary)

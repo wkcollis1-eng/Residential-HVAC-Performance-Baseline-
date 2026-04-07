@@ -1,8 +1,8 @@
 # System Specifications: HVAC and Energy Equipment
 
-**Property:** 2,440 sq. ft. Two-Story Colonial  
-**Location:** Central Connecticut, Climate Zone 5A  
-**Construction Year:** 2021  
+**Property:** 2,440 sq. ft. Two-Story Colonial
+**Location:** Central Connecticut, Climate Zone 5A
+**Construction Year:** 2021
 **Last Updated:** January 2026
 
 ---
@@ -11,8 +11,8 @@
 
 ### Furnace
 
-**Manufacturer:** American Standard  
-**Model:** Silver 95 Series (S9X1C100U5PSBA)  
+**Manufacturer:** American Standard
+**Model:** Silver 95 Series (S9X1C100U5PSBA)
 **Type:** Single-stage condensing gas furnace
 
 **Performance Specifications:**
@@ -56,8 +56,8 @@
 
 ### Air Conditioner (Outdoor Unit)
 
-**Manufacturer:** American Standard  
-**Model:** Silver 14 Series (4A7A4048L1000AA)  
+**Manufacturer:** American Standard
+**Model:** Silver 14 Series (4A7A4048L1000AA)
 **Type:** Split-system central air conditioner
 
 **Performance Specifications:**
@@ -81,8 +81,8 @@
 
 ### Indoor Coil (Evaporator)
 
-**Manufacturer:** American Standard  
-**Model:** 4TXCC005  
+**Manufacturer:** American Standard
+**Model:** 4TXCC005
 **Type:** Cased A-coil (all-aluminum)
 
 **Specifications:**
@@ -101,7 +101,7 @@
 
 ### Gas Fireplace
 
-**Type:** Direct-vent sealed combustion (natural gas)  
+**Type:** Direct-vent sealed combustion (natural gas)
 **Location:** Living room (main floor)
 
 **Performance:**
@@ -121,8 +121,8 @@
 
 ### Basement Dehumidifier
 
-**Manufacturer:** Santa Fe  
-**Model:** Classic  
+**Manufacturer:** Santa Fe
+**Model:** Classic
 **Type:** Whole-basement commercial-grade dehumidifier
 
 **Performance Specifications:**
@@ -160,8 +160,8 @@
 
 ### Tankless Water Heater
 
-**Manufacturer:** Navien  
-**Model:** NPE-series condensing tankless  
+**Manufacturer:** Navien
+**Model:** NPE-series condensing tankless
 **Type:** On-demand / instantaneous water heater
 
 **Performance Specifications:**
@@ -271,8 +271,8 @@
 
 ### Ceiling/Attic
 
-**Insulation:** Blown-in fiberglass insulation  
-**R-Value:** R-49 to R-60  
+**Insulation:** Blown-in fiberglass insulation
+**R-Value:** R-49 to R-60
 **Ventilation:** Ridge and soffit vents (passive)
 
 **Cathedral Ceiling (Living Room):**
@@ -282,29 +282,29 @@
 
 ### Windows
 
-**Type:** Vinyl-framed double-pane with low-E coating  
-**U-Factor:** 0.27 to 0.30  
-**SHGC:** 0.25 to 0.30  
+**Type:** Vinyl-framed double-pane with low-E coating
+**U-Factor:** 0.27 to 0.30
+**SHGC:** 0.25 to 0.30
 **Orientation:** Majority south-facing (passive solar benefit)
 
 ### Foundation/Basement
 
-**Type:** Poured concrete with interior insulation  
-**Wall Insulation:** R-15 (2" rigid insulation board or equivalent)  
-**Floor:** Concrete slab (uninsulated)  
+**Type:** Poured concrete with interior insulation
+**Wall Insulation:** R-15 (2" rigid insulation board or equivalent)
+**Floor:** Concrete slab (uninsulated)
 **Condition:** Conditioned space (included in 2,440 sq. ft. total)
 
 ### Air Sealing
 
-**Estimated Leakage:** <3 ACH50 (based on performance modeling)  
+**Estimated Leakage:** <3 ACH50 (based on performance modeling)
 **No Blower Door Test Available:** Estimate derived from UA calculation
 
 ---
 
 ## Electrical Service
 
-**Main Panel:** 200A service  
-**Voltage:** 120/240V split-phase  
+**Main Panel:** 200A service
+**Voltage:** 120/240V split-phase
 **Major 240V Loads:**
 - Air conditioner (4-ton)
 - Electric dryer
@@ -376,6 +376,6 @@
 
 ---
 
-**Document Version:** 1.2.1  
-**Last Equipment Survey:** January 2026  
+**Document Version:** 1.2.1
+**Last Equipment Survey:** January 2026
 **Next Scheduled Update:** January 2027 (or upon equipment replacement)

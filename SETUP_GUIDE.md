@@ -106,13 +106,13 @@ Click through the links in README.md to ensure:
 5. **Description:**
    ```
    Initial public release of residential HVAC performance baseline.
-   
+
    **Highlights:**
    - 4-year statistical validation (CV < 8%)
    - Billing-aligned methodology
    - 33% better than regional efficiency average
    - Complete equipment specifications
-   
+
    **Performance Metrics:**
    - Site EUI: 41.7 kBTU/ft²-yr
    - Heating Intensity: 95.5 CCF/1k HDD
@@ -158,13 +158,13 @@ Help with discoverability!
 
 ## Troubleshooting
 
-**Problem:** README.md doesn't display properly  
+**Problem:** README.md doesn't display properly
 **Solution:** Check for markdown syntax errors (tables, headers)
 
-**Problem:** Files uploaded but not rendering  
+**Problem:** Files uploaded but not rendering
 **Solution:** Ensure file extensions are exactly `.md` (not `.md.txt`)
 
-**Problem:** .gitignore not working  
+**Problem:** .gitignore not working
 **Solution:** Verify filename is exactly `.gitignore` (with leading dot)
 
 ---
@@ -178,6 +178,6 @@ If you encounter issues during upload, let me know and I can:
 
 ---
 
-**Repository URL:** https://github.com/wkcollis1-eng/Residential-HVAC-Performance-Baseline-  
-**Current Version:** 1.2.1  
+**Repository URL:** https://github.com/wkcollis1-eng/Residential-HVAC-Performance-Baseline-
+**Current Version:** 1.2.1
 **Files Ready:** 9 documents totaling ~40,000 words

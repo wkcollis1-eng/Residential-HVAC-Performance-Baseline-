@@ -85,7 +85,7 @@ flowchart TB
     RT --> SPC
     DD --> SPC
     RT --> REC
-    
+
     SPC --> CSV
     SPC --> ALERT
     SPC --> DASH
@@ -144,7 +144,7 @@ template:
         unit_of_measurement: "min/HDD"
         state: >
           {% set runtime_hours = states('sensor.YOUR_HEAT_RUNTIME_TODAY') | float(0) %}
-          {% set outdoor_mean = (states('sensor.YOUR_OUTDOOR_HIGH') | float(0) + 
+          {% set outdoor_mean = (states('sensor.YOUR_OUTDOOR_HIGH') | float(0) +
                                  states('sensor.YOUR_OUTDOOR_LOW') | float(0)) / 2 %}
           {% set hdd = [65 - outdoor_mean, 0] | max %}
           {{ ((runtime_hours * 60) / hdd) | round(1) if hdd > 0 else 0 }}
@@ -226,7 +226,7 @@ The monitoring system provides continuous validation of system performance:
 * **Filter Tracking** - Runtime-based maintenance alerts
 * **Anomaly Detection** - Automated alerts when performance drifts beyond baseline thresholds
 
-**Full monitoring configuration and implementation details:**  
+**Full monitoring configuration and implementation details:**
 📂 [home-assistant-config](https://github.com/wkcollis1-eng/home-assistant-config)
 
 For additional dashboard views and implementation notes, see [DASHBOARD_EXAMPLES.md](./DASHBOARD_EXAMPLES.md).
