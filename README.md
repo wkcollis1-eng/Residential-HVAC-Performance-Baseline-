@@ -291,6 +291,6 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ---
 
-**Version:** 1.4.0 (March 2026)
-**Status:** Active Baseline — 50 months of validated data
+**Version:** 1.5.0 (March 2026)
+**Status:** Active Baseline — 51 months of validated data
 **Next Update:** April 2026 (post-winter season summary)

@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- **`data/monthly_summary.csv`** — Derived monthly metrics table (14 rows, Jan 2025–Feb 2026)
+- **`data/monthly_summary.csv`** — Derived monthly metrics table (15 rows, Jan 2025–Mar 2026)
   - Columns: Month, HDD65, Gas_CCF, DHW_CCF, Space_Heat_CCF, Heating_Intensity_CCF_1kHDD,
     Gas_Cost, Gas_CPP, Elec_kWh, Elec_Cost, Heat_1F_Hrs, Heat_2F_Hrs, Heat_Total_Hrs,
     Cool_1F_Hrs, Cool_2F_Hrs, Cool_Total_Hrs, Runtime_Per_HDD_Min, Zone_Balance_1F_Pct,
@@ -28,7 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **`UPDATES.md`** — Consolidated monthly update log (replaces individual month files)
   - Newest month prepended to top; structured MoM/YoY tables per month
-  - Contains January 2026 and February 2026 updates
+  - Contains January 2026, February 2026, and March 2026 updates
 
 - **`CLAUDE.md`** — Machine-optimized session context for Claude Code
   - Canonical constants, CSV schemas, prohibited actions, monthly update procedure
