@@ -78,26 +78,22 @@ for row in load_csv("data/monthly_hvac_runtime.csv"):
         {"heat": float(row["Heating_Hours"]), "cool": float(row["Cooling_Hours"])}
     )
 
-# DHW
+# DHW (new column names: month, ccf)
 dhw = {}
 for row in load_csv("data/monthly_dhw_navien.csv"):
-    dhw[row["Month"]] = {"ccf": float(row["Gas_CCF"])}
+    # Allow either 'Month' (old) or 'month' (new)
+    month_key = row.get("month") or row.get("Month")
+    if month_key:
+        ccf_key = row.get("ccf") or row.get("Gas_CCF")
+        dhw[month_key] = {"ccf": float(ccf_key) if ccf_key else 0.0}
 
-# Gas bills — map to calendar month key
+# Gas bills (new column names: month, ccf) — no Bill_Date mapping needed
 gas_by_month = {}
 for row in load_csv("data/monthly_gas_scg.csv"):
-    bd = datetime.strptime(row["Bill_Date"], "%Y-%m-%d")
-    # Bill date is ~10th of month following consumption month
-    # Attribute to month 30-45 days prior
-    from_dt = bd
-    for offset_days in range(10, 50):
-        from datetime import timedelta
-
-        candidate = bd - timedelta(days=offset_days)
-        mk = candidate.strftime("%Y-%m-01")
-        if mk not in gas_by_month:
-            gas_by_month[mk] = float(row["Gas_CCF"])
-            break
+    month_key = row.get("month") or row.get("Month")
+    if month_key:
+        ccf_key = row.get("ccf") or row.get("Gas_CCF")
+        gas_by_month[month_key] = float(ccf_key) if ccf_key else 0.0
 
 # HDD per month from daily
 monthly_hdd = {}
@@ -135,9 +131,9 @@ print(f"{'═' * 65}\n")
 for mk in validate_months:
     mk_dt = datetime.strptime(mk, "%Y-%m-%d")
     month_name = mk_dt.strftime("%B %Y")
-    days_in_month = (
-        datetime(mk_dt.year + (mk_dt.month // 12), (mk_dt.month % 12) + 1, 1) - mk_dt
-    ).days
+    # Days in month
+    next_month = datetime(mk_dt.year + (mk_dt.month // 12), (mk_dt.month % 12) + 1, 1)
+    days_in_month = (next_month - mk_dt).days
     print(f"── {month_name} ({mk}) ──")
 
     rt_rows = runtime.get(mk, [])
@@ -229,8 +225,6 @@ for mk in validate_months:
     if is_heating and gas_ccf and hdd and hdd > 0:
         eff = gas_ccf / (hdd / 1000)
         delta_pct = (eff - BASELINE_EFFICIENCY) / BASELINE_EFFICIENCY * 100
-        # Note: monthly efficiency is expected to deviate from annual due to billing alignment
-        # Flag only if >15% AND same direction as prior month
         if abs(delta_pct) <= 15:
             result(
                 "PASS",
@@ -278,8 +272,6 @@ for mk in validate_months:
 
     # V-HVAC-4: Monthly HDD vs annualized normal
     if hdd is not None:
-        # Rough seasonal fraction: assume this month's share of annual HDD
-        annualized_share = hdd  # single month — document if season total drifts
         result(
             "PASS",
             "V-HVAC-4",
@@ -312,7 +304,6 @@ for mk in validate_months:
 
     # V-HVAC-6: DHW CCF ≤ prior-year same month +5%
     if dhw_ccf is not None:
-        # Find same month prior year
         prior_year_mk = datetime(mk_dt.year - 1, mk_dt.month, 1).strftime("%Y-%m-01")
         prior_dhw = dhw.get(prior_year_mk, {}).get("ccf", None)
         if prior_dhw is not None:
