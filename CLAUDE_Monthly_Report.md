@@ -7,20 +7,25 @@
 
 ## TASK
 
-Write the monthly HVAC performance report for **[MONTH] [YEAR]**. Output to:
-`UPDATES.md` (prepend as newest entry) and a standalone file
-`reports/[YYYY-MM]_hvac_report.md`.
+Write the monthly HVAC performance report for **[MONTH] [YEAR]**. Produce the
+following outputs **in this order**:
+
+1. Standalone report → `reports/[YYYY-MM]_hvac_report.md`
+2. Prepend newest entry → `UPDATES.md`
+3. Update metrics → `README.md` (§10 defines exactly what changes)
+4. Append computed row → `data/monthly_summary.csv` (§8)
 
 Read ALL of the following before writing a single line:
 1. This file (complete)
-2. `METHODOLOGY.md` (billing-aligned calculation rules)
-3. `SYSTEM_SPECIFICATIONS.md` (hardware constants)
-4. `data/monthly_gas_scg.csv` (gas bills through reporting month)
-5. `data/monthly_dhw_navien.csv` (Navien meter through reporting month)
-6. `data/monthly_hvac_runtime.csv` (thermostat runtime through reporting month)
-7. `data/daily_temperature.csv` (daily HDD/CDD through reporting month)
-8. `data/monthly_summary.csv` (all prior computed metrics — use for YoY and MoM)
-9. `UPDATES.md` (read the prior month's entry to verify MoM continuity)
+2. `README.md` (current — identify every block that must be updated)
+3. `METHODOLOGY.md` (billing-aligned calculation rules)
+4. `SYSTEM_SPECIFICATIONS.md` (hardware constants)
+5. `data/monthly_gas_scg.csv` (gas bills through reporting month)
+6. `data/monthly_dhw_navien.csv` (Navien meter through reporting month)
+7. `data/monthly_hvac_runtime.csv` (thermostat runtime through reporting month)
+8. `data/daily_temperature.csv` (daily HDD/CDD through reporting month)
+9. `data/monthly_summary.csv` (all prior computed metrics — use for YoY and MoM)
+10. `UPDATES.md` (read the prior month's entry to verify MoM continuity)
 
 **Do not begin writing until all files are read and all inputs in §3 are computed.**
 
@@ -464,6 +469,7 @@ Run mentally before finalizing. If any item fails, fix before writing report.
 - [ ] HDD source documented
 - [ ] Any gap > 3% between HDD sources flagged
 - [ ] `monthly_summary.csv` updated with this month's computed values before publishing
+- [ ] `README.md` all five update zones correct and internally consistent (see §10)
 
 ---
 
@@ -515,3 +521,183 @@ saves only 0.737 CCF of furnace gas — it does not add 1:1 to measured intensit
 The original report used total gas in the heating intensity numerator.
 Corrected values: intensity 125.1 (not 144.4), YoY direction +4.1% (not −5.3%).
 `monthly_summary.csv` row for 2026-03 should reflect corrected figures.
+
+---
+
+## §10 — README.md UPDATE
+
+The `README.md` has five distinct zones that must be updated every month.
+Locate each zone by its HTML comment markers and replace the content between them.
+**Never remove the comment markers themselves** — they are used by CI and badge tooling.
+
+---
+
+### Zone 1 — `METRICS_START` / `METRICS_END`
+
+Update the "Key Findings" badge block. All six lines must reflect the current
+trailing 12-month figures, not the just-completed month in isolation.
+
+```markdown
+<!-- METRICS_START -->
+**Key Findings (Updated [Month] [Year]):**
+- **Site EUI (12-mo rolling):** [X] kBTU/ft²-yr ([Y]% better than regional average)
+- **Baseline Site EUI:** 41.7 kBTU/ft²-yr — current [+/-Z%] due to [weather/season context]
+- **Heating Intensity:** [X] CCF/1k HDD (12-month rolling; corrected with Navien DHW metering)
+- **Envelope UA:** [X] BTU/hr-°F ([Y]% [superior/above] baseline)
+- **12-mo Electricity:** [X] kWh ([Y]% below average for home size)
+- **DHW Optimization:** [X]% sustained YoY from recirculation schedule change (~$[Y]/year savings)
+<!-- METRICS_END -->
+```
+
+**Calculation rules for each line:**
+
+| Field | Formula | Notes |
+|---|---|---|
+| Site EUI | trailing 12M gas (CCF × 103.7) + elec (kWh × 3.412) / 2440 | From §3G |
+| % better than regional | (regional_avg − site_eui) / regional_avg × 100 | Regional avg = 60.6 kBTU/ft²-yr for CT climate zone 5A |
+| Baseline EUI delta | (current_eui / 41.7 − 1) × 100 | Use signed result; write "better" if negative, "above" if positive |
+| Heating Intensity | 12-month rolling from §3C | Must match `efficiency_12m` in monthly_summary.csv |
+| UA | 12-month rolling from §3D | From HA archives; note if above/below 493 baseline |
+| 12-mo electricity | sum of trailing 12 monthly kWh | From monthly_electricity_eversource.csv |
+| DHW % savings | (current_12m_dhw / prior_12m_dhw − 1) × 100 | Compare same 12M window, not just current month |
+| DHW $/yr savings | dhw_ccf_saved × gas_effective_rate × 12 / months_with_data | Annualized from observed savings rate |
+
+**Framing rules:**
+- If EUI is above baseline, write "current [+X%] above baseline due to [cause]" — do not write "current +X% due to colder winter" when efficiency (not weather) is the driver
+- If UA is above 493, write "above baseline" not "superior"
+- The regional comparison (% better than average) is based on CT residential EUI of ~60 kBTU/ft²-yr for this building type; update only if the source benchmark changes
+
+---
+
+### Zone 2 — `HIGHLIGHTS_START` / `HIGHLIGHTS_END`
+
+Replace the entire highlights block with the current month's summary table
+and key insights. Structure:
+
+```markdown
+<!-- HIGHLIGHTS_START -->
+## 🆕 [Month] [Year] Update Highlights
+
+[1–2 sentence weather/season context for this specific month.]
+
+| Metric | [Month] [Prior Year] | [Month] [Current Year] | YoY Change | Status |
+|---|---|---|---|---|
+| Total Gas | X CCF | X CCF | ±% | ✅/⚠️ [reason] |
+| Space Heating | X CCF | X CCF | ±% | ✅/⚠️ [reason] |
+| DHW (Navien) | X CCF | X CCF | ±% | ✅/⚠️ [reason] |
+| Weather Severity | X HDD | X HDD | ±% | ✅/⚠️ |
+| HVAC Runtime | X hrs | X hrs ([Y] min/HDD) | ±% | ✅/⚠️ |
+
+**Key Insights:**
+1. [Most important finding — quantified]
+2. [Second finding — quantified]
+3. [Season cumulative if in heating season: "Season totals: X hrs across Y HDD (Oct–[Month])"]
+
+### DHW Recirculation Optimization (Ongoing)
+
+**Cumulative Savings ([date range]):** [X] CCF (~$[Y])
+**On Track For:** ~$[Z]/year projected annual savings
+**Schedule:** 15 hr/day (off 9 PM - 6 AM) — [any comfort issues or "no comfort issues reported"]
+
+See [UPDATES.md](UPDATES.md) for complete monthly analysis.
+<!-- HIGHLIGHTS_END -->
+```
+
+**Status icon rules:**
+- ✅ = metric moved in the expected direction or within ±5% of expectation
+- ⚠️ = metric moved in unexpected direction, or exceeded ±15% of expectation
+- Never use ✅ for a metric that worsened without qualification
+
+**Space Heating field:** Always use net heating gas (total minus Navien DHW),
+not total gas. Label the column header "Space Heating" not "Total Gas."
+
+**min/HDD in runtime row:** Use the §3E formula. Apply §4 shoulder-season
+framing in the status field if applicable — do not call it "Excellent" when
+mean outdoor temp was > 45°F.
+
+**DHW cumulative savings:** Compute as `sum(prior_year_dhw − current_year_dhw)`
+for all months in 2026 with data, then convert to dollars at current gas rate.
+If savings are not calculable (missing prior-year Navien data), state "pending
+prior-year Navien data for [month]."
+
+---
+
+### Zone 3 — Five-Year Performance Table
+
+Locate the `## 📊 Five-Year Performance Summary` section. Update the
+**current year column** (`2026 YTD`) only. Prior years are locked.
+
+```markdown
+| Metric | 2022 | 2023 | 2024 | 2025 | 2026 YTD |
+|---|---|---|---|---|---|
+| Annual Gas (CCF) | 815 | 764 | 694 | 787 | [sum Jan–current month]* |
+| Annual Elec (kWh) | 6,824 | 6,591 | 6,543 | 6,730 | [sum Jan–current month]* |
+| Heating Intensity | 89.8 | 90.8 | 80.3 | 95.5 | [YTD intensity if ≥4 months, else —]* |
+| Site EUI | 42.1 | 40.8 | 38.2 | 41.7 | — |
+```
+
+**Rules:**
+- The asterisk footnote must state `*[Month range] [Year] only (partial year)` — update the month range
+- YTD Heating Intensity: only publish if ≥ 4 months of heating data exist;
+  otherwise leave as `—`. When present, use `(sum net_heat_ccf YTD) / (sum hdd YTD) × 1000`
+- Site EUI: only publish for complete calendar years; leave `—` for current year
+- Never update prior-year columns — if a prior year needs correction, document
+  in §9 of this file and version-bump the README
+
+---
+
+### Zone 4 — Version Badge and Recent Updates
+
+Update the version badge at the top of the README:
+
+```markdown
+[![Version](https://img.shields.io/badge/Version-[X.Y.Z]-blue.svg)](...)
+```
+
+Version increment rules:
+- **Patch** (x.x.**Z**): routine monthly data addition, no methodology changes
+- **Minor** (x.**Y**.0): new sensor added, new metric introduced, HA config change
+- **Major** (**X**.0.0): baseline recalibration, methodology overhaul
+
+Update the `## 📬 Recent Updates` section — prepend the new version entry,
+keep the two prior entries, remove the oldest:
+
+```markdown
+### v[X.Y.Z] ([Month] [Year])
+- Added [Month] [Year] data and analysis
+- Extended dataset to [N] months
+- [1–2 bullet points: notable findings from this month, quantified]
+- [If applicable: system changes, methodology updates]
+```
+
+The `**Next Update:**` line at the bottom of the README must also be updated:
+```
+**Next Update:** [Next Month] [Year] ([context — e.g., "post-winter summary" if April])
+```
+
+---
+
+### Zone 5 — Header Metadata
+
+Update these two lines at the bottom of the README:
+
+```markdown
+**Version:** [X.Y.Z] ([Month] [Year])
+**Status:** Active Baseline — [N] months of validated data
+```
+
+Where N = total months of data from Jan 2022 through current reporting month.
+Current count: 51 months through February 2026. Increment by 1 each month.
+
+---
+
+### README Consistency Check
+
+Before committing, verify these are internally consistent:
+
+- [ ] Version badge ↔ `## 📬 Recent Updates` entry ↔ footer `**Version:**`
+- [ ] METRICS_START Site EUI ↔ Five-Year Table (2025 row EUI)
+- [ ] HIGHLIGHTS_START YoY table ↔ UPDATES.md prior-month entry numbers
+- [ ] Dataset month count (N) ↔ actual span from Jan 2022 to current month
+- [ ] "Next Update" month is the calendar month after the reporting month
+- [ ] No README section references a figure that contradicts `monthly_summary.csv`
