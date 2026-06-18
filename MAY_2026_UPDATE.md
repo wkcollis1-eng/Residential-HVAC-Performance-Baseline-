@@ -1,9 +1,11 @@
 # HVAC Performance Update: May 2026
 
-**Version:** 1.7.0
+**Version:** 1.7.1
 **Date:** June 17, 2026
 **Property:** 2,440 sq. ft. Colonial, Climate Zone 5A, Central Connecticut
 **Methodology:** Heating Intensity on **net space-heating gas** (total − Navien DHW), per v1.5.1.
+
+**Revision 1.7.1 (June 18, 2026):** Official Bradley/KBDL degree days (ACIS) now incorporated (`bdl_degree_days.csv`). Heating Intensity is dual-basis. On the official BDL basis May net intensity is **111.1 CCF/1k HDD** (proxy 114.2) and is **flat with April's 111.0** — the proxy's apparent April→May +18% “mild-month” rise was an artifact of the proxy over-counting April HDD. Conclusions corrected below; runtime/HDD remains proxy-basis.
 
 > **Data-integrity advisory (read first):** May 2026 carries three caveats that affect the
 > runtime data — an HA outage (May 16–22), a thermostat swap (Honeywell → Ecobee, ~May 29), and a
@@ -19,8 +21,10 @@ and the controller changing hands mid-month. It was a month of weather extremes 
 half (216 HDD, +26.7% YoY) followed by a hot late half that drove the first meaningful cooling of
 the year (20.2 hours vs 1.0 last May). The clean signals are favorable on the bills: gas was
 essentially flat YoY (+2.6%), DHW savings held at −25.4%, and electricity fell 33%. Net heating
-intensity reverted up to 114.2 CCF/1k HDD — expected mild-month behavior, and a reminder that
-April's near-baseline 96.8 was largely weather, not a durable efficiency shift. The runtime story
+intensity is 111.1 CCF/1k HDD on the official BDL basis (proxy 114.2), essentially **flat with
+April's 111.0** — not a rise. The proxy's April→May jump (96.8 → 114.2) was an artifact of the
+proxy over-counting April HDD; on official weather both months read the same shoulder-season ~111,
+~23% above baseline. The runtime story
 is real but its precision is limited this month by the outage and the controller swap.
 
 **Key May 2026 Findings:**
@@ -28,9 +32,9 @@ is real but its precision is limited this month by the outage and the controller
 | Metric | Value | Note |
 |---|---|---|
 | Total Gas Consumption | 39.0 CCF | +2.6% YoY; −33.9% MoM |
-| Weather Severity | 216.0 HDD65 *(HA proxy)* | +26.7% YoY; cold early-month |
+| Weather Severity | 222 HDD65 / 57 CDD65 *(BDL official)* | proxy 216.0 HDD; BDL now captured (ACIS) |
 | Net Space-Heating Gas | 24.67 CCF | mild-month regime |
-| **Heating Intensity** *(net)* | **114.2 CCF/1k HDD** | +3.6% YoY; mild-month noise |
+| **Heating Intensity** *(net, BDL)* | **111.1 CCF/1k HDD** | −3.1% YoY; flat with April (proxy: 114.2 / +3.6%) |
 | DHW Consumption | 14.33 CCF | −25.4% YoY; savings narrowing as predicted |
 | HVAC Heating Runtime | 24.0 hrs *(Resideo basis)* | overlap-inclusive; burner-equiv ~20.9 |
 | **Cooling Runtime** | **20.2 hrs** | first of 2026; 17 Honeywell + 3.2 Ecobee |
@@ -45,9 +49,9 @@ is real but its precision is limited this month by the outage and the controller
 **Interpretation:** Bill-side, May is a quiet, favorable month: flat gas on a colder May, DHW
 savings intact, and a large electric drop. The electric −33% lands almost entirely in the
 weather-independent base load and the dehumidifier (no AC in May 2025 to explain it away);
-isolating which would need the Shelly plug series. The heating intensity rising from April (96.8
-→ 114.2) is the textbook mild-month effect — fixed combustion overhead amortized over only 216
-HDD — and should not be read as degradation. The month's real news is operational: cooling season
+isolating which would need the Shelly plug series. The heating intensity “rising from April (96.8
+→ 114.2)” was a proxy artifact — on official BDL weather April and May are both ~111, flat — so
+there is no mild-month step to explain and certainly no degradation. The month's real news is operational: cooling season
 is open and the controller transition is underway, both of which set up June as the first clean
 read on the new Ecobee regime.
 
@@ -72,8 +76,9 @@ read on the new Ecobee regime.
 | **Total Gas** | 38.0 CCF | 39.0 CCF | +2.6% | Flat, on a colder May |
 | **DHW (Navien)** | 19.21 CCF | 14.33 CCF | **−25.4%** | Recirc savings, narrowing (see §3) |
 | **Space Heating** *(net)* | 18.79 CCF | 24.67 CCF | +31.3% | More heating — colder early May |
-| **HDD65 (HA proxy)** | 170.5 | 216.0 | +26.7% | Colder May in 2026 |
-| **Heating Intensity** *(net)* | **110.2 CCF/1k HDD** | **114.2 CCF/1k HDD** | **+3.6%** | Flat; both in mild-month noise band |
+| **HDD65 (BDL official)** | 164 | 222 | +35.4% | Colder May 2026 (official) |
+| **HDD65 (HA proxy)** | 170.5 | 216.0 | +26.7% | Proxy under-counts May 2026 vs BDL |
+| **Heating Intensity** *(net, BDL)* | **114.6 CCF/1k HDD** | **111.1 CCF/1k HDD** | **−3.1%** | Flat (proxy basis: +3.6%) |
 | **Electric** | 464 kWh / $141.84 | 311 kWh / $82.66 | **−33.0% / −41.7%** | Large drop — base load + dehumidifier |
 | **Cooling Runtime** | 1.0 hr | 20.2 hrs | — | First real cooling of 2026 |
 | HVAC Heating Runtime | 7.0 hrs | 24.0 hrs *(Resideo)* | *see note* | Basis change — not directly comparable |
@@ -99,14 +104,14 @@ likewise on two different bases and not comparable this month.
 | Total CCF | 59.0 | 39.0 | −33.9% |
 | Space Heat CCF *(net of DHW)* | 45.72 | 24.67 | −46.0% |
 | DHW CCF (Navien) | 13.28 | 14.33 | +7.9% |
-| HDD65 | 472.3 | 216.0 | −54.3% |
-| **Heating Intensity** *(net)* | **96.8 CCF/1k HDD** | **114.2 CCF/1k HDD** | **+18.0%** |
+| HDD65 *(BDL official)* | 412 | 222 | −46.1% |
+| **Heating Intensity** *(net, BDL)* | **111.0 CCF/1k HDD** | **111.1 CCF/1k HDD** | **+0.1% (flat)** |
 
-**Analysis:** Space-heating gas fell 46% as HDD dropped 54% — and net intensity *rose* 18%. That
-is the expected mild-month signature: as HDD shrink toward the 65 °F base, the furnace's fixed
-combustion overhead is amortized over fewer degree-days, lifting CCF/1k HDD. It is the inverse of
-April's reading and is the main reason April's near-baseline 96.8 should be treated as a
-weather/solar artifact rather than a sustained CPH=2 gain. DHW ticked up 7.9% MoM, normal as the
+**Analysis:** Space-heating gas fell 46% as HDD dropped. On the HA proxy this lifted intensity
++18% (the classic mild-month signature); on the **official BDL basis intensity is flat — 111.0
+(April) → 111.1 (May)** — because BDL did not over-count April the way the proxy did. The proxy's
++18% step was therefore mostly its own April HDD error, not physics; either way April's 96.8 was a
+weather/HDD-source artifact, not a sustained CPH=2 gain. DHW ticked up 7.9% MoM, normal as the
 recirculation loop works a touch harder against cooler morning starts early in the month.
 
 ### Electric & Cooling (April 2026 → May 2026)
@@ -144,9 +149,10 @@ to 35 (from 58), confirming the 9 PM–6 AM off-schedule is holding.
 
 ## HDD & Cooling Methodology Note
 
-**Heating (HDD):** HA proxy archive records 216.0 HDD for May; no BDL May reference is available
-yet. Read net intensity (114.2) within the same ±8% proxy band noted in prior months — though at
-this low HDD count, mild-month noise dominates any proxy difference.
+**Heating (HDD):** Official BDL (ACIS) records **222 HDD / 57 CDD** for May; the HA proxy logged
+216.0 HDD (−6, a −2.7% under-count). Net intensity is **111.1 on the BDL basis** (114.2 proxy).
+Unlike April, the two bases nearly agree this month, so the basis choice barely moves the May
+reading.
 
 **Cooling (CDD / runtime):** This is the weak spot of the month. The HA cooling accumulator logged
 only ~3.8 CDD and 3.2 cooling hours, because the cooling instrumentation came online late and the
@@ -233,7 +239,7 @@ archive_slot: may
 Repo(s) updated: Residential-HVAC-Performance-Baseline- (data/monthly_summary.csv)
 
 DATA ENTERED
-  HDD65:           216.0
+  HDD65:           216.0        (HA proxy → monthly_summary; BDL official 222 / CDD 57 in bdl_degree_days.csv)
   Gas_CCF:         39.0          Gas_Cost: 85.79
   DHW_CCF:         14.3296       (14.8601 Thm × 0.9643)
   Elec_kWh:        311.0         Elec_Cost: 82.66
@@ -244,11 +250,11 @@ DATA ENTERED
 VALIDATION
   V1 range check:     FLAG — Gas −73% / Elec −20% vs trailing-3-mo avg; seasonal (expected). PASS in context.
   V2 direction check: PASS — gas/HDD consistent; intensity in mild-month band, not anomalous.
-  V-HVAC-2 (±15% of 90.3): PASS — net intensity 114.2 (+26.5%, shoulder-season expected).
+  V-HVAC-2 (±15% of 90.3): net intensity 111.1 BDL (+23.0%) / 114.2 proxy (+26.5%) — shoulder-season elevation, expected; matches April.
   V3 prior data:      PRESENT.
 
 METRICS (YoY)
-  Heating Intensity (net):  110.2 → 114.2 CCF/1k HDD  (+3.6%)
+  Heating Intensity (net, BDL):  114.6 → 111.1 CCF/1k HDD  (−3.1%)  [proxy: 110.2 → 114.2, +3.6%]
   DHW:                      19.21 → 14.33 CCF         (−25.4%)
   Electric:                 464 → 311 kWh             (−33.0%)
   Gas:                      38.0 → 39.0 CCF           (+2.6%)
@@ -261,7 +267,7 @@ FLAGS
   Runtime/zone YoY not comparable (basis change + small 2025 baseline).
 
 COMMIT MESSAGE (ready to use)
-  git commit -m "2026.05: Add May HVAC performance data — 114.2 CCF/1k HDD (net); runtime Resideo-basis (HA outage), cooling season open 20.2 h"
+  git commit -m "2026.05: Add May HVAC data — 111.1 CCF/1k HDD (net, BDL official); proxy 114.2; runtime Resideo-basis (HA outage); cooling season open 20.2 h"
 
 README UPDATE NEEDED: NO — within prior documented ranges; data-integrity notes captured in report.
 ```

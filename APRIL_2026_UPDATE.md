@@ -1,24 +1,27 @@
 # HVAC Performance Update: April 2026
 
-**Version:** 1.6.0
+**Version:** 1.6.1
 **Date:** June 17, 2026
 **Property:** 2,440 sq. ft. Colonial, Climate Zone 5A, Central Connecticut
 **Methodology:** Heating Intensity computed on **net space-heating gas** (total − Navien DHW),
 per the v1.5.1 correction established in the March 2026 report. All intensity figures below,
 and the `data/monthly_summary.csv` column, are on this basis.
 
+**Revision 1.6.1 (June 18, 2026):** Official Bradley/KBDL monthly degree days (ACIS/xmACIS2) are now captured (`bdl_degree_days.csv`) and available for April. Heating Intensity is reported **dual-basis** — BDL official (authoritative) and HA proxy. On the official BDL basis, **April net intensity is 111.0 CCF/1k HDD, not 96.8**: the HA proxy logged April ~60 HDD colder than official (472.3 vs 412), which deflated the proxy intensity and produced the apparent “April anomaly.” Conclusions affected are corrected below. (Runtime/HDD figures remain on the proxy basis in this revision; only Heating Intensity and HDD/CDD references are placed on BDL official.) Prior BDL figures in the §HDD note — Feb 1,125 / Mar 709 — were mismapped (1,125 is Jan 2025's total) and are corrected to ACIS values Feb 1,120 / Mar 744.
+
 ---
 
 ## Executive Summary
 
 April 2026 is the first full month of the spring shoulder season and the first full month
-under the **CPH=2 + 30 s fan-delay** thermostat change (effective April 1). It produced the
-strongest efficiency reading of the heating season so far: the furnace ran 38.4 hours — a
-23.2% reduction from April 2025 despite carrying 11.9% more HDD — and net heating intensity
-fell to 96.8 CCF/1k HDD, only 7.2% above the annual baseline and, notably, *below* March's
-125.1 even though April was the milder month. That ordering runs against shoulder-season
-physics and is the clearest efficiency signal of the season, though one month under CPH=2 is
-confounded with a mild, high-solar-gain April and is not yet conclusive. DHW savings from the
+under the **CPH=2 + 30 s fan-delay** thermostat change (effective April 1). The furnace ran 38.4 hours — a
+23.2% reduction from April 2025 despite carrying more HDD. On the **official BDL basis, net
+heating intensity is 111.0 CCF/1k HDD** (HA proxy: 96.8), about 23% above the annual baseline and
+essentially identical to May's 111.1 — an ordinary shoulder-season reading, not the season's
+best. The earlier proxy figure (96.8, “below March, bucking shoulder physics”) was largely an
+artifact of the proxy over-counting April HDD by ~60 (472.3 vs 412 official); on the authoritative
+BDL basis that anomaly disappears. The YoY improvement is real but smaller than the proxy implied
+— −15.2% (BDL) vs −24.8% (proxy). DHW savings from the
 recirculation optimization widened to −35.7% year-over-year.
 
 **Key April 2026 Findings:**
@@ -26,9 +29,9 @@ recirculation optimization widened to −35.7% year-over-year.
 | Metric | Value | Note |
 |---|---|---|
 | Total Gas Consumption | 59.0 CCF | −46.8% MoM |
-| Weather Severity | 472.3 HDD65 *(HA proxy)* | −38.5% MoM; BDL April reference not yet available |
+| Weather Severity | 412 HDD65 / 22 CDD65 *(BDL official)* | proxy 472.3 HDD (+60); BDL now captured (ACIS) |
 | Net Space-Heating Gas | 45.72 CCF | −52.4% MoM |
-| **Heating Intensity** *(net)* | **96.8 CCF/1k HDD** | −24.8% vs Apr 2025; +7.2% vs 90.3 baseline |
+| **Heating Intensity** *(net, BDL)* | **111.0 CCF/1k HDD** | −15.2% vs Apr 2025; +22.9% vs baseline (proxy: 96.8) |
 | DHW Consumption | 13.28 CCF | −35.7% YoY; recirc optimization |
 | HVAC Runtime | 38.4 hours | −23.2% YoY despite +11.9% HDD |
 | Runtime / HDD | 4.88 min/HDD | Shoulder-season normal |
@@ -42,14 +45,13 @@ recirculation optimization widened to −35.7% year-over-year.
 > 128.8) for **all** heating-season rows in the accompanying file. Review before committing —
 > this changes every historical intensity value.
 
-**Interpretation:** Two signals point the same direction. Runtime fell 23.2% on 11.9% more
-HDD — a continuation and strengthening of the March pattern (−15.2% on +10.3%). And net
-intensity at 96.8 is the lowest heating-season reading and sits below the milder-month
-expectation. Candidate drivers are the CPH=2 change (longer cycles, less short-cycle overhead),
-high April solar gain (actual furnace runtime ran ~20% below the degree-day model), and a
-favorable HDD distribution with fewer near-base mild days than March. These cannot be
-decomposed from a single month; the cleaner CPH=2 read will come from May, before the late-May
-thermostat swap muddies it.
+**Interpretation:** The durable signal is runtime: 38.4 h is −23.2% YoY on *more* HDD, a
+continuation of the March pattern. The intensity picture changes on official weather — at 111.0
+(BDL) April is a normal shoulder reading, not the season's lowest, and it matches May (111.1)
+rather than sitting anomalously low. The proxy's 96.8 was mostly its cold-HDD bias for April, not
+a CPH=2 efficiency leap. CPH=2 may still contribute at the margin; high April solar gain (furnace
+runtime ~20% below the degree-day model) remains a real driver of the low *runtime*, independent
+of the HDD-source question. The cleaner CPH=2 read still comes from May/June.
 
 ---
 
@@ -72,18 +74,19 @@ thermostat swap muddies it.
 | **Total Gas** | 75.0 CCF | 59.0 CCF | −21.3% | Less gas despite more HDD — favorable |
 | **DHW (Navien)** | 20.66 CCF | 13.28 CCF | **−35.7%** | Recirc optimization sustained, widening |
 | **Space Heating** *(net)* | 54.34 CCF | 45.72 CCF | −15.9% | Real reduction against +11.9% HDD |
-| **HDD65 (HA proxy)** | 422.0 | 472.3 | +11.9% | Colder April in 2026 |
-| **Heating Intensity** *(net)* | **128.8 CCF/1k HDD** | **96.8 CCF/1k HDD** | **−24.8%** | Strong improvement |
+| **HDD65 (BDL official)** | 415 | 412 | −0.7% | Near-identical Aprils — minimal weather confound |
+| **HDD65 (HA proxy)** | 422.0 | 472.3 | +11.9% | Proxy over-counts Apr 2026 vs BDL |
+| **Heating Intensity** *(net, BDL)* | **130.9 CCF/1k HDD** | **111.0 CCF/1k HDD** | **−15.2%** | Real efficiency gain (proxy basis: −24.8%) |
 | **HVAC Runtime** | 50.0 hrs | 38.4 hrs | −23.2% | Less runtime despite more HDD |
 | **Runtime / HDD** | 7.11 min/HDD | 4.88 min/HDD | −31.4% | Load distribution + CPH=2 |
 | **Electric** | 344 kWh / $109.56 | 285 kWh / $81.48 | −17.2% / −25.6% | Lower use + lower effective rate |
 
-**Key Insight:** Every fuel and runtime metric moved favorably against a colder month. The
-−24.8% intensity improvement is the largest YoY shoulder-season gain recorded and is driven by
-genuine reduced gas-per-HDD, not weather — April 2026 burned 0.097 CCF/HDD of space heat versus
-0.129 in April 2025. The 35.7% DHW reduction (an estimated $14–16 monthly offset) continues to
-soften the total bill. Unlike March, where corrected intensity was marginally *worse* YoY
-(+4.1%), April's improvement is unambiguous and substantial.
+**Key Insight:** On the official BDL basis the two Aprils had almost identical weather (415 vs
+412 HDD), so the −15.2% intensity improvement is nearly pure efficiency with negligible weather
+confound — a cleaner result than the proxy comparison, which had to argue past a spurious +11.9%
+HDD swing. April 2026 burned 0.111 CCF/HDD of space heat (BDL) versus 0.131 in April 2025. The
+35.7% DHW reduction (an estimated $14–16 monthly offset) continues to soften the total bill. The
+gain is real and substantial, if smaller than the −24.8% the proxy implied.
 
 The electric bill fell harder than usage (−25.6% vs −17.2% kWh) because the effective rate also
 dropped (~0.319 → 0.286 $/kWh, −10%) — a rate tailwind on top of lower consumption.
@@ -99,15 +102,15 @@ dropped (~0.319 → 0.286 $/kWh, −10%) — a rate tailwind on top of lower con
 | Total CCF | 111.0 | 59.0 | −46.8% |
 | Space Heat CCF *(net of DHW)* | 96.0 | 45.72 | −52.4% |
 | DHW CCF (Navien) | 15.00 | 13.28 | −11.5% |
-| HDD65 | 767.6 | 472.3 | −38.5% |
-| **Heating Intensity** *(net)* | **125.1 CCF/1k HDD** | **96.8 CCF/1k HDD** | **−22.6%** |
+| HDD65 *(BDL official)* | 744 | 412 | −44.6% |
+| **Heating Intensity** *(net, BDL)* | **129.0 CCF/1k HDD** | **111.0 CCF/1k HDD** | **−14.0%** |
 
-**Analysis:** Net space-heating gas fell 52.4% on a 38.5% HDD reduction — gas dropped *faster*
-than demand, which is the opposite of the shoulder-season pattern (mild months normally read
-higher intensity because the furnace's fixed combustion overhead is amortized over fewer HDD).
-April reading *below* March on net intensity is therefore notable. It is consistent with the
-CPH=2 change reducing per-cycle overhead and with high solar gain depressing actual heat demand
-below the degree-day model. DHW dipped 11.5% MoM, normal for the seasonal transition.
+**Analysis:** On the official BDL basis, net space-heating gas fell 52.4% on a 44.6% HDD
+reduction, and net intensity fell from 129.0 (March) to 111.0 (April), a −14.0% step. April still
+reads below March, but on official weather the gap is modest and April lands exactly where May
+does (~111) — a flat shoulder-season plateau, not an anomalously efficient April. (The proxy's
+larger −22.6% step was inflated by its April HDD over-count.) Solar gain still depresses actual
+runtime below the degree-day model. DHW dipped 11.5% MoM, normal for the seasonal transition.
 
 ### HVAC Runtime (March 2026 → April 2026)
 
@@ -147,19 +150,23 @@ is single-sided this month; both fields are now archived going forward (see Reco
 
 ## HDD Methodology Note
 
-For April only the HA proxy archive is available; a BDL official April figure has not yet been
-published into the parallel reference. The HA proxy ((high+low)/2 family) records 472.3 HDD.
+Official Bradley/KBDL degree days (ACIS/xmACIS2) are now captured monthly (`bdl_degree_days.csv`)
+and available for April. Dual-basis comparison, corrected to authoritative ACIS values:
 
-| Month | HA Proxy Archive | BDL Official |
-|---|---|---|
-| February 2026 | 1,062.6 *(daily CSV 1,089.0)* | 1,125.0 |
-| March 2026 | 767.6 | 709.0 |
-| April 2026 | **472.3** | *(pending)* |
+| Month | HA Proxy Archive | BDL Official (ACIS) | Proxy − BDL |
+|---|---|---|---|
+| February 2026 | 1,062.6 *(daily CSV 1,089.0)* | 1,120 | −57 |
+| March 2026 | 767.6 | 744 | +24 |
+| April 2026 | **472.3** | **412** | **+60** |
 
-Per prior analysis the HA proxy and BDL diverge in sign by month (proxy over-counts March,
-under-counts the annual total ~2.3%). Until the BDL April value is available, the net intensity
-of 96.8 should be read with the same ±8% proxy band noted in March; the qualitative
-conclusion — April near baseline and below March — holds across that band.
+> **Correction:** earlier drafts cited BDL Feb = 1,125 and Mar = 709; those were mismapped (1,125
+> is in fact Jan 2025's BDL total). The ACIS values above are authoritative.
+
+The proxy carries no fixed bias — it reads *colder* than BDL in deep winter (Feb −57) but
+*over-counts* in the shoulder (Mar +24, Apr +60). April is the largest divergence: 472.3 proxy vs
+412 official, +14.6%. That is the whole reason intensity differs by basis (96.8 proxy vs **111.0
+BDL**); the **BDL figure is authoritative** and used in the headline. At 111.0, April sits ~23%
+above the 90.3 annual baseline — normal shoulder elevation, in line with May's 111.1.
 
 ---
 
@@ -170,12 +177,13 @@ conclusion — April near baseline and below March — holds across that band.
 | Metric | Annual Baseline | April 2026 | Context |
 |---|---|---|---|
 | Runtime / HDD | 10.9 min/HDD | 4.88 min/HDD | Shoulder-season normal (structurally below annual) |
-| Heating Intensity *(net)* | 90.3 CCF/1k HDD | 96.8 CCF/1k HDD | +7.2% — closest to baseline of any heating month |
+| Heating Intensity *(net, BDL)* | 90.3 CCF/1k HDD | 111.0 CCF/1k HDD | +22.9% — shoulder-month elevation (proxy: 96.8 / +7.2%) |
 | Zone Balance Target | 50% ± 5% | 52.3% | ✓ Within band |
 
 As established in March, comparing a shoulder month's min/HDD against the January–February-weighted
 annual baseline overstates "efficiency"; the meaningful comparison is YoY. April 2026's 4.88 vs
-April 2025's 7.11 (−31.4%) is the within-month figure, and it is genuinely favorable.
+April 2025's 7.11 (−31.4%) is the within-month figure (proxy basis), and it is genuinely
+favorable; on BDL HDD the same metric is 5.59 vs 7.23 (−22.7%).
 
 ### CPH=2 First-Month Impact
 
@@ -243,7 +251,7 @@ archive_slot: april
 Repo(s) updated: Residential-HVAC-Performance-Baseline- (data/monthly_summary.csv)
 
 DATA ENTERED
-  HDD65:           472.3
+  HDD65:           472.3        (HA proxy → monthly_summary; BDL official 412 in bdl_degree_days.csv)
   Gas_CCF:         59.0          Gas_Cost: 117.77
   DHW_CCF:         13.2810       (13.7727 Thm × 0.9643)
   Elec_kWh:        285.0         Elec_Cost: 81.48
@@ -254,11 +262,11 @@ VALIDATION
   V1 range check:     FLAG — Gas −61% / Elec −34% vs trailing-3-mo avg; seasonal shoulder
                       transition (expected), confirmed in context. PASS in seasonal terms.
   V2 direction check: PASS — gas and runtime fell with HDD; intensity favorable, not anomalous.
-  V-HVAC-2 (±15% of 90.3): PASS — net intensity 96.8 (+7.2%).
+  V-HVAC-2 (±15% of 90.3): BDL basis 111.0 = +22.9% — shoulder-season elevation (expected, matches May +23%); proxy 96.8 = +7.2%.
   V3 prior data:      PRESENT.
 
 METRICS (before → after / YoY)
-  Heating Intensity (net):  128.8 → 96.8 CCF/1k HDD  (−24.8% YoY)
+  Heating Intensity (net, BDL):  130.9 → 111.0 CCF/1k HDD  (−15.2% YoY)  [proxy: 128.8 → 96.8, −24.8%]
   HVAC Runtime:             50.0 → 38.4 hrs          (−23.2% YoY, on +11.9% HDD)
   DHW:                      20.66 → 13.28 CCF        (−35.7% YoY)
   Runtime/HDD:              7.11 → 4.88 min/HDD       (−31.4% YoY)
@@ -268,7 +276,7 @@ FLAGS
   CPH=2 first-month signal confounded with mild April + CSV-derived cycle metrics.
 
 COMMIT MESSAGE (ready to use)
-  git commit -m "2026.04: Add April HVAC performance data — 96.8 CCF/1k HDD (net); intensity column corrected to net basis"
+  git commit -m "2026.04: Add April HVAC data — 111.0 CCF/1k HDD (net, BDL official); proxy 96.8; intensity column to net basis; add BDL degree-day basis"
 
 README UPDATE NEEDED: NO — UA within prior documented range; no new record; methodology note already in report.
 ```
