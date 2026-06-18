@@ -1,6 +1,6 @@
 # HVAC Performance Update: April 2026
 
-**Version:** 1.6.1
+**Version:** 1.6.2
 **Date:** June 17, 2026
 **Property:** 2,440 sq. ft. Colonial, Climate Zone 5A, Central Connecticut
 **Methodology:** Heating Intensity computed on **net space-heating gas** (total − Navien DHW),
@@ -100,14 +100,15 @@ dropped (~0.319 → 0.286 $/kWh, −10%) — a rate tailwind on top of lower con
 | Metric | March 2026 | April 2026 | MoM Change |
 |---|---|---|---|
 | Total CCF | 111.0 | 59.0 | −46.8% |
-| Space Heat CCF *(net of DHW)* | 96.0 | 45.72 | −52.4% |
-| DHW CCF (Navien) | 15.00 | 13.28 | −11.5% |
+| Space Heat CCF *(net of DHW)* | 102.26 | 45.72 | −55.3% |
+| DHW CCF (Navien) | 8.74 *(vacation)* | 13.28 | +51.9% |
 | HDD65 *(BDL official)* | 744 | 412 | −44.6% |
-| **Heating Intensity** *(net, BDL)* | **129.0 CCF/1k HDD** | **111.0 CCF/1k HDD** | **−14.0%** |
+| **Heating Intensity** *(net, BDL)* | **137.4 CCF/1k HDD** | **111.0 CCF/1k HDD** | **−19.2%** |
 
-**Analysis:** On the official BDL basis, net space-heating gas fell 52.4% on a 44.6% HDD
-reduction, and net intensity fell from 129.0 (March) to 111.0 (April), a −14.0% step. April still
-reads below March, but on official weather the gap is modest and April lands exactly where May
+**Analysis:** On the official BDL basis, net space-heating gas fell 55.3% on a 44.6% HDD
+reduction, and net intensity fell from 137.4 (March) to 111.0 (April), a −19.2% step. **Caveat:** March's
+137.4 is vacation-inflated (its DHW was suppressed to 8.74 CCF by a 2-week absence, inflating net space heat), so this
+raw step overstates the underlying decline — normalized, the Mar→Apr drop is gentler. April lands exactly where May
 does (~111) — a flat shoulder-season plateau, not an anomalously efficient April. (The proxy's
 larger −22.6% step was inflated by its April HDD over-count.) Solar gain still depresses actual
 runtime below the degree-day model. DHW dipped 11.5% MoM, normal for the seasonal transition.
@@ -140,9 +141,9 @@ produce (target 9–10 min), but see the runtime section for the caveats on this
 | DHW Recirc Hours | — | 32 hrs | — |
 | Implied gas per operating hour | — | 1.21 CCF/hr | — |
 
-**Note:** The April YoY DHW reduction (−35.7%) is slightly deeper than March's (−33.2%),
-consistent with the recirculation schedule change (off 9 PM – 6 AM) delivering its largest
-proportional savings as overnight ambient losses fall in milder weather. Prior-year April
+**Note:** The April YoY DHW reduction (−35.7%) reflects the recirculation schedule change
+(off 9 PM – 6 AM). It is **not** comparable to March's apparent −61.1%, which was confounded by a
+2-week vacation rather than recirc savings (see the corrected March report). Prior-year April
 operating/recirc hours were not captured under the old workflow, so the per-hour comparison
 is single-sided this month; both fields are now archived going forward (see Recommendations).
 
@@ -237,9 +238,10 @@ The clean test is May, the last full month before the late-May Ecobee swap.
 - **Intensity methodology correction (action required):** `data/monthly_summary.csv` has been
   recomputed to net-basis Heating Intensity for all heating-season rows. Review the diff and
   commit; this aligns the dataset with the v1.5.1 report methodology.
-- **Q1 reconciliation:** Independent of April — the repo's committed March DHW (15.0) disagrees
-  with the current archive (8.74), and February gas cost (248.0 repo vs 274.7 HA). Resolve before
-  the next rolling-efficiency recompute, since the March DHW value feeds Space_Heat and intensity.
+- **Q1 reconciliation (RESOLVED, June 18 2026):** The March DHW discrepancy is resolved in favor of
+  the archive — **8.74 CCF**, reflecting a 2-week vacation (the repo's 15.0 was an entry error). February
+  gas cost corrected to 274.7. `monthly_summary.csv` and the March report (v1.5.3) are updated; March
+  net intensity is now 137.4 BDL / 133.2 proxy, with March flagged as a vacation-atypical month.
 
 ---
 

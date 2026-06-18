@@ -1,6 +1,6 @@
 # HVAC Performance Update: May 2026
 
-**Version:** 1.7.1
+**Version:** 1.7.2
 **Date:** June 17, 2026
 **Property:** 2,440 sq. ft. Colonial, Climate Zone 5A, Central Connecticut
 **Methodology:** Heating Intensity on **net space-heating gas** (total − Navien DHW), per v1.5.1.
@@ -226,8 +226,9 @@ first uninterrupted full month under the Ecobee controller, using the HA monthly
   flagged.
 - **Intensity methodology correction:** carry the net-basis `monthly_summary.csv` correction from
   the April update into the same commit.
-- **Q1 reconciliation:** still open — repo March DHW (15.0) vs archive (8.74), and February gas
-  cost (248.0 vs 274.7). Resolve before the next rolling-efficiency recompute.
+- **Q1 reconciliation (RESOLVED, June 18 2026):** March DHW resolved to the archive value **8.74 CCF**
+  (2-week vacation; repo's 15.0 was an entry error) and February gas cost corrected to 274.7. `monthly_summary.csv`
+  and the March report (v1.5.3) are updated; March net intensity is now 137.4 BDL / 133.2 proxy (vacation-atypical).
 
 ---
 

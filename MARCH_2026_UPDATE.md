@@ -1,13 +1,15 @@
 # HVAC Performance Update: March 2026
 
-**Version:** 1.5.2 (Corrected)  
+**Version:** 1.5.3 (Corrected)  
 **Date:** April 8, 2026  
 **Property:** 2,440 sq. ft. Colonial, Climate Zone 5A, Central Connecticut  
 **Corrections from v1.5.0:** Heating Intensity formula corrected throughout (§1, §2, §5);
 HDD source discrepancy documented (§2); min/HDD seasonal framing corrected (§5);
 Recommendations expanded with envelope monitoring context (§6).
 
-**Revision 1.5.2 (June 18, 2026):** BDL official degree days re-sourced from ACIS (`bdl_degree_days.csv`) and corrected — the prior BDL figures were wrong: **March = 744 HDD (not 709)** and Feb = 1,120 (not 1,125). Heating Intensity is now stated **dual-basis** (BDL official authoritative + HA proxy), consistent with the April and May reports. The corrected BDL March net intensity is **129.0 CCF/1k HDD** (the earlier 135.4 used the bad 709 figure). The proxy over-counts March by only +24 HDD (+3.2%), not +8.3%. Runtime/HDD remains proxy-basis.
+**Revision 1.5.2 (June 18, 2026):** BDL official degree days re-sourced from ACIS (`bdl_degree_days.csv`) and corrected — the prior BDL figures were wrong: **March = 744 HDD (not 709)** and Feb = 1,120 (not 1,125). Heating Intensity is now stated **dual-basis** (BDL official authoritative + HA proxy), consistent with the April and May reports. The BDL March net intensity at v1.5.2 was **129.0 CCF/1k HDD** (using the then-current DHW 15.0; corrected to **137.4** in Revision 1.5.3 below — the earlier 135.4 used the bad 709 figure). The proxy over-counts March by only +24 HDD (+3.2%), not +8.3%. Runtime/HDD remains proxy-basis.
+
+**Revision 1.5.3 (June 18, 2026):** March DHW corrected from 15.0 to **8.74 CCF** (the 15.0 was a monthly-summary entry error; 8.74 is the Navien archive value). The low reading reflects a **2-week vacation** that month — not recirculation savings. This raises net space heat to **102.26 CCF** and net Heating Intensity to **137.4 CCF/1k HDD (BDL) / 133.2 (proxy)**. **Important:** because net intensity subtracts DHW from total gas, the vacation-suppressed DHW *inflates* the net-intensity metric. The robust comparison is total gas per HDD — March 2026 = 0.149 (111 CCF / 744 BDL HDD) vs March 2025 = 0.154 (106 / 687), i.e. **−3.3% YoY (slightly better)**. March is therefore an **atypical month**: its elevated net intensity is a low-DHW artifact, not an efficiency regression, and the Feb→Mar→Apr trend should not be read through it. The vacation also likely suppressed space-heating via setback.
 
 ---
 
@@ -16,9 +18,9 @@ Recommendations expanded with envelope monitoring context (§6).
 March 2026 represents the transition into the spring shoulder season. As outdoor
 temperatures rose, heating demand decreased significantly. The furnace ran 81.4 hours,
 a 15.2% reduction from March 2025's 96.0 hours despite carrying 10.3% more HDD —
-a favorable year-over-year runtime result. Domestic Hot Water (DHW) savings from the
-recirculation optimization continue to be realized, with a 33.2% reduction in DHW gas
-year-over-year.
+a favorable year-over-year runtime result. Domestic Hot Water (DHW) was unusually low at 8.74 CCF (−61.1% YoY), reflecting a
+2-week vacation that month rather than a sustained efficiency gain — see the atypical-month
+note above and §DHW.
 
 **Key March 2026 Findings:**
 
@@ -26,30 +28,32 @@ year-over-year.
 |---|---|---|
 | Total Gas Consumption | 111.0 CCF | −36.6% MoM |
 | Weather Severity | 744 HDD65 *(BDL official)* | proxy 767.6 HDD (+24); BDL re-sourced from ACIS |
-| Net Space Heating Gas | 96.0 CCF | −40.3% MoM |
-| **Heating Intensity** *(net, BDL)* | **129.0 CCF/1k HDD** | +6.1% vs March 2025; +42.9% vs baseline (proxy: 125.1) |
-| DHW Consumption | 15.0 CCF | −33.2% YoY; recirc optimization |
+| Net Space Heating Gas | 102.26 CCF | −36.6% MoM *(vacation-inflated; see note)* |
+| **Heating Intensity** *(net, BDL)* | **137.4 CCF/1k HDD** | +13.0% vs March 2025; +52.2% vs baseline (proxy: 133.2, +47.5%) — *low-DHW artifact, see note* |
+| DHW Consumption | 8.74 CCF | −61.1% YoY; 2-week vacation (atypical) |
 | HVAC Runtime | 81.4 hours | −15.2% YoY despite +10.3% HDD |
 | Runtime / HDD | 6.4 min/HDD | Within normal shoulder-season range |
 
 > **Correction note (v1.5.0 → v1.5.1):** The prior version computed Heating Intensity
 > using *total* gas (111.0 CCF) instead of *net space heating* gas (total minus DHW =
 > 96.0 CCF). This produced inflated values of 144.4 (Mar 2026) and 152.4 (Mar 2025)
-> and incorrectly reported a year-over-year improvement. The corrected values are 125.1
-> and 120.1 respectively — a modest 4.1% increase, not a decrease.
+> and incorrectly reported a year-over-year improvement. The corrected net values (after the v1.5.3 DHW fix) are 133.2 (Mar 2026)
+> and 120.1 (Mar 2025) on the proxy basis — a +10.9% increase, itself a low-DHW artifact (see Revision 1.5.3).
 
 > **HDD proxy note:** The HA proxy records 767.6 HDD for March vs. BDL's official 744
 > HDD (ACIS) — the proxy over-counts by +24 HDD (+3.2%), the same shoulder-season
-> direction seen in April. Using authoritative BDL HDD yields net intensity of **129.0
-> CCF/1k HDD** (vs 125.1 on the proxy) — a small gap. Both are well above the annual
+> direction seen in April. Using authoritative BDL HDD yields net intensity of **137.4
+> CCF/1k HDD** (vs 133.2 on the proxy) — a small gap. Both are well above the annual
 > baseline; the basis choice does not change the qualitative reading. *(An earlier draft
 > cited BDL = 709 and intensity 135.4; that BDL value was wrong.)*
 
 **Interpretation:** The runtime reduction (81.4h vs 96.0h) despite higher HDD is a
-positive signal. On the authoritative BDL basis, net Heating Intensity of 129.0 CCF/1k HDD shows
-March 2026 was modestly above March 2025's 121.6 — marginally worse, not better (proxy basis: 125.1 vs 120.1). Both values are
-significantly above the annual baseline of 90.3 CCF/1k HDD, which is a normal and
-expected artifact of shoulder-season physics (see §5 for detailed explanation) and
+positive signal. On the authoritative BDL basis, net Heating Intensity of 137.4 CCF/1k HDD is +13.0%
+above March 2025's 121.6 (proxy: 133.2 vs 120.1) — but this is **largely a low-DHW artifact**, not real
+efficiency loss: the 2-week vacation suppressed DHW (8.74 vs ~22 in 2025), so more of the unchanged total gas is
+attributed to space heat. On the robust total-gas-per-HDD basis, March 2026 (0.149) was actually −3.3% vs March 2025
+(0.154). Both net values sit above the annual baseline of 90.3 CCF/1k HDD, a normal
+shoulder-season artifact (see §5) — and March 2026 specifically is an atypical, vacation-confounded month that
 does not indicate system malfunction. March data alone cannot determine whether the
 9.5% UA elevation observed in the 12-month rolling calculation is persistent; that
 determination requires observing January–February data from the 2026–2027 heating season.
@@ -73,11 +77,12 @@ determination requires observing January–February data from the 2026–2027 he
 | Metric | March 2025 | March 2026 | YoY Change | Interpretation |
 |---|---|---|---|---|
 | **Total Gas** | 106.0 CCF | 111.0 CCF | +4.7% | Weather-driven; more HDD in 2026 |
-| **DHW (Navien)** | 22.47 CCF | 15.00 CCF | **−33.2%** | Recirc optimization sustained |
-| **Space Heating** | 83.53 CCF | 96.00 CCF | +14.9% | 10.3% more HDD; some real increase |
+| **DHW (Navien)** | 22.47 CCF | 8.74 CCF | **−61.1%** | 2-week vacation — atypical, not a sustained gain |
+| **Space Heating** | 83.53 CCF | 102.26 CCF | +22.4% | *Inflated by vacation-low DHW attribution* |
 | **HDD65 (BDL official)** | 687 | 744 | +8.3% | Colder March 2026 (official) |
 | **HDD65 (HA proxy)** | 695.5 | 767.6 | +10.3% | Proxy basis |
-| **Heating Intensity** *(net, BDL)* | **121.6 CCF/1k HDD** | **129.0 CCF/1k HDD** | **+6.1%** | Modest increase (proxy: 120.1 → 125.1, +4.1%) |
+| **Heating Intensity** *(net, BDL)* | **121.6 CCF/1k HDD** | **137.4 CCF/1k HDD** | **+13.0%** | Low-DHW artifact (proxy: 120.1 → 133.2, +10.9%) |
+| **Total Gas per HDD** (BDL) | 0.1543 | 0.1492 | **−3.3%** | *Robust metric — slightly better YoY (no DHW artifact)* |
 | **HVAC Runtime** | 96.0 hrs | 81.4 hrs | −15.2% | Less runtime despite more HDD — positive |
 | **Runtime / HDD** | 8.28 min/HDD | 6.36 min/HDD | −23.2% | Seasonal load distribution effect |
 
@@ -87,13 +92,12 @@ determination requires observing January–February data from the 2026–2027 he
 > The YoY direction reverses: intensity increased +4.1%, not decreased −5.3%.
 
 **Key Insight:** Total gas is up 4.7% on 10.3% more HDD — meaning the system delivered
-the additional heat demand with proportionally less gas, a favorable ratio. The 33.2%
-DHW reduction provides a $12–15 estimated monthly offset that partially masks the
-space heating increase in the total bill. The runtime reduction (−15.2%) despite
+the additional heat demand with proportionally less gas, a favorable ratio. The unusually low
+DHW (vacation) lowers the March bill but is not a sustained saving and inflates the net-space-heat figure. The runtime reduction (−15.2%) despite
 more heating demand is the clearest positive signal in the month.
 
-The BDL-basis heating intensity of 129.0 CCF/1k HDD being modestly above March 2025's
-121.6 (proxy: 125.1 vs 120.1) is not alarming in isolation. Shoulder-season intensity varies considerably based
+The BDL-basis net intensity of 137.4 CCF/1k HDD sitting above March 2025's
+121.6 (proxy: 133.2 vs 120.1) is a **low-DHW artifact of the 2-week vacation, not an efficiency concern** — on the robust total-gas-per-HDD basis March 2026 was −3.3% YoY. Shoulder-season intensity also varies considerably based
 on how HDD are distributed across the month — a handful of very mild days (mean temp
 55–62°F) near the 65°F base temperature carry disproportionately high CCF/HDD relative
 to cold days. March 2026 had more such near-base days.
@@ -107,22 +111,21 @@ to cold days. March 2026 had more such near-base days.
 | Metric | February 2026 | March 2026 | MoM Change |
 |---|---|---|---|
 | Total CCF | 175.0 | 111.0 | −36.6% |
-| Space Heat CCF *(net of DHW)* | 161.4 | 96.0 | −40.5% |
-| DHW CCF (Navien) | 13.6 | 15.0 | +10.3% |
+| Space Heat CCF *(net of DHW)* | 161.4 | 102.26 | −36.6% |
+| DHW CCF (Navien) | 13.63 | 8.74 | −35.9% *(vacation)* |
 | HDD65 *(BDL official)* | 1,120 | 744 | −33.6% |
-| **Heating Intensity** *(net, BDL)* | **144.1 CCF/1k HDD** | **129.0 CCF/1k HDD** | **−10.5%** |
+| **Heating Intensity** *(net, BDL)* | **144.1 CCF/1k HDD** | **137.4 CCF/1k HDD** | **−4.6%** *(low-DHW artifact)* |
 
 > **Basis note:** The table is stated on BDL official HDD (ACIS). On the daily-CSV HDD
-> (Feb 1,089.0 / §4) the figures are Feb 148.2 / Mar 125.1 (proxy); on BDL (Feb 1,120 /
-> Mar 744) they are 144.1 / 129.0. Either basis shows the same seasonal-transition decline
+> (Feb 1,089.0 / §4) the figures are Feb 148.2 / Mar 133.2 (proxy); on BDL (Feb 1,120 /
+> Mar 744) they are 144.1 / 137.4. Either basis shows the same seasonal-transition decline
 > (Feb total gas 175 CCF would give 160.7 — the old error from using gross gas).
 
-**Analysis:** The −10.5% decline in heating intensity from February to March (BDL basis) reflects
+**Analysis:** The −4.6% decline in net heating intensity from February to March (BDL basis) reflects
 the seasonal transition rather than any change in system behavior — both months are well
-above the annual baseline of 90.3 due to shoulder-season physics. The slight increase in
-DHW consumption (+10.3%) is typical for March; rising outdoor temperatures reduce the
-incoming cold-water supply temperature differential, but the Navien's increased burner
-activity to pre-heat the recirculation loop in the morning offsets this partially.
+above the annual baseline of 90.3 due to shoulder-season physics. DHW consumption fell −35.9% MoM (13.63 → 8.74 CCF), driven by the 2-week vacation rather than
+any seasonal effect; March is not a representative DHW month, and its low DHW inflates the net
+space-heat intensity shown above.
 
 ### HVAC Runtime (February 2026 → March 2026)
 
@@ -146,22 +149,23 @@ that drives its 54–58% typical winter share attenuates in mild weather.
 
 ## DHW Performance Update
 
-### Sustained Recirculation Optimization Results
+### DHW: Vacation-Suppressed Reading — March Cannot Isolate Recirc Savings
 
-The recirculation schedule change (off 9 PM – 6 AM) continues to deliver consistent
-year-over-year savings:
+March 2026 DHW (8.74 CCF) is far below March 2025 (22.47 CCF), but this gap is dominated by a
+**2-week vacation**, not the recirculation schedule change. March therefore cannot be used to
+quantify recirc savings; those are better assessed from non-anomalous months or the full-year archive:
 
-| Metric | March 2025 *(24hr recirc)* | March 2026 *(15hr recirc)* | Change |
+| Metric | March 2025 *(normal occupancy)* | March 2026 *(2-week vacation)* | Change |
 |---|---|---|---|
-| DHW Gas (Navien) | 22.47 CCF | 15.00 CCF | **−33.2%** |
+| DHW Gas (Navien) | 22.47 CCF | 8.74 CCF | **−61.1%** *(vacation-confounded)* |
 | DHW Operating Hours | 12 hrs | 12 hrs | 0% |
-| Implied gas per operating hour | 1.87 CCF/hr | 1.25 CCF/hr | −33.2% |
+| Implied gas per operating hour | 1.87 CCF/hr | 0.73 CCF/hr | −61.1% *(not meaningful — vacation)* |
 
-**Note:** With identical operating hours, the 33.2% gas reduction is attributable to
-the recirc schedule change eliminating 9 hours of overnight pipe-heat maintenance per
-day. The 12-month Navien archive totals 197.5 CCF vs the trailing-12-month estimate of
-~210–215 CCF that would have prevailed under the prior 24-hour schedule — an annualized
-saving of approximately 13–18 CCF (~$22–30/yr at current rates).
+**Note:** The −61.1% YoY DHW drop is dominated by the 2-week vacation, not the recirc schedule, so
+the per-operating-hour figure is not meaningful for March. The recirculation schedule change
+(off 9 PM – 6 AM) remains a real ongoing optimization, but its savings must be quantified from
+non-vacation months. The 12-month Navien archive (197.5 CCF) itself includes this vacation-suppressed
+March, so it slightly understates a normal-occupancy year.
 
 ---
 
@@ -185,7 +189,7 @@ For **February**, the daily CSV method (1,089.0) is used in this report for inte
 consistency with the runtime data. BDL's official February value is 1,120 (ACIS).
 
 For **March**, the authoritative BDL value is 744 HDD (ACIS); the HA proxy (767.6) over-counts
-by +24 (+3.2%). The BDL-basis March net intensity is **129.0 CCF/1k HDD** vs 125.1 on the proxy
+by +24 (+3.2%). The BDL-basis March net intensity is **137.4 CCF/1k HDD** vs 133.2 on the proxy
 — a small gap. *(An earlier draft used a wrong BDL value of 709, which gave an inflated 135.4;
 that is corrected here.)*
 
@@ -204,7 +208,7 @@ a clean BDL-denominator rolling sensor can quantify this precisely.
 | Metric | Annual Baseline | March 2026 | Context |
 |---|---|---|---|
 | Runtime / HDD | 10.9 min/HDD | 6.36 min/HDD | Shoulder-season normal |
-| Heating Intensity *(net, BDL)* | 90.3 CCF/1k HDD | 129.0 CCF/1k HDD | +42.9% — shoulder-season normal (proxy: 125.1) |
+| Heating Intensity *(net, BDL)* | 90.3 CCF/1k HDD | 137.4 CCF/1k HDD | +52.2% — vacation-inflated, atypical (proxy: 133.2, +47.5%) |
 | Zone Balance Target | 50% ± 5% | 49.6% | ✓ Optimal |
 
 > ~~"The runtime efficiency of 6.4 min/HDD is approximately 41% better than the baseline,
