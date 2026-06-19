@@ -1,8 +1,10 @@
 # HVAC Performance Update: February 2026
 
-**Version:** 1.4.0
-**Date:** March 1, 2026
+**Version:** 1.4.1
+**Date:** March 1, 2026 *(rev. June 18, 2026)*
 **Property:** 2,440 sq. ft. Colonial, Climate Zone 5A, Central Connecticut
+
+**Revision 1.4.1 (June 18, 2026):** (1) DHW corrected to the Navien archive value **13.63 CCF** (was 14.14; net space heat → 161.4 CCF). (2) Heating Intensity now **dual-basis** (BDL official authoritative + HA proxy): **144.1 CCF/1k HDD (BDL, 1,120 HDD) / 148.2 (proxy, 1,089)** — was 149.4 on 1,077. (3) Gas cost ($274.70) and electric ($111.48/404 kWh) were pending at first publication and are reconciled to the HA archive. See the new HDD Methodology Note. The Jun 2025 appendix gas row is reconciled (23→17).
 
 ---
 
@@ -13,13 +15,13 @@ This update extends the baseline analysis with February 2026 data, continuing th
 **Key February 2026 Findings:**
 
 - **Total Gas Consumption:** 175 CCF (+13.6% YoY)
-- **Weather Severity:** 1,077 HDD65 (+14.6% YoY - significantly colder)
-- **Space Heating:** 160.9 CCF (+18.4% YoY)
-- **Heating Intensity:** 149.4 CCF/1kHDD (+3.4% YoY)
-- **DHW Consumption:** 14.14 CCF (-22.0% YoY - continued recirc optimization)
+- **Weather Severity:** 1,120 HDD65 *(BDL official)* / 1,089 proxy (+16.8% YoY BDL — significantly colder)
+- **Space Heating:** 161.4 CCF (+18.8% YoY)
+- **Heating Intensity:** 144.1 CCF/1kHDD *(net, BDL)* / 148.2 *(proxy)* (+1.7% BDL / +2.5% proxy YoY)
+- **DHW Consumption:** 13.63 CCF (-24.8% YoY - recirc optimization)
 - **HVAC Runtime:** 158 hours at 8.8 min/HDD (excellent efficiency)
 
-**Interpretation:** Space heating consumption increased 18.4% compared to a 14.6% increase in HDD. The 3.4% heating intensity increase is within the baseline coefficient of variation (7.0%), indicating normal system operation. DHW savings from January's recirculation optimization continue to hold.
+**Interpretation:** Space heating consumption increased 18.8% compared to a 16.8% increase in HDD (BDL official). The +1.7% BDL (+2.5% proxy) heating intensity increase is within the baseline coefficient of variation (7.0%), indicating normal system operation. DHW savings from January's recirculation optimization continue to hold.
 
 ---
 
@@ -42,28 +44,29 @@ This update extends the baseline analysis with February 2026 data, continuing th
 | Metric | Feb 2025 | Feb 2026 | YoY Change | Interpretation |
 |--------|----------|----------|------------|----------------|
 | **Total Gas** | 154 CCF | 175 CCF | +13.6% | Weather + billing days |
-| **DHW (Navien)** | 18.12 CCF | 14.14 CCF | **-22.0%** | Recirc optimization |
-| **Space Heating** | 135.9 CCF | 160.9 CCF | +18.4% | Weather-driven |
-| **HDD65** | 940 | 1,077 | **+14.6%** | Colder winter |
-| **Heating Intensity** | 144.5 | 149.4 | +3.4% | Within baseline CV |
+| **DHW (Navien)** | 18.12 CCF | 13.63 CCF | **-24.8%** | Recirc optimization |
+| **Space Heating** | 135.9 CCF | 161.4 CCF | +18.8% | Weather-driven |
+| **HDD65 (BDL official)** | 959 | 1,120 | **+16.8%** | Colder winter (official) |
+| **HDD65 (HA proxy)** | 940 | 1,089 | +15.9% | Proxy basis (daily-CSV) |
+| **Heating Intensity** *(net, BDL)* | 141.7 | 144.1 | **+1.7%** | Within baseline CV (proxy: 144.6 → 148.2, +2.5%) |
 | **HVAC Runtime** | 138 hrs | 158 hrs | +14.5% | Tracks HDD |
 | **Runtime Efficiency** | — | 8.8 min/HDD | — | Excellent |
 
-**Key Insight:** The 18.4% space heating increase exceeds the 14.6% HDD increase by about 4 points. However, this is within the expected billing period variability. The runtime efficiency of 8.8 min/HDD is actually better than the baseline of 10.9 min/HDD, indicating the system is performing efficiently despite the colder conditions.
+**Key Insight:** The 18.8% space heating increase exceeds the +16.8% BDL HDD increase by about 2 points. This is within expected billing-period variability. The runtime efficiency of 8.8 min/HDD is actually better than the baseline of 10.9 min/HDD, indicating the system is performing efficiently despite the colder conditions.
 
 ### Gas Consumption Decomposition
 
 ```text
 February 2026 Total Gas: 175.0 CCF
-├── Space Heating:       160.9 CCF (91.9%)
-└── Domestic Hot Water:   14.1 CCF (8.1%)
+├── Space Heating:       161.4 CCF (92.2%)
+└── Domestic Hot Water:   13.6 CCF (7.8%)
 
 February 2025 Total Gas: 154.0 CCF
 ├── Space Heating:       135.9 CCF (88.2%)
 └── Domestic Hot Water:   18.1 CCF (11.8%)
 ```
 
-The DHW share dropped from 11.8% to 8.1% of total gas, continuing the benefit from January's recirculation optimization.
+The DHW share dropped from 11.8% to 7.8% of total gas, continuing the benefit from January's recirculation optimization.
 
 ---
 
@@ -74,12 +77,12 @@ The DHW share dropped from 11.8% to 8.1% of total gas, continuing the benefit fr
 | Metric | Jan 2026 | Feb 2026 | MoM Change |
 |--------|----------|----------|------------|
 | Total CCF | 168 | 175 | +4.2% |
-| Space Heat CCF | 150.2 | 160.9 | +7.1% |
-| DHW CCF (Navien) | 17.76 | 14.14 | -20.4% |
+| Space Heat CCF | 150.2 | 161.4 | +7.4% |
+| DHW CCF (Navien) | 17.76 | 13.63 | -23.3% |
 | Days in Period | 31 | 28 | -9.7% |
 | HDD65 | 1,230 | 1,077 | -12.4% |
 
-**Analysis:** Space heating increased 7.1% despite a 12.4% decrease in HDD. This reflects billing period alignment effects. The significant DHW reduction (-20.4%) reflects the full month impact of the recirculation schedule change.
+**Analysis:** Space heating increased 7.4% despite a 12.4% decrease in HDD. This reflects billing period alignment effects. The significant DHW reduction (-23.3%) reflects the full month impact of the recirculation schedule change.
 
 ### HVAC Runtime (January 2026 → February 2026)
 
@@ -122,6 +125,24 @@ The coldest period of February 2026:
 
 ---
 
+## HDD Methodology Note
+
+Four HDD sources exist for February 2026 and they differ:
+
+| Source | Feb 2026 HDD | Note |
+|---|---|---|
+| This report's daily table (timeanddate, Chester CT) | 1,077 | Raw daily (Hi+Lo)/2 |
+| HA proxy archive (24-h mean) | 1,062.6 | Live weather API |
+| HA daily CSV (Hi+Lo)/2 | 1,089.0 | Used in the March report for runtime consistency |
+| **BDL official (ACIS, KBDL)** | **1,120** | **Authoritative** |
+
+Heating Intensity is stated **dual-basis**: BDL official (authoritative) and HA proxy. On the BDL
+denominator net intensity is **144.1 CCF/1k HDD**; on the HA daily-CSV proxy (1,089) it is **148.2**.
+The ~5% spread among proxy sources does not change the qualitative reading. Runtime min/HDD figures
+elsewhere in this report remain on the report's daily-table proxy basis (1,077).
+
+---
+
 ## DHW Performance Update
 
 ### Continued Recirculation Optimization Results
@@ -130,22 +151,22 @@ The recirculation schedule change implemented in mid-January continues to show s
 
 | Metric | Feb 2025 (24hr) | Feb 2026 (15hr) | Change |
 |--------|-----------------|-----------------|--------|
-| DHW Gas (Navien) | 18.12 CCF | 14.14 CCF | **-22.0%** |
+| DHW Gas (Navien) | 18.12 CCF | 13.63 CCF | **-24.8%** |
 | Recirc Hours | 53 hrs | 28 hrs | **-47.2%** |
 | DHW Operating Hours | 6 hrs | 11 hrs | +83.3% |
-| Daily DHW Rate | 0.65 CCF/day | 0.51 CCF/day | **-21.5%** |
+| Daily DHW Rate | 0.65 CCF/day | 0.49 CCF/day | **-24.8%** |
 
-**Note:** The increased DHW operating hours (11 vs 6) indicates more actual hot water usage in February 2026, yet gas consumption still dropped 22%. This confirms the recirculation optimization is working as intended.
+**Note:** The increased DHW operating hours (11 vs 6) indicates more actual hot water usage in February 2026, yet gas consumption still dropped 24.8%. This confirms the recirculation optimization is working as intended.
 
 ### Cumulative DHW Savings (Jan-Feb 2026)
 
 | Month | Old Schedule (Est.) | New Schedule (Actual) | Savings |
 |-------|---------------------|----------------------|---------|
 | Jan 2026 | 22.83 CCF | 17.76 CCF | 5.07 CCF |
-| Feb 2026 | 18.12 CCF | 14.14 CCF | 3.98 CCF |
-| **Total** | **40.95 CCF** | **31.90 CCF** | **9.05 CCF** |
+| Feb 2026 | 18.12 CCF | 13.63 CCF | 4.49 CCF |
+| **Total** | **40.95 CCF** | **31.39 CCF** | **9.56 CCF** |
 
-**Cost Savings:** ~$14.50 in gas savings over 2 months, on track for $77/year projection.
+**Cost Savings:** ~$15.30 in gas savings over 2 months, on track for $77/year projection.
 
 ---
 
@@ -168,7 +189,7 @@ The recirculation schedule change implemented in mid-January continues to show s
 |--------|----------|----------|--------|
 | Runtime Efficiency | 10.9 min/HDD | 8.8 min/HDD | 19% better |
 | Zone Balance Target | 50% ±5% | 54.4% | Within range |
-| Heating Intensity | 90.3 CCF/1kHDD | 149.4* | See note |
+| Heating Intensity | 90.3 CCF/1kHDD | 144.1 BDL / 148.2 proxy* | See note |
 
 *February heating intensity is elevated vs annual baseline due to billing period effects; runtime efficiency confirms system health.
 
@@ -188,6 +209,12 @@ The recirculation schedule change implemented in mid-January continues to show s
 | Total HVAC Runtime | 720 hrs | +10.8% |
 
 **Interpretation:** Despite an 11.3% increase in weather severity, the heating intensity is only 0.7% higher than the prior year, indicating excellent system performance and envelope integrity.
+
+> **Reconciliation note (v1.4.1):** The cumulative DHW shown here (70 CCF) is billing-aligned and is
+> lower than the Navien metered sum for Oct 2025–Feb 2026 (89.75 CCF). On the Navien basis, cumulative
+> space heating is ~439 CCF and season intensity ~97 CCF/1k HDD. This billing-vs-metered DHW basis
+> difference is a pre-existing item (not introduced by the v1.4.1 corrections) flagged for resolution in
+> the monthly_summary unification; the monthly tables elsewhere in this report use Navien DHW.
 
 ---
 
@@ -226,7 +253,7 @@ The recirculation schedule change implemented in mid-January continues to show s
 | Mar 2025 | 106 | 22.47 | 83.5 | 696 | 120.0 |
 | Apr 2025 | 75 | 20.66 | 54.3 | 422 | 128.8 |
 | May 2025 | 38 | 19.21 | 18.8 | 170 | 110.5 |
-| Jun 2025 | 23 | 16.72 | 6.3 | 22 | — |
+| Jun 2025 | 17 | 16.72 | 0.3 | 22 | — |
 | Jul 2025 | 17 | 15.59 | 1.4 | 0 | — |
 | Aug 2025 | 16 | 11.24 | 4.8 | 20 | — |
 | Sep 2025 | 11 | 15.59 | -4.6* | 42 | — |
@@ -234,7 +261,7 @@ The recirculation schedule change implemented in mid-January continues to show s
 | Nov 2025 | 58 | 19.21 | 38.8 | 716 | 54.2 |
 | Dec 2025 | 110 | 21.75 | 88.3 | 1,148 | 76.9 |
 | Jan 2026 | 168 | 17.76 | 150.2 | 1,230 | 122.1 |
-| **Feb 2026** | **175** | **14.14** | **160.9** | **1,077** | **149.4** |
+| **Feb 2026** | **175** | **13.63** | **161.4** | **1,089** | **148.2** |
 
 *Negative value indicates billing period artifacts; DHW exceeded total for this period
 
@@ -274,8 +301,8 @@ The recirculation schedule change implemented in mid-January continues to show s
 
 ---
 
-**Document Version:** 1.4.0
-**Analysis Date:** March 1, 2026
+**Document Version:** 1.4.1
+**Analysis Date:** March 1, 2026 *(rev. June 18, 2026)*
 **Data Coverage:** January 2022 - February 2026 (50 months)
 **Weather Data Source:** [timeanddate.com](https://www.timeanddate.com/weather/@5283874/historic) for Chester, CT
 **Author:** William K. Collis

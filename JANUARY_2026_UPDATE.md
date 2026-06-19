@@ -1,8 +1,10 @@
 # HVAC Performance Update: January 2026
 
-**Version:** 1.3.2
-**Date:** February 2, 2026
+**Version:** 1.3.3
+**Date:** February 2, 2026 *(rev. June 18, 2026)*
 **Property:** 2,440 sq. ft. Colonial, Climate Zone 5A, Central Connecticut
+
+**Revision 1.3.3 (June 18, 2026):** Heating Intensity now stated **dual-basis** (BDL official authoritative + HA proxy), consistent with the Feb–May reports. January BDL = 1,263 HDD (ACIS) vs proxy 1,230; net intensity is **119.0 CCF/1k HDD (BDL) / 122.2 (proxy)**. On the colder official weather, January 2026 net intensity is −3.1% YoY (a genuine improvement the proxy under-count masks as flat). The Jun 2025 appendix rows are reconciled to the HA archive (gas 23→17, electric 626→505) per the monthly_summary HA-truth audit.
 
 ---
 
@@ -15,7 +17,7 @@ This update extends the four-year baseline (2022-2025) with January 2026 data, i
 - **Total Gas Consumption:** 168 CCF (+4.3% YoY)
 - **Weather Severity:** 1,230 HDD65 (+8.5% YoY — significantly colder)
 - **Space Heating:** 150.2 CCF (+8.7% YoY — tracks weather perfectly)
-- **Heating Intensity:** 122.1 CCF/1kHDD (+0.2% YoY — essentially flat)
+- **Heating Intensity:** 119.0 CCF/1kHDD *(net, BDL official)* / 122.2 *(proxy)* — −3.1% YoY on BDL (proxy +0.2%)
 - **DHW Optimization:** -22.2% from recirculation schedule change
 - **HVAC Runtime:** 220 hours at 10.7 min/HDD (within baseline)
 
@@ -101,12 +103,13 @@ The 9-hour overnight shutoff (9 PM - 6 AM) should have minimal comfort impact:
 | **Total Gas** | 161 CCF | 168 CCF | +4.3% | Includes DHW savings |
 | **DHW (Navien)** | 22.83 CCF | 17.76 CCF | **-22.2%** | Recirc optimization |
 | **Space Heating** | 138.17 CCF | 150.24 CCF | **+8.7%** | Weather-driven |
-| **HDD65** | 1,134 | 1,230 | **+8.5%** | Colder winter |
-| **Heating Intensity** | 121.8 | 122.1 | **+0.2%** | ✅ Flat (excellent) |
+| **HDD65 (BDL official)** | 1,125 | 1,263 | **+12.3%** | Colder winter (official) |
+| **HDD65 (HA proxy)** | 1,134 | 1,230 | +8.5% | Proxy basis |
+| **Heating Intensity** *(net, BDL)* | 122.8 | 119.0 | **−3.1%** | ✅ Improved on official weather (proxy: 121.8 → 122.2, +0.3%) |
 | **Electricity** | 461 kWh | 515 kWh | +11.7% | Billing days + blower |
 | **HVAC Runtime** | — | 220 hrs | — | 10.7 min/HDD |
 
-**Key Insight:** The 8.7% increase in space heating gas perfectly tracks the 8.5% increase in HDD. The +0.2% heating intensity variance is well within the baseline CV of 7.0%, confirming:
+**Key Insight:** The 8.7% increase in space heating gas tracks the +8.5% proxy HDD increase. On the **authoritative BDL basis**, HDD rose +12.3% while space heating rose only +8.7%, so net intensity actually *fell* −3.1% YoY — a real improvement the proxy's HDD under-count hides as 'flat.' Either way the variance is within the baseline CV of 7.0%, confirming:
 
 1. No equipment degradation
 2. No envelope compromise
@@ -277,7 +280,7 @@ With Navien DHW metering (Oct 2024 - Dec 2025 data), the 2025 baseline should be
 
 | Metric | Baseline | Warning (+10%) | Action (+15%) | Jan 2026 |
 |--------|----------|----------------|---------------|----------|
-| Heating Intensity | 90.3 CCF/1kHDD | >99 | >104 | 122.1* |
+| Heating Intensity | 90.3 CCF/1kHDD | >99 | >104 | 119.0 BDL / 122.2 proxy* |
 | Monthly Space Heat (Jan) | 138 CCF | >152 | >159 | 150 ✅ |
 | Monthly DHW (Jan) | 22.8 CCF | >25 | >26 | 17.8 ✅ |
 | Runtime Efficiency | 10.9 min/HDD | >12.0 | >12.5 | 10.7 ✅ |
@@ -322,7 +325,7 @@ With Navien DHW metering (Oct 2024 - Dec 2025 data), the 2025 baseline should be
 | Mar 2025 | 106 | 22.47 | 83.5 | 696 | 120.0 |
 | Apr 2025 | 75 | 20.66 | 54.3 | 422 | 128.8 |
 | May 2025 | 38 | 19.21 | 18.8 | 170 | 110.5 |
-| Jun 2025 | 23 | 16.72 | 6.3 | 22 | — |
+| Jun 2025 | 17 | 16.72 | 0.3 | 22 | — |
 | Jul 2025 | 17 | 15.59 | 1.4 | 0 | — |
 | Aug 2025 | 16 | 11.24 | 4.8 | 20 | — |
 | Sep 2025 | 11 | 15.59 | -4.6* | 42 | — |
@@ -342,7 +345,7 @@ With Navien DHW metering (Oct 2024 - Dec 2025 data), the 2025 baseline should be
 | Mar 2025 | 314 | 10.83 | $100.84 | $0.321 |
 | Apr 2025 | 344 | 12.29 | $109.56 | $0.318 |
 | May 2025 | 464 | 14.97 | $141.84 | $0.306 |
-| Jun 2025 | 626 | 19.56 | $179.41 | $0.287 |
+| Jun 2025 | 505 | 15.78 | $114.74 | $0.227 |
 | Jul 2025 | 1,129 | 33.21 | $315.86 | $0.280 |
 | Aug 2025 | 880 | 31.43 | $248.31 | $0.282 |
 | Sep 2025 | 619 | 20.63 | $173.58 | $0.280 |
@@ -353,7 +356,7 @@ With Navien DHW metering (Oct 2024 - Dec 2025 data), the 2025 baseline should be
 
 ---
 
-**Document Version:** 1.3.2
-**Analysis Date:** February 2, 2026
+**Document Version:** 1.3.3
+**Analysis Date:** February 2, 2026 *(rev. June 18, 2026)*
 **Data Coverage:** January 2022 - January 2026 (49 months)
 **Author:** William K. Collis
