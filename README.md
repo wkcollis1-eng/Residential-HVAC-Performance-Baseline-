@@ -8,6 +8,7 @@
 [![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2024.1+-41BDF5?logo=homeassistant&logoColor=white)](https://www.home-assistant.io/)
 [![Climate Zone](https://img.shields.io/badge/IECC%20Climate%20Zone-5A-green.svg)](https://basc.pnnl.gov/images/iecc-climate-zone-map)
 [![Data Period](https://img.shields.io/badge/Data-2022--2026-orange.svg)](data/)
+[![Sponsor](https://img.shields.io/badge/Sponsor-%E2%9D%A4-EA4AAA.svg?logo=githubsponsors&logoColor=white)](https://github.com/sponsors/wkcollis1-eng)
 
 ## Overview
 
@@ -288,6 +289,12 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 - **GitHub Issues:** [Open an issue](https://github.com/wkcollis1-eng/Residential-HVAC-Performance-Baseline-/issues)
 - **Repository Owner:** [@wkcollis1-eng](https://github.com/wkcollis1-eng)
+
+## 💝 Support This Project
+
+[![Sponsor on GitHub](https://img.shields.io/badge/Sponsor-%E2%9D%A4-EA4AAA?style=for-the-badge&logo=githubsponsors&logoColor=white)](https://github.com/sponsors/wkcollis1-eng)
+
+If this five-year baseline is useful for your own energy monitoring work, consider sponsoring continued data collection.
 
 ---
 
