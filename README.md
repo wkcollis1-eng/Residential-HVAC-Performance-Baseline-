@@ -3,50 +3,57 @@
 **A Five-Year Longitudinal Study of High-Efficiency Residential Energy Systems in Climate Zone 5A**
 
 [![DOI](https://zenodo.org/badge/1132414420.svg)](https://doi.org/10.5281/zenodo.18232616)
-[![Version](https://img.shields.io/badge/Version-1.4.0-blue.svg)](https://github.com/wkcollis1-eng/Residential-HVAC-Performance-Baseline-)
+[![Version](https://img.shields.io/badge/Version-1.6.0-blue.svg)](https://github.com/wkcollis1-eng/Residential-HVAC-Performance-Baseline-)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2024.1+-41BDF5?logo=homeassistant&logoColor=white)](https://www.home-assistant.io/)
+[![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2026.7.1-41BDF5?logo=homeassistant&logoColor=white)](https://www.home-assistant.io/)
 [![Climate Zone](https://img.shields.io/badge/IECC%20Climate%20Zone-5A-green.svg)](https://basc.pnnl.gov/images/iecc-climate-zone-map)
 [![Data Period](https://img.shields.io/badge/Data-2022--2026-orange.svg)](data/)
 [![Sponsor](https://img.shields.io/badge/Sponsor-%E2%9D%A4-EA4AAA.svg?logo=githubsponsors&logoColor=white)](https://github.com/sponsors/wkcollis1-eng)
 
 ## Overview
 
-This repository documents a comprehensive energy performance baseline for a 2,440 sq. ft. high-efficiency residential structure in Central Connecticut (Climate Zone 5A). The analysis integrates **50 months** of verified utility data (January 2022 - February 2026), high-resolution HVAC runtime telemetry, and independent domestic hot water monitoring to establish diagnostic performance thresholds.
+This repository documents a comprehensive energy performance baseline for a 2,440 sq. ft. high-efficiency residential structure in Central Connecticut (Climate Zone 5A). The analysis integrates **54 months** of verified utility data (January 2022 - June 2026), high-resolution HVAC runtime telemetry, and independent domestic hot water monitoring to establish diagnostic performance thresholds.
 
 <!-- METRICS_START -->
-**Key Findings (Updated February 2026):**
-- **Site EUI (12-mo rolling):** 42.8 kBTU/ft²-yr (31% better than regional average)
-- **Baseline Site EUI:** 41.7 kBTU/ft²-yr — current +2.6% due to colder winter
-- **Heating Intensity:** 90.3 CCF/1k HDD (corrected with Navien DHW metering)
-- **Envelope UA:** 480 BTU/hr-°F (21-34% superior to 2021 IECC code-minimum)
-- **12-mo Electricity:** 6,741 kWh (65% below average for home size)
-- **DHW Optimization:** -22% sustained YoY from recirculation schedule change (~$77/year savings)
+**Key Findings (Updated June 2026):**
+- **Site EUI (12-mo rolling):** 41.8 kBTU/ft²-yr (Jul 2025–Jun 2026; ~33% better than regional average)
+- **Baseline Site EUI:** 41.7 kBTU/ft²-yr — current +0.2% (back to baseline as the cold winter rolls off)
+- **Heating Intensity:** 90.3 CCF/1k HDD (annual baseline, corrected with Navien DHW metering)
+- **Envelope UA:** 480 BTU/hr-°F (21-34% superior to 2021 IECC code-minimum; rolling recompute pending daily temps past Feb 2026)
+- **12-mo Electricity:** 6,468 kWh (65% below average for home size)
+- **DHW Optimization:** −33.9% H1 2026 YoY from recirculation schedule change (~$68 saved in H1, ahead of the ~$77/year projection)
 <!-- METRICS_END -->
 
 <!-- HIGHLIGHTS_START -->
-## 🆕 February 2026 Update Highlights
+## 🆕 H1 2026 Update Highlights (January–June)
 
-February 2026 continued the colder-than-normal 2025-2026 heating season, with an early-month cold snap (Feb 7-9) reaching 0°F:
+The first half of 2026 ran **12% colder** than 2025 (3,782 vs 3,371 HDD, BDL), yet total gas held essentially flat and the electric bill fell 22% — the DHW recirculation program offsetting the weather-driven heating increase.
 
-| Metric | Feb 2025 | Feb 2026 | YoY Change | Status |
-|--------|----------|----------|------------|--------|
-| Total Gas | 154 CCF | 175 CCF | +13.6% | ✅ Weather-driven |
-| Space Heating | 135.9 CCF | 160.9 CCF | +18.4% | ✅ Tracks weather |
-| DHW (Navien) | 18.1 CCF | 14.1 CCF | **-22.0%** | ✅ Savings hold |
-| Weather Severity | 940 HDD | 1,077 HDD | +14.6% | ⚠️ Colder |
-| HVAC Runtime | 138 hrs | 158 hrs (8.8 min/HDD) | +14.5% | ✅ Excellent |
+| Metric | H1 2025 | H1 2026 | YoY Change | Status |
+|--------|---------|---------|------------|--------|
+| Weather Severity (HDD65, BDL) | 3,371 | 3,782 | +12.2% | ⚠️ Colder |
+| Total Gas | 557 CCF | 569 CCF | +2.2% | ✅ Flat on colder weather |
+| Gas Cost | $951.68 | $978.69 | +2.8% | ✅ Flat (rate +0.7%) |
+| Space Heating | 437 CCF | 483 CCF | +10.5% | ✅ Tracks weather (< HDD) |
+| DHW (Navien) | 120.0 CCF | 79.3 CCF | **−33.9%** | ✅ Recirc program |
+| Heating Intensity (net, BDL) | 129.6 | 127.7 CCF/1k HDD | −1.5% | ✅ Held |
+| Electricity | 2,656 kWh | 2,394 kWh | −9.9% | ✅ Lower use |
+| Electric Cost | $814.69 | $633.75 | **−22.2%** | ✅ Use + −14% rate |
 
 **Key Insights:**
-1. **DHW savings sustained:** -22% YoY continues from January optimization
-2. **Runtime efficiency excellent:** 8.8 min/HDD is 19% better than baseline
-3. **Season totals:** 720 heating hours across 4,529 HDD (Oct-Feb)
+1. **Gas flat on a 12% colder half:** space heating rose +10.5% (weather), but −34% DHW nearly offset it, so total gas moved just +2.2%.
+2. **Heating efficiency held:** net intensity −1.5% (129.6 → 127.7 CCF/1k HDD); runtime rose +6.7%, below the +12.2% HDD.
+3. **Electric bill down 22%:** −9.9% usage compounded with a −13.7% effective-rate decline; gas had no such rate tailwind (+0.7%/CCF).
+4. **Vacation included:** each half-year carries the household's recurring 1–2 week winter vacation (Feb 2025 / Mar 2026), so the aggregate is apples-to-apples.
 
-### DHW Recirculation Optimization (Ongoing)
+### DHW Recirculation Optimization (H1 2026 Results)
 
-**Cumulative Savings (Jan-Feb 2026):** 9.05 CCF (~$14.50)
-**On Track For:** ~$77/year projected annual savings
-**Schedule:** 15 hr/day (off 9 PM - 6 AM) — no comfort issues reported
+The recirculation-schedule reduction (recirc hours cut to ~30 h/mo by June; ~15 hr/day schedule, off 9 PM–6 AM) is the dominant efficiency lever of the half-year — and the reason total gas stayed flat on a much colder heating season.
+
+- **H1 DHW savings:** 40.7 CCF (120.0 → 79.3 CCF, **−33.9% YoY**) — ~$68 in gas cost (−30.3%), already tracking above the original ~$77/year projection
+- **Recirc hours:** −33% H1 (344 → 229 h)
+- **Share of gas story:** DHW accounts for ~77% of the offset against the +46 CCF weather-driven heating increase
+- **Comfort:** no issues reported
 
 See [UPDATES.md](UPDATES.md) for complete monthly analysis.
 <!-- HIGHLIGHTS_END -->
@@ -56,8 +63,8 @@ See [UPDATES.md](UPDATES.md) for complete monthly analysis.
 ```mermaid
 flowchart TB
     subgraph inputs["📡 Data Sources"]
-        T1["🌡️ 1F Thermostat<br/>Honeywell T6 Pro"]
-        T2["🌡️ 2F Thermostat<br/>Honeywell T6 Pro"]
+        T1["🌡️ 1F Thermostat<br/>Honeywell T6 Pro<br/>(Ecobee from Jun 2026)"]
+        T2["🌡️ 2F Thermostat<br/>Honeywell T6 Pro<br/>(Ecobee from Jun 2026)"]
         PW["🌤️ Pirate Weather API"]
         OM["🌤️ Open-Meteo API"]
         CN["📊 Climate Norms<br/>18-year historical"]
@@ -107,12 +114,12 @@ flowchart TB
 
 | Metric | 2022 | 2023 | 2024 | 2025 | 2026 YTD |
 |--------|------|------|------|------|----------|
-| Annual Gas (CCF) | 815 | 764 | 694 | 787 | 343* |
-| Annual Elec (kWh) | 6,824 | 6,591 | 6,543 | 6,730 | 919* |
-| Heating Intensity | 89.8 | 90.8 | 80.3 | 95.5 | 135.0* |
+| Annual Gas (CCF) | 815 | 764 | 694 | 787 | 569* |
+| Annual Elec (kWh) | 6,824 | 6,591 | 6,543 | 6,730 | 2,394* |
+| Heating Intensity | 89.8 | 90.8 | 80.3 | 95.5 | 127.7* |
 | Site EUI | 42.1 | 40.8 | 38.2 | 41.7 | — |
 
-*Jan-Feb 2026 only (partial year)
+*Jan-Jun 2026 only (partial year; H1 intensity is winter-weighted and not comparable to the annual figures)
 
 ### Statistical Stability (4-Year Baseline)
 
@@ -168,12 +175,12 @@ template:
 │   │   └── hvac_baseline.yaml
 │   └── dashboards/
 └── data/                         # Raw operational datasets
-    ├── monthly_summary.csv       # 🆕 Derived monthly metrics (all-in-one reference)
+    ├── monthly_summary.csv       # 🆕 Derived monthly metrics (all-in-one) — through Jun 2026
     ├── daily_temperature.csv     # Updated through Feb 2026
     ├── monthly_hvac_runtime.csv  # Updated through Feb 2026
-    ├── monthly_dhw_navien.csv    # Updated through Feb 2026
-    ├── monthly_electricity_eversource.csv
-    └── monthly_gas_scg.csv
+    ├── monthly_dhw_navien.csv    # Updated through Mar 2026
+    ├── monthly_electricity_eversource.csv   # Updated through Mar 2026
+    └── monthly_gas_scg.csv                   # Updated through Mar 2026
 ```
 
 ## 🏠 Property Context
@@ -186,7 +193,7 @@ template:
 | Occupancy | 2 residents |
 | Primary Heating | American Standard Silver 95 (96% AFUE) condensing gas furnace |
 | Primary Cooling | American Standard Silver 14 (4-ton, 14 SEER) split system |
-| Zoning | 2-zone (1F/2F) with Honeywell T6 Pro thermostats |
+| Zoning | 2-zone (1F/2F); Honeywell T6 Pro thermostats (through May 2026), Ecobee Smart Enhanced from June 2026 |
 | Moisture Control | Santa Fe Classic dehumidifier (110 PPD, 700W) |
 | DHW | Navien NPE-series condensing tankless |
 
@@ -244,6 +251,14 @@ See [UTILITY_PROGRAM_ANALYSIS.md](UTILITY_PROGRAM_ANALYSIS.md) for detailed anal
 
 ## 📬 Recent Updates
 
+### v1.6.0 (July 2026)
+- Added March–June 2026 data; H1 2026 vs 2025 half-year analysis
+- Extended dataset to 54 months
+- Gas flat (+2.2%) and −34% DHW on a 12% colder H1; electric bill −22.2%; heating intensity held (−1.5%)
+- Thermostats transitioned Honeywell T6 Pro → Ecobee Smart Enhanced (June 2026)
+- Corrected `monthly_summary.csv` cost/DHW cells (Feb/Mar 2026) from HA archives
+- *(April–May 2026 monthly updates logged in [UPDATES.md](UPDATES.md))*
+
 ### v1.4.0 (March 2026)
 - Added February 2026 data and analysis
 - Extended dataset to 50 months
@@ -298,6 +313,6 @@ If this five-year baseline is useful for your own energy monitoring work, consid
 
 ---
 
-**Version:** 1.5.0 (March 2026)
-**Status:** Active Baseline — 51 months of validated data
-**Next Update:** April 2026 (post-winter season summary)
+**Version:** 1.6.0 (July 2026)
+**Status:** Active Baseline — 54 months of validated data
+**Next Update:** July 2026 monthly + H2 mid-year review
