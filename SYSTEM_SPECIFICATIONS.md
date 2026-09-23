@@ -3,7 +3,7 @@
 **Property:** 2,440 sq. ft. Two-Story Colonial
 **Location:** Central Connecticut, Climate Zone 5A
 **Construction Year:** 2021
-**Last Updated:** January 2026
+**Last Updated:** September 2026
 
 ---
 
@@ -121,6 +121,34 @@
 
 ### Basement Dehumidifier
 
+**Manufacturer:** Aprilaire
+**Model:** E080 (in service since 2026-08; first logged compressor cycle 2026-08-05)
+**Type:** Whole-home dehumidifier, installed free-standing (not ducted)
+
+**Rated Performance:**
+- **Capacity:** 65 pints per day; IEF 2.35 L/kWh [S: ENERGY STAR certified dehumidifier record 4510066, tested per 10 CFR 430 Subpart B App. X1]
+- **Capacity at 80°F / 60% RH:** 80 pints per day at 185 CFM, 0.0 in. w.c. (the free-standing rating) [S: Aprilaire 10015109 B2209062A, Specifications]
+- **Current:** 5.1 A at the 80°F rating point [S: Aprilaire 10015109 B2209062A, Specifications]
+
+**Measured Performance (2026-08-07 to 2026-09-22):**
+- **Compressor Power:** 465.8 ± 6.5 W steady [M: n=340 runs, minutes 10-14 of each run, Kasa plug]
+- **Current:** 3.98 ± 0.10 A [M: same runs] - below the 5.1 A rating, as expected at a 67.5-72.0°F inlet [M] rather than 80°F
+- **Fan-Only Power:** ~57.8 W [M: home-assistant-config CHANGELOG, 2026-08-24 entry]
+- **Energy:** mean 0.93 kWh/day, sd 0.23; 121.5 compressor-minutes/day [M: n=46 days, 2026-08-08..09-22]; duty 8.4% [D: 121.5 / 1440]
+- **Inlet Sensitivity:** compressor power rises +5.20 ± 0.35 W/°F [M: n=46 daily means, basement 67.8-71.9°F]; not established below 67.8°F
+- **Water Removed:** not measured. Condensate goes to a pump shared with the Navien and is not weighed (owner decision, 2026-09-23), so litres per kWh against the 2.35 IEF is unverified
+
+**Control and Monitoring:**
+- **Controlled Variable:** Basement relative humidity (SHT45 basement sensor node); Home Assistant switches the unit through a Kasa smart plug, which also meters it
+- **Thresholds:** field-tunable helpers in home-assistant-config (`input_number.dehumidifier_rh_on_threshold` / `_rh_off_threshold`); 55.5% on / 52.0% off as of 2026-09-23 [M]
+- **Backstops:** min-run and min-off timers, a max-runtime cap, a mold-ceiling force-on, and a sensor-loss shutdown; see home-assistant-config `docs/README_HA_Dehumidifier_Integration.md`
+
+**Installation:**
+- **Drainage:** Condensate pump, shared with the Navien tankless water heater
+- **Ducting:** None (free-standing unit)
+
+#### Previous Unit: Santa Fe Classic (retired 2026-08), as recorded January 2026
+
 **Manufacturer:** Santa Fe
 **Model:** Classic
 **Type:** Whole-basement commercial-grade dehumidifier
@@ -153,6 +181,7 @@
 - **Proposed Strategy:** Dew point control at 52°F (vs. current 45% RH / 43°F dew point)
 - **Expected Savings:** ~$105/year (25% duty cycle reduction)
 - **Implementation:** Shelly H&T sensor + smart plug automation
+- **Outcome:** Dew point control was tried 2026-07-30 to 2026-08-03 and reverted to RH control. The Santa Fe's evaporator was frosted and removed no water: it lowered RH by adding heat, and the objective is a mold limit, which follows RH (home-assistant-config `configuration.yaml`, comment on `binary_sensor.dehumidifier_should_run`)
 
 ---
 
@@ -368,7 +397,7 @@
 | Furnace | 2021 | 18-22 years | 2039-2043 | $5,500 |
 | Air Conditioner | 2021 | 14-18 years | 2035-2039 | $8,000 |
 | A-Coil | 2021 | 15-20 years | 2036-2041 | $1,800 |
-| Dehumidifier | ~2018-2020 | 10-12 years | 2028-2032 | $1,400 |
+| Dehumidifier (Aprilaire E080) | 2026-08 | 10-12 years | 2036-2038 | $1,400 |
 | DHW Heater | 2021 | 15-20 years | 2036-2041 | $3,200 |
 | Blower Motor | 2021 | 12-15 years | 2033-2036 | $586 |
 
@@ -376,6 +405,6 @@
 
 ---
 
-**Document Version:** 1.2.1
+**Document Version:** 1.2.2
 **Last Equipment Survey:** January 2026
 **Next Scheduled Update:** January 2027 (or upon equipment replacement)

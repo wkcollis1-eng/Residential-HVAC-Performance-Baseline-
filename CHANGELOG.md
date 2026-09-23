@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [Unreleased]
+
+### Changed
+
+- **`SYSTEM_SPECIFICATIONS.md`** - Basement dehumidifier is now the Aprilaire E080 (in service 2026-08),
+  free-standing, condensate to a pump shared with the Navien. Rated and measured figures carry
+  provenance tags; water removed is not measured. The Santa Fe Classic section is kept as the
+  retired unit, with the outcome of its proposed dew-point control. Lifecycle row updated;
+  document version 1.2.2.
+
 ## [1.5.0] - 2026-03-16
 
 ### Added
