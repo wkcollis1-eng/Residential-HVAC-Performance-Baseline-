@@ -12,7 +12,7 @@ Exits 1 if any HALT-level check fails (do not commit).
 
 Checks implemented (V-HVAC-1 through V-HVAC-8):
   V-HVAC-1  Runtime/HDD within ±2σ of trailing history
-  V-HVAC-2  Heating efficiency within ±15% of 90.3 CCF/1kHDD baseline
+  V-HVAC-2  Heating efficiency within ±15% of 100.6 CCF/1kHDD baseline
   V-HVAC-3  Space_Heat_CCF / HDD coherence (UA proxy ±5%)
   V-HVAC-4  Monthly HDD65 vs 5,270 annual normal (document if >±20%)
   V-HVAC-5  Zone balance 1F/2F within 45–55% (heating season only)
@@ -29,7 +29,11 @@ from collections import defaultdict
 from pathlib import Path
 
 # ── Constants ─────────────────────────────────────────────────────────────────
-BASELINE_EFFICIENCY = 90.3  # CCF/1kHDD (Navien-corrected 2025)
+# 2026-10-10: rebased to ACIS Bradley 2025 HDD65 (5,629); was 90.3 on NOAA 6,270.
+BASELINE_EFFICIENCY = 100.6  # CCF/1kHDD (Navien-corrected 2025)
+# V-HVAC-3's own constant, not the 585 HA UA baseline: its implied UA divides by
+# HDD65 with no balance-point ratio or fireplace, so the 2026-10-10 rebase does
+# not carry over. Left at 480.
 BASELINE_UA = 480  # BTU/hr-°F
 BASELINE_RUNTIME_PHD = 10.9  # min/HDD (2024 full-year)
 AFUE = 0.950
@@ -221,7 +225,7 @@ for mk in validate_months:
     else:
         result("WARN", "V-HVAC-1", "Missing HDD or runtime data — cannot check")
 
-    # V-HVAC-2: Heating efficiency vs 90.3 baseline
+    # V-HVAC-2: Heating efficiency vs BASELINE_EFFICIENCY
     if is_heating and gas_ccf and hdd and hdd > 0:
         eff = gas_ccf / (hdd / 1000)
         delta_pct = (eff - BASELINE_EFFICIENCY) / BASELINE_EFFICIENCY * 100

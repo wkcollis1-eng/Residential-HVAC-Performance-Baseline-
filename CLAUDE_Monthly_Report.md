@@ -41,12 +41,12 @@ Cross-check these against `SYSTEM_SPECIFICATIONS.md` before every use:
 | AFUE | 0.95 | Manufacturer submittal |
 | Furnace output rate | 57,528 BTU/hr | = input × AFUE |
 | BTU per CCF | 103,700 BTU/CCF | SCG spec |
-| Balance point ratio (HDD59/HDD65) | 0.844 | Calibrated from 4-yr dataset |
+| Balance point ratio (HDD59/HDD65) | 0.751 | ACIS Bradley 2025: 4,230 / 5,629 (rebased 2026-10-10; was 0.844) |
 | Fireplace annual heat | 3.6 MMBTU/yr | Estimated; embedded in baseline |
 | Floor area | 2,440 sq ft | As-built |
 | Annual HDD65 normal | 5,270 HDD | 18-year CT climate average |
-| Efficiency baseline | 90.3 CCF/1k HDD | 2022–2024 calibrated baseline |
-| UA baseline | 493 BTU/hr-°F | Derived from 4-yr dataset |
+| Efficiency baseline | 100.6 CCF/1k HDD65 | Navien-corrected 2025 on ACIS Bradley HDD65 (rebased 2026-10-10; was 90.3) |
+| UA baseline | 585 BTU/hr-°F | ua_12m formula on 2025, ACIS Bradley (rebased 2026-10-10; was 493) |
 | EUI baseline | 41.7 kBTU/ft²-yr | 2022–2024 calibrated baseline |
 | Blower ECM draw | 0.21 kW | Measured |
 | AC condenser draw | 4.9 kW | Nameplate |
@@ -122,7 +122,7 @@ This is the primary long-term performance metric. Update monthly.
 ### 3D. Building UA (monthly estimate — use cautiously Nov–Mar only)
 
 ```
-ua_monthly = (net_heat_ccf × 103700 × 0.95) / (hdd65_month × 0.844 × 24)
+ua_monthly = (net_heat_ccf × 103700 × 0.95) / (hdd65_month × 0.751 × 24)
 ```
 
 ⚠️ UA is only statistically reliable when ΔT is large (mean outdoor temp
@@ -132,7 +132,7 @@ is more reliable than any single month estimate.
 
 Add fireplace correction only in annual/12-month UA calculation:
 ```
-ua_12m = (net_heat_ccf_12m × 103700 × 0.95 + 3,600,000) / (hdd_12m × 0.844 × 24)
+ua_12m = (net_heat_ccf_12m × 103700 × 0.95 + 3,600,000) / (hdd_12m × 0.751 × 24)
 ```
 The 3.6 MMBTU fireplace contribution is an annual estimate embedded in the
 baseline — do not prorate it by month for monthly UA estimates.
@@ -234,13 +234,14 @@ The Executive Summary bullet list must contain:
 
 ### 5C. Comparing to Baseline — Rules
 
-The baseline (90.3 CCF/1k HDD) is a **full-heating-season annual average**
-calibrated from 2022–2024. It is only valid for comparison against:
+The baseline (100.6 CCF/1k HDD65) is a **full-heating-season annual average**:
+Navien-corrected 2025 on ACIS Bradley HDD65, rebased 2026-10-10 (it was 90.3 on a
+NOAA HDD65 until then). It is only valid for comparison against:
 - Rolling 12-month efficiency
 - Full-year annual efficiency
 - Individual months in the peak heating season (Dec, Jan, Feb) where ΔT is high
 
-**Never compare an individual shoulder-season month's intensity against 90.3.**
+**Never compare an individual shoulder-season month's intensity against 100.6.**
 Instead compare it to: same month prior year, or trailing 12-month figure.
 
 ### 5D. Describing Changes
@@ -251,7 +252,7 @@ Instead compare it to: same month prior year, or trailing 12-month figure.
 | Metric worsened vs prior year | "increased [X]% YoY — [explanation]" | Omit or reframe positively |
 | Metric within 2% of prior | "consistent with prior year" | "stable" without checking |
 | Shoulder metric vs annual | "within normal shoulder-season range" | "[X]% better than baseline" |
-| Gap vs annual baseline | "[X] CCF/1k HDD above the [90.3] baseline" | "tightly clustered" without numbers |
+| Gap vs annual baseline | "[X] CCF/1k HDD above the [100.6] baseline" | "tightly clustered" without numbers |
 
 ### 5E. Causal Claims — Rules
 
@@ -303,7 +304,7 @@ Use this exact structure. Do not add or remove sections without reason.
 | [If cooling month] AC Runtime | [X] hrs | [CDD, runtime/CDD if available] |
 
 **Interpretation:** [2–3 sentences. Distinguish seasonal from anomalous.
-If peak heating month: compare intensity to 90.3 baseline and note deviation.
+If peak heating month: compare intensity to 100.6 baseline and note deviation.
 If shoulder month: compare to same-month prior year only.]
 
 [If any v1.5.0-type corrections are present, include a correction note here.]
@@ -393,13 +394,13 @@ Otherwise omit this section.]
 | Metric | Annual Baseline | [Current Month] | Context |
 |---|---|---|---|
 | Runtime / HDD | 10.9 min/HDD | X min/HDD | [peak/shoulder note] |
-| Heating Intensity | 90.3 CCF/1k HDD | X CCF/1k HDD | [peak/shoulder note] |
+| Heating Intensity | 100.6 CCF/1k HDD | X CCF/1k HDD | [peak/shoulder note] |
 | Zone Balance Target | 50% ± 5% | X% | ✓/⚠ |
 
 [If peak heating month: "The [X] CCF/1k HDD represents [±Y] CCF/1k HDD
-vs the 90.3 baseline ([±Z]%). [Sentence on rolling 12-month context.]"]
+vs the 100.6 baseline ([±Z]%). [Sentence on rolling 12-month context.]"]
 
-[If shoulder month: Use §4 framing. Do NOT compare to 90.3 baseline.]
+[If shoulder month: Use §4 framing. Do NOT compare to 100.6 baseline.]
 
 ---
 
@@ -456,7 +457,7 @@ Run mentally before finalizing. If any item fails, fix before writing report.
 
 **Seasonal framing:**
 - [ ] If mean outdoor temp > 45°F: §4 rules applied throughout
-- [ ] No individual month compared against 90.3 CCF/1k HDD baseline unless Dec/Jan/Feb
+- [ ] No individual month compared against 100.6 CCF/1k HDD baseline unless Dec/Jan/Feb
 - [ ] Runtime/HDD not called "exceptional" for shoulder months
 
 **Narrative:**
@@ -499,9 +500,12 @@ Document any standing issues here so they are not re-discovered monthly:
 The HA proxy (Hartford weather API via Open-Meteo) undercounts annual HDD by ~2.3%
 vs BDL official. Monthly bias varies — March tends to overcount, Jan/Feb undercount.
 This inflates CCF/1k HDD by ~0.8–1.0 CCF/1k HDD on an annual basis.
-The efficiency baseline (90.3) was established using the same proxy, so the bias
-partially cancels in year-over-year comparisons but does not cancel fully due to
-seasonal variation in the proxy error.
+Until 2026-10-10 the efficiency baseline was 90.3 on a NOAA annual HDD65 (6,270).
+It is now 100.6 on ACIS Bradley HDD65 (5,629 for 2025), so it does not share the
+proxy's HDD source and the proxy bias does not cancel against it: compare a month
+or a 12-month figure with 100.6 only on Bradley HDD65. Year-over-year comparisons
+made wholly on the proxy still partially cancel, but not fully, due to seasonal
+variation in the proxy error.
 
 **DHW vs billing-aligned calculation variance:**
 The Navien independent meter reads ~15% higher than the billing-aligned DHW estimate.
@@ -557,14 +561,14 @@ trailing 12-month figures, not the just-completed month in isolation.
 | % better than regional | (regional_avg − site_eui) / regional_avg × 100 | Regional avg = 60.6 kBTU/ft²-yr for CT climate zone 5A |
 | Baseline EUI delta | (current_eui / 41.7 − 1) × 100 | Use signed result; write "better" if negative, "above" if positive |
 | Heating Intensity | 12-month rolling from §3C | Must match `efficiency_12m` in monthly_summary.csv |
-| UA | 12-month rolling from §3D | From HA archives; note if above/below 493 baseline |
+| UA | 12-month rolling from §3D | From HA archives; note if above/below 585 baseline |
 | 12-mo electricity | sum of trailing 12 monthly kWh | From monthly_electricity_eversource.csv |
 | DHW % savings | (current_12m_dhw / prior_12m_dhw − 1) × 100 | Compare same 12M window, not just current month |
 | DHW $/yr savings | dhw_ccf_saved × gas_effective_rate × 12 / months_with_data | Annualized from observed savings rate |
 
 **Framing rules:**
 - If EUI is above baseline, write "current [+X%] above baseline due to [cause]" — do not write "current +X% due to colder winter" when efficiency (not weather) is the driver
-- If UA is above 493, write "above baseline" not "superior"
+- If UA is above 585, write "above baseline" not "superior"
 - The regional comparison (% better than average) is based on CT residential EUI of ~60 kBTU/ft²-yr for this building type; update only if the source benchmark changes
 
 ---

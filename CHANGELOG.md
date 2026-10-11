@@ -11,6 +11,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **Baselines rebased to ACIS Bradley 2025 (2026-10-10)** - Heating intensity 90.3 -> 100.6 CCF/1k HDD65,
+  UA 480 (493 corrected) -> 585 BTU/hr-°F, HDD59/HDD65 ratio 0.844 -> 0.751, 2025 HDD65 6,270 (NOAA) ->
+  5,629 (ACIS BDL [M]). Intensity keeps the Navien-corrected 566.2 CCF, so only its degree-day source
+  changed; UA also moves from the billing-aligned 599 CCF to 566.2. README, DATA_SUMMARY and
+  CLAUDE_Monthly_Report carry the new values; BASELINE_REPORT and METHODOLOGY keep their as-published
+  figures, with dated rebase notes and the derivation. `Scripts/validate_month.py` V-HVAC-2 checks
+  against 100.6; V-HVAC-3 keeps its own 480 (a different formula). The margin under the 2021 IECC
+  code-minimum UA becomes 4-19% [D], from 21-34%.
+
 - **`SYSTEM_SPECIFICATIONS.md`** - Basement dehumidifier is now the Aprilaire E080 (in service 2026-08),
   free-standing, condensate to a pump shared with the Navien. Rated and measured figures carry
   provenance tags; water removed is not measured. The Santa Fe Classic section is kept as the

@@ -23,6 +23,12 @@ For a two-occupant household, the observed electricity baseload of 9.7 kWh/day a
 - **Annual Electricity Consumption:** 6,730 kWh
 - **Performance Stability:** CV < 7% across all major metrics (4-year average)
 
+> **Rebase Note (October 2026):** On 2026-10-10 the going-forward baselines were rebased to ACIS Bradley (BDL)
+> 2025 degree days: heating intensity **100.6 CCF/1k HDD65** and UA **585 BTU/hr-°F** [D]. The 2025 HDD65 of
+> 6,270 used in this report is a NOAA figure, 641 above ACIS BDL for the same year (5,629 [M]). The figures in
+> this report are kept as published; see the notes under the Four-Year Performance Summary and the UA
+> Calculation Methodology.
+
 ---
 
 ## Table of Contents
@@ -114,6 +120,12 @@ The correction of historical consumption against meteorological data from Hartfo
 
 *2025 DHW value reflects billing-aligned methodology (see Domestic Hot Water section)
 
+> **Rebase Note (October 2026):** The HDD65 row is labelled KBDL, but its figures are not Bradley's. ACIS
+> StnData for HARTFORD-BRADLEY gives 5,442 / 4,939 / 4,729 / 5,629 for 2022-2025 [M, queried 2026-10-10,
+> 0 missing days], lower by 650 / 526 / 576 / 641 [D]. The intensities in this table are on the row as
+> published. The going-forward baseline is on ACIS: 566.2 CCF ÷ 5.629 = 100.6 CCF/1k HDD65 [D]
+> (Navien-corrected space heat; see METHODOLOGY.md).
+
 ### Statistical Validation
 
 | Metric | 2025 Value | 4-Year Mean | Std Dev | CV (%) |
@@ -129,6 +141,10 @@ The coefficient of variation (CV) below 8% for all major metrics confirms except
 > which isolates the DHW component more precisely using the independent NaviLink meter data rather than
 > regression-based estimates. This corrected value is used in all Home Assistant sensor formulas.
 > See DATA_SUMMARY.md and JANUARY_2026_UPDATE.md for detailed derivation.
+>
+> **Rebased 2026-10-10:** the going-forward baseline is now **100.6 CCF/1k HDD65**: the same Navien-corrected
+> 566.2 CCF on ACIS Bradley HDD65 (5,629 for 2025 [M]) instead of a NOAA 6,270. Home Assistant uses 100.6
+> from that date.
 
 ### Causal Analysis of 2024–2025 Variance
 
@@ -209,6 +225,12 @@ The UA value is derived from:
 1. **Delivered Heat:** 57.5 MMBTU (furnace) + 3.6 MMBTU (fireplace) = 61.1 MMBTU total
 2. **Temperature Differential:** 6,270 HDD65 baseline → 5,294 HDD59 (adjusted for 59°F balance point)
 3. **Heat Loss Rate:** UA = 61.1 MMBTU ÷ (24 hr/day × 5,294 HDD) = 480 BTU/hr-°F
+
+> **Rebase Note (October 2026):** On ACIS Bradley 2025 degree days (HDD59 4,230, HDD65 5,629 [M]), with the
+> corrected constants (103,700 BTU/CCF, AFUE 0.95), the 3.6 MMBTU fireplace and the Navien-corrected 566.2 CCF,
+> UA = **585 BTU/hr-°F** and the area-normalized UA is 0.240 BTU/hr-°F-ft² [D: 585 ÷ 2,440]. Against the
+> code-minimum range below, the margin is 4-19% [D: (610 − 585) ÷ 610, (725 − 585) ÷ 725], not 21-34%.
+> Derivation: METHODOLOGY.md, Rebase (October 2026).
 
 ### Envelope Performance Metrics
 

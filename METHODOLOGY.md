@@ -257,6 +257,24 @@ UA = 481 BTU/hr-°F ≈ 480 BTU/hr-°F
 >   Going forward, all Home Assistant sensor formulas use these corrected values.
 >   Historical calculations in this document are preserved as-published for reproducibility.
 
+> **Rebase (October 2026):** On 2026-10-10 the baselines were rebased to ACIS Bradley (BDL) 2025 degree days.
+> The NOAA HDD65 of 6,270 in Step 2 is 641 above ACIS BDL for the same year, and its HDD59 of 5,294 is 1,064
+> above [D]. The space heat is the Navien-corrected 566.2 CCF (787 − 220.8 Navien-metered DHW), the same
+> correction behind the February 2026 baseline of 90.3 CCF/1k HDD.
+>
+> ```text
+> HDD65 (2025, ACIS BDL) = 5,629                                [M, 365 days, 0 missing]
+> HDD59 (2025, ACIS BDL) = 4,230                                [M]
+> HDD59/HDD65 ratio      = 4,230 ÷ 5,629 = 0.751                [D]
+> Heating intensity      = 566.2 ÷ 5.629 = 100.6 CCF/1k HDD65   [D]
+> UA = (566.2 × 103,700 × 0.95 + 3,600,000) ÷ (5,629 × 0.751 × 24)
+>    = 585 BTU/hr-°F                                            [D]
+> ```
+>
+> The same formula gives 493 on the old inputs (599 CCF, HDD59 5,294) and 467 on 566.2 CCF with HDD59 5,294 [D].
+> The rise from 493 to 585 therefore comes from the degree days, partly offset by the lower heat. It is not a
+> change in the house.
+
 **Step 4: Area Normalization**
 
 ```text

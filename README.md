@@ -18,8 +18,8 @@ This repository documents a comprehensive energy performance baseline for a 2,44
 **Key Findings (Updated June 2026):**
 - **Site EUI (12-mo rolling):** 41.8 kBTU/ft²-yr (Jul 2025–Jun 2026; ~33% better than regional average)
 - **Baseline Site EUI:** 41.7 kBTU/ft²-yr — current +0.2% (back to baseline as the cold winter rolls off)
-- **Heating Intensity:** 90.3 CCF/1k HDD (annual baseline, corrected with Navien DHW metering)
-- **Envelope UA:** 480 BTU/hr-°F (21-34% superior to 2021 IECC code-minimum; rolling recompute pending daily temps past Feb 2026)
+- **Heating Intensity:** 100.6 CCF/1k HDD (annual baseline, corrected with Navien DHW metering; rebased 2026-10-10 to ACIS Bradley 2025 HDD65 5,629, was 90.3 on a NOAA 6,270)
+- **Envelope UA:** 585 BTU/hr-°F (rebased 2026-10-10 to ACIS Bradley 2025 HDD59; 4-19% below the 2021 IECC code-minimum of 610-725 [D]; was 480 and 21-34% below, on NOAA HDD59; rolling recompute pending daily temps past Feb 2026)
 - **12-mo Electricity:** 6,468 kWh (65% below average for home size)
 - **DHW Optimization:** −33.9% H1 2026 YoY from recirculation schedule change (~$68 saved in H1, ahead of the ~$77/year projection)
 <!-- METRICS_END -->
@@ -201,7 +201,7 @@ template:
 
 | Metric | Baseline | Warning (+10%) | Action (+15%) |
 |--------|----------|----------------|---------------|
-| Heating Intensity | 90.3 CCF/1k HDD | >99 | >104 |
+| Heating Intensity | 100.6 CCF/1k HDD (rebased 2026-10-10; was 90.3, >99 / >104) | >111 | >116 |
 | Runtime Efficiency | 10.9 min/HDD | >12.0 | >12.5 |
 | Monthly Space Heat (Jan) | 138 CCF | >152 | >159 |
 | Monthly DHW (Jan) | 22.8 CCF | >25.1 | >26.2 |

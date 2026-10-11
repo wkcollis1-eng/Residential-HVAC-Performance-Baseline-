@@ -11,8 +11,8 @@
 | Metric | 2025 Baseline | Jan 2026 | Status |
 |--------|---------------|----------|--------|
 | **Site Energy Use Intensity (EUI)** | 41.7 kBTU/ft²-yr | — | — |
-| **Heating Intensity** | 90.3 CCF/1k HDD* | 122.1† | ✅ +0.2% YoY |
-| **Building UA** | 480 BTU/hr-°F | — | — |
+| **Heating Intensity** | 100.6 CCF/1k HDD* (rebased 2026-10-10; was 90.3) | 122.1† | ✅ +0.2% YoY |
+| **Building UA** | 585 BTU/hr-°F (rebased 2026-10-10; was 480) | — | — |
 | **Heating Balance Point** | 59°F | — | — |
 | **Monthly Space Heat (Jan)** | 138.2 CCF | 150.2 CCF | ✅ +8.7% (tracks HDD) |
 | **Monthly DHW (Jan)** | 22.8 CCF | 17.8 CCF | ✅ -22% (optimized) |
@@ -65,6 +65,9 @@
 *2025 DHW adjusted to billing-aligned methodology
 †2026 = January only (partial year)
 
+The 2022-2025 HDD65 figures are the NOAA series as published. ACIS Bradley gives 5,442 / 4,939 / 4,729 / 5,629
+[M, queried 2026-10-10]; the baselines use ACIS from 2026-10-10 (BASELINE_REPORT.md, Rebase Note).
+
 ### Weather-Normalized Efficiency
 
 | Year | Heating Intensity (CCF/1k HDD) | Site EUI (kBTU/ft²-yr) | % Better Than Regional |
@@ -77,10 +80,11 @@
 | **Std Dev** | **6.2** | **2.1** | — |
 | **CV (%)** | **7.0%** | **5.1%** | — |
 
-> **Primary Baseline (going forward):** 90.3 CCF/1k HDD — derived using Navien DHW metering
+> **Primary Baseline (going forward):** 100.6 CCF/1k HDD65 since 2026-10-10 (566.2 CCF on ACIS Bradley 2025
+> HDD65 5,629; it was 90.3 on a NOAA 6,270) — derived using Navien DHW metering
 > for accurate heating gas separation. The billing-aligned 4-year mean of 89.1 above reflects
 > the estimated DHW method used prior to the Navien metering operational improvement.
-> All Home Assistant monitoring and investigation thresholds use the 90.3 Navien-corrected value.
+> All Home Assistant monitoring and investigation thresholds use the 100.6 Navien-corrected value (90.3 until 2026-10-10).
 
 ---
 
@@ -217,7 +221,7 @@
 
 | Metric | Baseline | Warning (+10%) | Action (+15%) | Jan 2026 |
 |--------|----------|----------------|---------------|----------|
-| **Heating Intensity** | 90.3 CCF/1k HDD | >99 | >104 | 122.1* |
+| **Heating Intensity** | 100.6 CCF/1k HDD (was 90.3, >99 / >104) | >111 | >116 | 122.1* |
 | **Site EUI** | 41.7 kBTU/ft²-yr | >45.9 | >48.0 | — |
 | **Monthly Space Heat (Jan)** | 138 CCF | >152 | >159 | 150 ✅ |
 | **Monthly DHW (Jan)** | 22.8 CCF | >25.1 | >26.2 | 17.8 ✅ |
