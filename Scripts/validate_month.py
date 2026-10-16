@@ -12,7 +12,7 @@ Exits 1 if any HALT-level check fails (do not commit).
 
 Checks implemented (V-HVAC-1 through V-HVAC-8):
   V-HVAC-1  Runtime/HDD within ±2σ of trailing history
-  V-HVAC-2  Heating efficiency within ±15% of 102.0 CCF/1kHDD baseline
+  V-HVAC-2  Space-heat intensity (gas - DHW) within ±15% of 102.0 CCF/1kHDD baseline
   V-HVAC-3  Space_Heat_CCF / HDD coherence (UA proxy ±5%)
   V-HVAC-4  Monthly HDD65 vs 5,270 annual normal (document if >±20%)
   V-HVAC-5  Zone balance 1F/2F within 45–55% (heating season only)
@@ -267,9 +267,14 @@ for mk in validate_months:
     else:
         result("WARN", "V-HVAC-1", "Missing HDD or runtime data — cannot check")
 
+    # Space heat: the bill less the same calendar month's Navien DHW; V-HVAC-2 and -3 both read it.
+    space_heat = gas_ccf - dhw_ccf if gas_ccf and dhw_ccf else None
+
     # V-HVAC-2: Heating efficiency vs BASELINE_EFFICIENCY
-    if bill_heating and gas_ccf and bill_hdd and bill_hdd > 0:
-        eff = gas_ccf / (bill_hdd / 1000)
+    # 2026-10-15 (Bill: "subtract DHW gas before dividing by HDD"): the numerator was total gas,
+    # DHW included, against a space-heat-only baseline; CLAUDE_Monthly_Report.md §3B forbids it.
+    if bill_heating and space_heat is not None and bill_hdd and bill_hdd > 0:
+        eff = space_heat / (bill_hdd / 1000)
         delta_pct = (eff - BASELINE_EFFICIENCY) / BASELINE_EFFICIENCY * 100
         if abs(delta_pct) <= 15:
             result(
@@ -289,13 +294,18 @@ for mk in validate_months:
             "V-HVAC-2",
             f"Non-heating month — efficiency check skipped ({basis})",
         )
+    elif gas_ccf and not dhw_ccf:
+        result(
+            "WARN",
+            "V-HVAC-2",
+            "No DHW for this month (add the Navien reading to data/monthly_dhw_navien.csv) — efficiency check skipped",
+        )
     else:
         result("WARN", "V-HVAC-2", "Missing gas_ccf or HDD — cannot check efficiency")
 
     # V-HVAC-3: Space heat CCF vs HDD (UA proxy)
     # DHW stays the calendar month (Navien read on the 1st); only the bill and HDD share a period.
     if bill_heating and gas_ccf and dhw_ccf and bill_hdd and bill_hdd > 0:
-        space_heat = gas_ccf - dhw_ccf
         implied_ua = (space_heat * GAS_BTU_PER_CCF * AFUE) / (bill_hdd * 24)
         delta_pct = (implied_ua - BASELINE_UA) / BASELINE_UA * 100
         if abs(delta_pct) <= 5:

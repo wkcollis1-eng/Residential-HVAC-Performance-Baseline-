@@ -281,6 +281,8 @@ Assistant `input_datetime.gas_bill_date` history
   own window, so neither moves another bill's HDD.
 - HDD65 is summed from `daily_temperature.csv` (unrounded), not ACIS: the window changed, not the
   basis. DHW in V-HVAC-3 stays the calendar month (Navien read on the 1st).
+  *2026-10-15 (later):* V-HVAC-2 now subtracts the same calendar-month DHW from the bill, so both
+  checks read one space-heat value; a heating bill with no DHW row WARNs.
 
 ---
 

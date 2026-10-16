@@ -161,8 +161,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   change [M, validate_month output]. Subtracting `dhw_ccf`, as V-HVAC-3 does, would remove it.
   V-HVAC-3's low shoulder-month UAs (2025-10 36, 2025-11 293 [M]) follow from its HDD65 basis
   with no balance point, as the note at its constant says. Neither changed: outside "6. yes".
+  *Resolved 2026-10-15 for V-HVAC-2* (Bill: "subtract DHW gas before dividing by HDD"; see Changed).
+  The V-HVAC-3 shoulder UAs stand.
 
 ### Changed
+
+- **`validate_month.py` V-HVAC-2 divides space heat, not total gas, by HDD65 (2026-10-15, Bill:
+  "subtract DHW gas before dividing by HDD")** - the numerator is the bill less the same calendar
+  month's Navien DHW, the value V-HVAC-3 already subtracted; it is computed once and both checks
+  read it. That matches the 102.0 baseline (space heat only) and `CLAUDE_Monthly_Report.md` §3B. A
+  heating bill with no DHW reading now WARNs, naming the file to fill, instead of being checked on
+  total gas (R8). All-months PASS 125 -> 127, WARN 15 -> 15, FLAG 29 -> 27, HALT 0 -> 0 [M,
+  validate_month output before and after]; no line outside V-HVAC-2 changed. Of 15 heating bills,
+  FLAG 12 -> 10 [M]: 2025-03, 2025-04, 2025-05, 2025-12 and 2026-03 FLAG -> PASS; 2025-11, 2026-04
+  and 2026-05 PASS -> FLAG (71.4, 71.7, 66.8 CCF/1k HDD65 [M]). What remains is seasonal: the four
+  Jan-Feb bills read +17 to +23% [M] and the shoulder bills read low (2025-10 8.8 [M]), the pattern
+  a fixed annual intensity on HDD65 with no balance point gives [I: falsified if an HDD59 basis
+  leaves the same spread]. Five bills match an independent recompute; a blanked DHW cell fired the
+  new WARN for that month only, and the clean tree stays silent. DHW is not prorated to the bill's
+  days: both checks keep the calendar-month slot.
 
 - **`validate_month.py` V-HVAC-2/3 use billing-period HDD65 (2026-10-15, Bill: "6. yes")** - each
   bill is divided by HDD65 over the days it covers, from the new `data/gas_billing_periods.csv`:
