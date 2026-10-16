@@ -78,6 +78,11 @@ Use HDD in this priority order. Document which source is used in the report.
 - March shoulder season: HA proxy can overcount (HA > BDL)
 - Document actual gap when BDL monthly figure is available
 
+*2026-10-15:* for `monthly_summary.csv` HDD65 and for any comparison with the baselines, use
+ACIS Bradley (BDL) monthly HDD65, the sum of ACIS's published daily values; every summary row is on
+that basis. The daily CSV sum runs 0-9.5 HDD a month above it (unrounded daily values [D, 21
+months]), so it is no longer the first choice for those two uses.
+
 ---
 
 ## §3 — REQUIRED CALCULATIONS (compute all before writing)
@@ -489,6 +494,11 @@ Where `hdd_source` is one of: `daily_csv`, `ha_proxy`, `bdl_official`.
 This row is the authoritative record for next month's YoY comparisons.
 Do not modify prior rows unless a documented correction is being applied
 (in which case increment the report version and note in UPDATES.md).
+
+*2026-10-15:* the file's columns are its header row, not the list above (it has no `hdd_source`
+column). `HDD65` is ACIS BDL monthly in every row (§2). `Heating_Intensity_CCF_1kHDD` =
+Space_Heat_CCF / HDD65 × 1000 to 1 dp and `Runtime_Per_HDD_Min` = Heat_Total_Hrs × 60 / HDD65 to
+2 dp, both blank when HDD65 < 100.
 
 ---
 

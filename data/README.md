@@ -89,6 +89,9 @@ from 2026-01-23; source not recorded for 2026-01-01..01-22 and 2026-01-31..02-05
   mean that was not (High + Low) / 2) and now equal BDL. Rows 2026-03-01..09-30 were added the same
   day; their runtime is (heating + cooling minutes) / 60 per zone from Home Assistant, blank on the
   9 days it has no row (2026-05-16..22, 07-04, 07-05).
+- *Correction 2026-10-15 (later):* the gap is 0-9.5 HDD a month, not 0-8 [D: this file's monthly
+  sums minus ACIS monthly, 21 months 2025-01..2026-09; largest 2025-01 9.5, 2025-11 9.0].
+  `monthly_summary.csv` HDD65 is now the ACIS BDL monthly figure itself, not a sum from this file.
 - **HVAC runtime columns:** Combined heating and cooling hours per day from Resideo thermostat data
   - **Total runtime (2025):** 1,167.78 hours (366.47 + 801.31)
   - Reconciles with monthly summary: 831 heating + 346 cooling = 1,177 hours (0.8% difference due to rounding)

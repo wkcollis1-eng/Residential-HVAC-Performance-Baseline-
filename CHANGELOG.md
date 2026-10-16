@@ -31,6 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     (113.61 h / 256 CDD [D]).
   - `monthly_summary.csv` three rows. The HDD65 column stays the HA proxy for continuity;
     Space_Heat = Gas - DHW even when negative (September -0.39 CCF, as in the 2025-09 row).
+    *2026-10-15 (later):* superseded; HDD65 is now ACIS BDL monthly in every row (see Fixed).
 
 - **First measured cooling energy** - SEM AC circuit, compressor 332.8 / 180.9 / 50.6 kWh
   Jul / Aug / Sep [M]; 0.925 kWh/CDD over Jul-Sep [D: 564.3 / 610].
@@ -94,6 +95,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   FLAG 21 -> 27 [M]. The new FLAGs are Mar-May 2026 checks running for the first time
   (V-HVAC-2 Mar-May, the billing artifact under Known issues; V-HVAC-1 and -3 Mar; V-HVAC-5 May).
 
+- **`monthly_summary.csv` HDD65 onto ACIS BDL monthly (2026-10-15, Bill: "5. yes")** - all 21 rows
+  (2025-01..2026-09) now hold ACIS Bradley monthly HDD65, the sum of ACIS's published daily values;
+  19 changed (2025-07 and 2026-08 were already 0). 2025 sums 5,668.5 -> 5,629, the baseline's
+  figure [D]. Heating_Intensity_CCF_1kHDD and Runtime_Per_HDD_Min are recomputed with the rules that
+  reproduce 20 of the 21 existing rows (Space_Heat / HDD65 x 1000 to 1 dp; Heat_Total_Hrs x 60 /
+  HDD65 to 2 dp; both blank under 100 HDD) [D]. The 21st, 2026-03 Runtime_Per_HDD 6.4, was off-rule
+  (6.36 on its own HDD) and is now 6.56. Largest moves: 2026-04 HDD 472.3 -> 412, intensity 96.8 ->
+  111.0; 2026-01 1,229.9 -> 1,263, 122.7 -> 119.5; 2025-02 939.5 -> 959, 145.3 -> 142.4 [D]. The
+  other 17 columns are byte-identical in every row. `validate_month.py` takes HDD from
+  `daily_temperature.csv` and does not read this file. `CLAUDE_Monthly_Report.md` §2 and §8 and
+  `data/README.md` carry dated notes so new rows are appended on the same basis.
+
 ### Known issues (flagged, not corrected - each needs Bill's approval and a separate commit)
 
 - **The 2026-10-10 baseline uses the therm figure as CCF.** 566.2 CCF = 787 - 220.8, and 220.8 is
@@ -127,6 +140,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   the replaced non-BDL daily rows for 2026-01 / 02 (1,229.9 / 1,089.0 vs BDL 1,263 / 1,120), and
   neither for 2026-03..09 (e.g. Apr 472.3 vs BDL 412) [D]. Its Heating_Intensity and
   Runtime_Per_HDD follow. Rebasing that column to ACIS monthly is Bill's call; not changed.
+  *Resolved 2026-10-15 for `monthly_summary.csv`* (Bill: "5. yes"; see Fixed). `daily_temperature.csv`
+  keeps its unrounded convention (`data/README.md`). *Correction, same day:* its sums run 0-9.5 HDD a
+  month above ACIS, not 0-8 [D, 21 months 2025-01..2026-09].
 
 ### Changed
 
