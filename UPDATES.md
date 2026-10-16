@@ -196,6 +196,7 @@ January 2026 extended the four-year baseline with real-time monitoring data and 
 | Heating Intensity | 95.5 CCF/1kHDD | **90.3 CCF/1kHDD** |
 
 Original DHW estimate was understated. Corrected baseline (90.3) is now the reference for all efficiency comparisons.
+*Correction 2026-10-15:* the Navien 220.8 is therms; in CCF it is 212.9, so space heating is 574.1 CCF [D: 787 − 212.9]. The baseline is 102.0 CCF/1k HDD65 on ACIS Bradley [D: 574.1 ÷ 5.629].
 
 ---
 

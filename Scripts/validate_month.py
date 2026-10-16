@@ -12,7 +12,7 @@ Exits 1 if any HALT-level check fails (do not commit).
 
 Checks implemented (V-HVAC-1 through V-HVAC-8):
   V-HVAC-1  Runtime/HDD within ±2σ of trailing history
-  V-HVAC-2  Heating efficiency within ±15% of 100.6 CCF/1kHDD baseline
+  V-HVAC-2  Heating efficiency within ±15% of 102.0 CCF/1kHDD baseline
   V-HVAC-3  Space_Heat_CCF / HDD coherence (UA proxy ±5%)
   V-HVAC-4  Monthly HDD65 vs 5,270 annual normal (document if >±20%)
   V-HVAC-5  Zone balance 1F/2F within 45–55% (heating season only)
@@ -30,8 +30,9 @@ from pathlib import Path
 
 # ── Constants ─────────────────────────────────────────────────────────────────
 # 2026-10-10: rebased to ACIS Bradley 2025 HDD65 (5,629); was 90.3 on NOAA 6,270.
-BASELINE_EFFICIENCY = 100.6  # CCF/1kHDD (Navien-corrected 2025)
-# V-HVAC-3's own constant, not the 585 HA UA baseline: its implied UA divides by
+# 2026-10-15: 100.6 -> 102.0; 2025 space heat 574.1 CCF with the Navien DHW in CCF (212.9), not therms (220.8).
+BASELINE_EFFICIENCY = 102.0  # CCF/1kHDD (Navien-corrected 2025)
+# V-HVAC-3's own constant, not the 593 HA UA baseline (585 until 2026-10-15): its implied UA divides by
 # HDD65 with no balance-point ratio or fireplace, so the 2026-10-10 rebase does
 # not carry over. Left at 480.
 BASELINE_UA = 480  # BTU/hr-°F

@@ -18,8 +18,8 @@ This repository documents a comprehensive energy performance baseline for a 2,44
 **Key Findings (Updated September 2026):**
 - **Site EUI (12-mo rolling):** 41.7 kBTU/ft²-yr (Oct 2025–Sep 2026 bills [D: (784 CCF × 103.7 + 6,004 kWh × 3.412) / 2,440]; ~31% below the 60.6 regional average [D: 1 − 41.72 / 60.6])
 - **Baseline Site EUI:** 41.7 kBTU/ft²-yr — current +0.05% [D: 41.72 / 41.7 − 1], at baseline
-- **Heating Intensity:** 100.6 CCF/1k HDD (annual baseline, corrected with Navien DHW metering; rebased 2026-10-10 to ACIS Bradley 2025 HDD65 5,629, was 90.3 on a NOAA 6,270)
-- **Envelope UA:** 585 BTU/hr-°F (rebased 2026-10-10 to ACIS Bradley 2025 HDD59; 4-19% below the 2021 IECC code-minimum of 610-725 [D]; was 480 and 21-34% below, on NOAA HDD59; rolling recompute pending daily temps past Feb 2026)
+- **Heating Intensity:** 102.0 CCF/1k HDD (annual baseline, corrected with Navien DHW metering; rebased 2026-10-10 to ACIS Bradley 2025 HDD65 5,629, was 90.3 on a NOAA 6,270; 2026-10-15 the DHW in CCF, was 100.6)
+- **Envelope UA:** 593 BTU/hr-°F (2026-10-15 the DHW in CCF: 3-18% below the code-minimum [D], was 585) (rebased 2026-10-10 to ACIS Bradley 2025 HDD59; 4-19% below the 2021 IECC code-minimum of 610-725 [D]; was 480 and 21-34% below, on NOAA HDD59; rolling recompute pending daily temps past Feb 2026)
 - **12-mo Electricity:** 6,004 kWh (Oct 2025–Sep 2026 bills [D]; was 6,468 through June)
 - **DHW Optimization:** −35.5% Jan–Sep 2026 YoY [D: 101.01 / 156.63 CCF − 1, both years in CCF] from the recirculation schedule change (~$102 saved in nine months [D: 55.62 CCF × $1.8332], past the ~$77/year projection)
 <!-- METRICS_END -->
@@ -215,7 +215,7 @@ template:
 
 | Metric | Baseline | Warning (+10%) | Action (+15%) |
 |--------|----------|----------------|---------------|
-| Heating Intensity | 100.6 CCF/1k HDD (rebased 2026-10-10; was 90.3, >99 / >104) | >111 | >116 |
+| Heating Intensity | 102.0 CCF/1k HDD (rebased 2026-10-15; was 100.6, >111 / >116; was 90.3, >99 / >104) | >112 | >117 |
 | Runtime Efficiency | 10.9 min/HDD | >12.0 | >12.5 |
 | Monthly Space Heat (Jan) | 138 CCF | >152 | >159 |
 | Monthly DHW (Jan) | 22.8 CCF | >25.1 | >26.2 |

@@ -274,6 +274,18 @@ UA = 481 BTU/hr-°F ≈ 480 BTU/hr-°F
 > The same formula gives 493 on the old inputs (599 CCF, HDD59 5,294) and 467 on 566.2 CCF with HDD59 5,294 [D].
 > The rise from 493 to 585 therefore comes from the degree days, partly offset by the lower heat. It is not a
 > change in the house.
+>
+> *Corrected 2026-10-15:* the 220.8 subtracted above is the Navien meter's 2025 total in **therms**
+> (220.7775 Thm); in CCF it is 212.9 [D: × 0.9643], so the 2025 space heat is 574.1 CCF, not 566.2.
+>
+> ```text
+> Space heat (2025)      = 787 − 212.9 = 574.1 CCF              [D]
+> Heating intensity      = 574.1 ÷ 5.629 = 102.0 CCF/1k HDD65   [D]
+> UA = (574.1 × 103,700 × 0.95 + 3,600,000) ÷ (5,629 × 0.751 × 24)  [D]
+>    = 593 BTU/hr-°F                                            [D]
+> ```
+>
+> 102.0 and 593 are the going-forward baselines from 2026-10-15 (Bill: "yes rebase").
 
 **Step 4: Area Normalization**
 

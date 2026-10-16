@@ -11,8 +11,8 @@
 | Metric | 2025 Baseline | Jan 2026 | Status |
 |--------|---------------|----------|--------|
 | **Site Energy Use Intensity (EUI)** | 41.7 kBTU/ft²-yr | — | — |
-| **Heating Intensity** | 100.6 CCF/1k HDD* (rebased 2026-10-10; was 90.3) | 122.1† | ✅ +0.2% YoY |
-| **Building UA** | 585 BTU/hr-°F (rebased 2026-10-10; was 480) | — | — |
+| **Heating Intensity** | 102.0 CCF/1k HDD* (rebased 2026-10-15, DHW in CCF; was 100.6, and 90.3 before 2026-10-10) | 122.1† | ✅ +0.2% YoY |
+| **Building UA** | 593 BTU/hr-°F (rebased 2026-10-15; was 585, and 480 before 2026-10-10) | — | — |
 | **Heating Balance Point** | 59°F | — | — |
 | **Monthly Space Heat (Jan)** | 138.2 CCF | 150.2 CCF | ✅ +8.7% (tracks HDD) |
 | **Monthly DHW (Jan)** | 22.8 CCF | 17.8 CCF | ✅ -22% (optimized) |
@@ -85,6 +85,8 @@ The 2022-2025 HDD65 figures are the NOAA series as published. ACIS Bradley gives
 > for accurate heating gas separation. The billing-aligned 4-year mean of 89.1 above reflects
 > the estimated DHW method used prior to the Navien metering operational improvement.
 > All Home Assistant monitoring and investigation thresholds use the 100.6 Navien-corrected value (90.3 until 2026-10-10).
+> *2026-10-15:* the baseline is now 102.0 (574.1 CCF; 566.2 had subtracted the 2025 Navien DHW in therms as
+> CCF), and Home Assistant uses 102.0 from that date.
 
 ---
 
@@ -221,7 +223,7 @@ The 2022-2025 HDD65 figures are the NOAA series as published. ACIS Bradley gives
 
 | Metric | Baseline | Warning (+10%) | Action (+15%) | Jan 2026 |
 |--------|----------|----------------|---------------|----------|
-| **Heating Intensity** | 100.6 CCF/1k HDD (was 90.3, >99 / >104) | >111 | >116 | 122.1* |
+| **Heating Intensity** | 102.0 CCF/1k HDD (2026-10-15; was 100.6, >111 / >116; was 90.3, >99 / >104) | >112 | >117 | 122.1* |
 | **Site EUI** | 41.7 kBTU/ft²-yr | >45.9 | >48.0 | — |
 | **Monthly Space Heat (Jan)** | 138 CCF | >152 | >159 | 150 ✅ |
 | **Monthly DHW (Jan)** | 22.8 CCF | >25.1 | >26.2 | 17.8 ✅ |

@@ -276,6 +276,8 @@ With Navien DHW metering (Oct 2024 - Dec 2025 data), the 2025 baseline should be
 
 **Note:** The original 188 CCF DHW estimate was lower than the Navien-metered actual of 220.8 CCF. This means the true space heating consumption — and therefore heating intensity — is lower (better) than originally reported.
 
+*Correction 2026-10-15:* the Navien sum, 220.8, is in therms; in CCF it is 212.9 [D: 220.7775 × 0.9643], so the corrected space heating is 574.1 CCF [D: 787 − 212.9], not 566.2. The baseline on ACIS Bradley HDD65 is 102.0 CCF/1k HDD65 [D: 574.1 ÷ 5.629] (see `METHODOLOGY.md`).
+
 ### Updated Investigation Thresholds
 
 | Metric | Baseline | Warning (+10%) | Action (+15%) | Jan 2026 |

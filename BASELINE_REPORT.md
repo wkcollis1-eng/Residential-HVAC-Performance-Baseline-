@@ -28,6 +28,10 @@ For a two-occupant household, the observed electricity baseload of 9.7 kWh/day a
 > 6,270 used in this report is a NOAA figure, 641 above ACIS BDL for the same year (5,629 [M]). The figures in
 > this report are kept as published; see the notes under the Four-Year Performance Summary and the UA
 > Calculation Methodology.
+>
+> *Rebased again 2026-10-15:* heating intensity **102.0 CCF/1k HDD65** and UA **593 BTU/hr-°F** [D]. The
+> 2026-10-10 figures subtracted the 2025 Navien DHW total in therms (220.8) as if it were CCF; in CCF it is
+> 212.9 [D: 220.7775 × 0.9643], so the 2025 space heat is 574.1 CCF [D: 787 − 212.9], not 566.2.
 
 ---
 
@@ -125,6 +129,7 @@ The correction of historical consumption against meteorological data from Hartfo
 > 0 missing days], lower by 650 / 526 / 576 / 641 [D]. The intensities in this table are on the row as
 > published. The going-forward baseline is on ACIS: 566.2 CCF ÷ 5.629 = 100.6 CCF/1k HDD65 [D]
 > (Navien-corrected space heat; see METHODOLOGY.md).
+> *2026-10-15:* now 574.1 CCF ÷ 5.629 = 102.0 CCF/1k HDD65 [D], with the Navien DHW in CCF.
 
 ### Statistical Validation
 
@@ -145,6 +150,9 @@ The coefficient of variation (CV) below 8% for all major metrics confirms except
 > **Rebased 2026-10-10:** the going-forward baseline is now **100.6 CCF/1k HDD65**: the same Navien-corrected
 > 566.2 CCF on ACIS Bradley HDD65 (5,629 for 2025 [M]) instead of a NOAA 6,270. Home Assistant uses 100.6
 > from that date.
+>
+> **Rebased 2026-10-15:** now **102.0 CCF/1k HDD65**, on 574.1 CCF: the 2025 Navien DHW in CCF (212.9), not in
+> therms (220.8). Home Assistant's baseline helper moved to 102.0 the same day.
 
 ### Causal Analysis of 2024–2025 Variance
 
@@ -231,6 +239,8 @@ The UA value is derived from:
 > UA = **585 BTU/hr-°F** and the area-normalized UA is 0.240 BTU/hr-°F-ft² [D: 585 ÷ 2,440]. Against the
 > code-minimum range below, the margin is 4-19% [D: (610 − 585) ÷ 610, (725 − 585) ÷ 725], not 21-34%.
 > Derivation: METHODOLOGY.md, Rebase (October 2026).
+> *2026-10-15:* with the 2025 DHW in CCF (space heat 574.1 CCF), UA = **593 BTU/hr-°F**, 0.243 BTU/hr-°F-ft²
+> [D: 593 ÷ 2,440], and the margin is 3-18% [D: (610 − 593) ÷ 610, (725 − 593) ÷ 725].
 
 ### Envelope Performance Metrics
 
@@ -271,6 +281,9 @@ For 2025, DHW gas consumption was calibrated from low-HDD billing cycles at a ra
 | Navien Independent Meter | 220.8 | Direct metering via NaviLink |
 | Billing-Aligned Calculation | 188.0 | Regression from low-HDD periods |
 | **Variance** | **32.8 CCF (15%)** | **Unresolved measurement gap** |
+
+*Correction 2026-10-15:* the Navien figure is 220.8 **therms**; in CCF it is 212.9 [D: 220.7775 × 0.9643],
+so the variance is 24.9 CCF, 13% [D: 212.9 ÷ 188 − 1].
 
 **Explanation of Discrepancy:**
 

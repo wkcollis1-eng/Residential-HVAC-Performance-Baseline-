@@ -81,6 +81,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   and 2026-01 V-HVAC-2/3 run (they WARNed "missing gas"). Its all-months counts went WARN 22 -> 19,
   FLAG 18 -> 21, PASS 119 and HALT 8 unchanged [M, run before and after this commit]; Known issues
   says why the 2025 shoulder months moved.
+  *Correction 2026-10-15 (later):* PASS was 120, not 119; the saved run outputs hold 120 PASS lines
+  before and after [M]. WARN, FLAG and HALT are as stated.
 
 - **`daily_temperature.csv` onto BDL, extended to 2026-09-30 (2026-10-15, Bill: "fix ... daily
   temps")** - the 2025 rows already equal ACIS BDL (364 of 364 [M]). The 57 Jan / Feb 2026 rows
@@ -94,6 +96,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   in outdoor cells. `validate_month.py` now exits 0: HALT 8 -> 0, PASS 119 -> 126, WARN 19 -> 14,
   FLAG 21 -> 27 [M]. The new FLAGs are Mar-May 2026 checks running for the first time
   (V-HVAC-2 Mar-May, the billing artifact under Known issues; V-HVAC-1 and -3 Mar; V-HVAC-5 May).
+  *Correction 2026-10-15 (later):* PASS went 120 -> 127, not 119 -> 126 [M, PASS lines in the saved
+  run outputs]; the other counts are as stated.
 
 - **`monthly_summary.csv` HDD65 onto ACIS BDL monthly (2026-10-15, Bill: "5. yes")** - all 21 rows
   (2025-01..2026-09) now hold ACIS Bradley monthly HDD65, the sum of ACIS's published daily values;
@@ -115,6 +119,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `METHODOLOGY.md`, `DATA_SUMMARY.md`, `SYSTEM_SPECIFICATIONS.md`, `validate_month.py`
   (BASELINE_EFFICIENCY) and the Home Assistant helpers still carry 566.2 / 100.6 / 585. Rebasing
   is Bill's call; nothing was changed.
+  *Resolved 2026-10-15 (Bill: "4. yes rebase"); see Changed.* `SYSTEM_SPECIFICATIONS.md`, listed
+  above, carries none of these values; listing it was an error.
 
 - Compressor draw is 2.725 +/- 0.020 kW per call-hour [D, n=90 days, R2 0.995]. That conflicts
   with "Measured Power Draw: 4.9 kW" in `SYSTEM_SPECIFICATIONS.md`, and so with the 1,694 kWh
@@ -145,6 +151,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   month above ACIS, not 0-8 [D, 21 months 2025-01..2026-09].
 
 ### Changed
+
+- **Baselines rebased with the 2025 DHW in CCF (2026-10-15, Bill: "4. yes rebase")** - heating
+  intensity 100.6 -> 102.0 CCF/1k HDD65 [D: 574.1 / 5.629] and UA 585 -> 593 BTU/hr-°F [D,
+  METHODOLOGY formula]. The 2025 space heat is 574.1 CCF [D: 787 - 212.9]; 566.2 had subtracted the
+  Navien total in therms (220.8). Degree days are unchanged (ACIS BDL 5,629, ratio 0.751). Derived:
+  doc thresholds (baseline x 1.10 / x 1.15) >111 / >116 -> >112 / >117; UA per ft2 0.240 -> 0.243;
+  code-minimum margin 4-19% -> 3-18% [D]; the Navien vs billing-aligned DHW gap is 24.9 CCF,
+  13% [D: 212.9 / 188 - 1], not 32.8 CCF, 15%. Dated notes keep every old value in `BASELINE_REPORT.md`,
+  `METHODOLOGY.md`, `DATA_SUMMARY.md`, `README.md`, `CLAUDE_Monthly_Report.md`,
+  `JANUARY_2026_UPDATE.md` and `UPDATES.md`. `validate_month.py` BASELINE_EFFICIENCY 100.6 -> 102.0:
+  all-months PASS 127, WARN 14, FLAG 27, HALT 0 before and after, the same verdict on every check;
+  25 V-HVAC-2 lines differ only in the % vs baseline [M]. The Home Assistant helpers move in a
+  separate `home-assistant-config` commit.
 
 - **Baselines rebased to ACIS Bradley 2025 (2026-10-10)** - Heating intensity 90.3 -> 100.6 CCF/1k HDD65,
   UA 480 (493 corrected) -> 585 BTU/hr-°F, HDD59/HDD65 ratio 0.844 -> 0.751, 2025 HDD65 6,270 (NOAA) ->
