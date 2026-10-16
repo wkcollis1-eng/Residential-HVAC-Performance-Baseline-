@@ -49,6 +49,11 @@ month,bill_date,days,source
 2025-11-01,2025-11-14,33,CNG bill: 2025 Resideo workbook Monthly Utilities
 2025-12-01,2025-12-12,28,CNG bill: 2025 Resideo workbook Monthly Utilities
 2026-01-01,2026-01-15,34,CNG bill: 2025 Resideo workbook Monthly Utilities
+2026-02-01,2026-02-11,29,CNG bill PDF (Bill 2026-10-15); bill_date = meter read; statement 2026-02-13
+2026-03-01,2026-03-11,28,CNG bill PDF (Bill 2026-10-15); bill_date = meter read; statement 2026-03-13
+2026-04-01,2026-04-10,30,CNG bill PDF (Bill 2026-10-15); bill_date = meter read; statement 2026-04-14
+2026-05-01,2026-05-12,32,CNG bill PDF (Bill 2026-10-15); bill_date = meter read; statement 2026-05-14
+2026-06-01,2026-06-10,29,CNG bill PDF (Bill 2026-10-15); bill_date = meter read; statement 2026-06-12
 2026-07-01,2026-07-15,33,HA gas_bill_date statement date; days = gap to prior statement
 2026-08-01,2026-08-12,28,HA gas_bill_date statement date; days = gap to prior statement
 2026-09-01,2026-09-15,34,HA gas_bill_date statement date; days = gap to prior statement

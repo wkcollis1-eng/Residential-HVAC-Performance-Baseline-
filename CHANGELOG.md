@@ -178,6 +178,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   WARN, 2026-01 PASS -> WARN. Nine heating-bill period sums match an independent awk sum; a deleted
   daily row fired the WARN, and the clean tree stays silent. DHW stays the calendar month.
   V-HVAC-2 still FLAGs 13 of 14 heating bills [M]: see Known issues.
+  *Follow-up, same day (Bill sent the CNG bill PDFs):* 2026-02..06 are recorded with each bill's
+  meter-read date and service days; their CCF equals `monthly_gas_scg.csv` in 5 of 5 [M]. Each
+  statement came 2-4 days after its read [M, n=5], so the statement-dated rows lag by about that
+  (`data/README.md`). All-months PASS 123 -> 125, WARN 22 -> 15, FLAG 29 -> 29, HALT 0 -> 0 [M,
+  validate_month output before and after]: the five fallback WARNs clear. V-HVAC-2 2026-04 and
+  2026-05 FLAG -> PASS; 2026-06 now runs (bill 05-13..06-10, 116 HDD) and FLAGs on both checks;
+  V-HVAC-3 2026-02 and 2026-03 FLAG -> PASS, 2026-04 and 2026-05 WARN -> FLAG (UA 294 and 274, the
+  shoulder pattern under Known issues). All five period sums match an independent awk sum [M].
 
 - **Baselines rebased with the 2025 DHW in CCF (2026-10-15, Bill: "4. yes rebase")** - heating
   intensity 100.6 -> 102.0 CCF/1k HDD65 [D: 574.1 / 5.629] and UA 585 -> 593 BTU/hr-°F [D,
