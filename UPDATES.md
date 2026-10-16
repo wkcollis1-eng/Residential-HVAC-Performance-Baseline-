@@ -30,7 +30,7 @@ September 2026 was a shoulder month (62 CDD / 85 HDD, BDL [M]) with no furnace r
 2. Season ratio 25.54 → 22.52 min/CDD: −3.02, 95% CI [−7.95, +2.72], p ≈ 0.29 [D]. Not significant, because the Ecobee ran more on mild days.
 3. Compressor energy 0.925 kWh/CDD over Jul–Sep [D: 564.3 / 610], at 2.725 kW per call-hour [D, n=90 days]. This conflicts with the 4.9 kW spec figure; the conflict is open. *Update 2026-10-15: condenser model 4A7A4048L1000AA confirmed (Bill). RLA and voltage are unread, so the conflict stays open.*
 4. Whole-house electricity over identical 120-day bill windows fell from 3,141 to 2,526 kWh [M] at 779 vs 769 CDD. It was about 5.15 kWh/day lower in every window [D, n=4, sd 0.39]: a base-load change, not a cooling one.
-5. Year and thermostat are fully confounded. No difference is attributed to the thermostat until the 2025 setpoints, system mode and 2F vent position are known. *Update 2026-10-15 (Bill): all vents 100% open in summer. The setpoints and the September 2025 mode remain unknown.*
+5. Year and thermostat are fully confounded. No difference is attributed to the thermostat until the 2025 setpoints, system mode and 2F vent position are known. *Update 2026-10-15 (Bill): all vents 100% open in summer. The setpoints and the September 2025 mode remain unknown.* *Later 2026-10-15 (Bill): setpoints and schedules unchanged, cooling on through September 2025. The slope difference is now consistent with the thermostat [I], with one summer per controller.*
 
 ---
 

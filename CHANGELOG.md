@@ -45,7 +45,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   the DHW recirculation and the office computer's overnight shutdown and sleep modes; how the drop
   splits between them is unmeasured. No 2025 cycle data exists, so 2025 runtime per cycle is closed
   as unmeasurable. The condenser is model 4A7A4048L1000AA. Still open: 2025 vs 2026 setpoints and
-  schedules, the September 2025 system mode, and RLA / voltage.
+  schedules, the September 2025 system mode, and RLA / voltage. *Answered later the same day:*
+  setpoints and schedules were the same in both summers; cooling was on through September 2025;
+  RLA and voltage cannot be read. The September report's conclusion now calls the hot-day slope
+  difference consistent with the thermostat [I], not proven. September 2025 ran the AC on 3 days vs
+  16 in 2026 despite more BDL CDD65 (66 vs 62 [M]); no recorded factor explains it.
 
 ### Fixed
 
