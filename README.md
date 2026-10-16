@@ -190,7 +190,7 @@ template:
 │   └── dashboards/
 └── data/                         # Raw operational datasets
     ├── monthly_summary.csv       # 🆕 Derived monthly metrics (all-in-one) — through Sep 2026
-    ├── daily_temperature.csv     # Updated through Feb 2026
+    ├── daily_temperature.csv     # Updated through Sep 2026
     ├── monthly_hvac_runtime.csv  # Updated through Sep 2026
     ├── monthly_dhw_navien.csv    # Updated through Sep 2026
     ├── monthly_electricity_eversource.csv   # Updated through Sep 2026
@@ -336,5 +336,5 @@ If this five-year baseline is useful for your own energy monitoring work, consid
 ---
 
 **Version:** 1.7.0 (October 2026)
-**Status:** Active Baseline — 57 months of data (validate_month.py V-HVAC-7 HALT open: daily temperatures end Feb 2026)
+**Status:** Active Baseline — 57 months of data (validate_month.py V-HVAC-7 HALT closed 2026-10-15: daily temperatures run through Sep 2026)
 **Next Update:** October 2026 monthly (first heating month on the Ecobee)

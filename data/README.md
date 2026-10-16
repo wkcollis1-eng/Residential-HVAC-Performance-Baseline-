@@ -60,9 +60,11 @@ This directory contains raw operational data for the residential HVAC performanc
 
 **Description:** Daily temperature readings from thermostat sensors (indoor and outdoor)
 
-**Period:** January 1, 2025 - December 31, 2025 (365 days)
-**Rows:** 364
-**Source:** Resideo/Honeywell Lyric app export
+**Period:** January 1, 2025 - September 30, 2026 (638 days)
+**Rows:** 638
+**Source:** Outdoor columns: ACIS daily data for station BDL (Hartford-Bradley International Airport).
+Runtime columns: Resideo/Honeywell Lyric app export for 2025; Home Assistant `hvac_daily_2026.csv`
+from 2026-01-23; source not recorded for 2026-01-01..01-22 and 2026-01-31..02-05
 **Frequency:** Daily aggregation (high/low/average)
 
 **Columns:**
@@ -80,6 +82,13 @@ This directory contains raw operational data for the residential HVAC performanc
 
 - Outdoor temperature data sourced from Hartford Bradley International Airport (KBDL) as proxy for zip code 06424
 - HDD65: Heating degree days calculated as max(0, 65°F - mean outdoor temp)
+- *Correction 2026-10-15:* `Outdoor_Mean_F` is (High + Low) / 2 and HDD65 is not rounded. ACIS
+  publishes daily HDD65 rounded to whole degree-days, so monthly sums from this file run 0-8 HDD
+  above the BDL monthly figures the reports use; 2025 sums to 5,696 here vs 5,629 [D]. The
+  2026-01 / 02 outdoor cells came from another source until 2026-10-15 (25 of the 59 rows had a
+  mean that was not (High + Low) / 2) and now equal BDL. Rows 2026-03-01..09-30 were added the same
+  day; their runtime is (heating + cooling minutes) / 60 per zone from Home Assistant, blank on the
+  9 days it has no row (2026-05-16..22, 07-04, 07-05).
 - **HVAC runtime columns:** Combined heating and cooling hours per day from Resideo thermostat data
   - **Total runtime (2025):** 1,167.78 hours (366.47 + 801.31)
   - Reconciles with monthly summary: 831 heating + 346 cooling = 1,177 hours (0.8% difference due to rounding)
@@ -90,7 +99,9 @@ This directory contains raw operational data for the residential HVAC performanc
 
 **Data Quality:**
 
-- ✅ No missing days (364 days in 2025, excludes leap day)
+- ✅ No missing days (364 days in 2025, excludes leap day) *(Corrected 2026-10-15: 2025 has no leap
+  day; the 364 rows were missing 2025-02-24, which is not in the Resideo export either. It is now
+  present with BDL temperatures and blank runtime.)*
 - ✅ Cross-validated against NOAA KBDL weather station (outdoor temps R² > 0.95)
 - ✅ HVAC runtime reconciles with monthly totals: 1,167.78 daily vs 1,177 monthly (0.8% difference)
 
@@ -254,7 +265,8 @@ This directory contains raw operational data for the residential HVAC performanc
 
 1. **Thermostat Data Coverage:**
    - 2025 only (earlier years not exported from Lyric app)
-   - One missing day in daily temperature data
+   - One missing day in daily temperature data (2025-02-24: temperatures filled from BDL on
+     2026-10-15, runtime blank; 2026 runtime is also blank on 9 days Home Assistant did not log)
    - Runtime data does not capture variable blower speeds
 
 2. **Navien DHW Meter:**

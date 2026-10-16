@@ -69,6 +69,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   FLAG 18 -> 21, PASS 119 and HALT 8 unchanged [M, run before and after this commit]; Known issues
   says why the 2025 shoulder months moved.
 
+- **`daily_temperature.csv` onto BDL, extended to 2026-09-30 (2026-10-15, Bill: "fix ... daily
+  temps")** - the 2025 rows already equal ACIS BDL (364 of 364 [M]). The 57 Jan / Feb 2026 rows
+  whose outdoor cells came from another source (25 had a mean that was not (High + Low) / 2) now
+  carry BDL values: HDD65 Jan 1,229.9 -> 1,270.0, Feb 1,089.0 -> 1,126.5 [D]. 2025-02-24, absent
+  from the Resideo export, is inserted with BDL temperatures and blank runtime. 2026-03-01..09-30
+  (214 rows) are appended: BDL temperatures; runtime hours = (runtime + cool_runtime minutes) / 60
+  from Home Assistant `hvac_daily_2026.csv`, the rule that reproduces 31 of the 31 existing rows it
+  covers [M]; blank on the 9 days HA has no row (2026-05-16..22, 07-04, 07-05). The file is now 638
+  contiguous days; 366 of the 423 existing lines are byte-identical and the other 57 changed only
+  in outdoor cells. `validate_month.py` now exits 0: HALT 8 -> 0, PASS 119 -> 126, WARN 19 -> 14,
+  FLAG 21 -> 27 [M]. The new FLAGs are Mar-May 2026 checks running for the first time
+  (V-HVAC-2 Mar-May, the billing artifact under Known issues; V-HVAC-1 and -3 Mar; V-HVAC-5 May).
+
 ### Known issues (flagged, not corrected - each needs Bill's approval and a separate commit)
 
 - **The 2026-10-10 baseline uses the therm figure as CCF.** 566.2 CCF = 787 - 220.8, and 220.8 is
@@ -91,8 +104,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   FLAG -> PASS or WARN for Mar-May and PASS or WARN -> FLAG for Oct-Dec [M, validate_month output
   before and after]. HDD65 summed over each billing period from the ACIS daily series would remove
   the artifact. Not changed.
-- V-HVAC-7 HALTs for 2026-07..09 (and every month since March): `data/daily_temperature.csv`
-  ends 2026-02-28.
+- HDD65 has three bases in `data/`. ACIS BDL publishes daily HDD65 rounded to whole degree-days,
+  and its monthly sums are the reference the reports and the 5,629 baseline use.
+  `daily_temperature.csv` holds 65 - (High + Low) / 2 unrounded from the same BDL highs and lows, so
+  its sums run 0-8 HDD a month above ACIS, 5,696 vs 5,629 for 2025 [D]. `monthly_summary.csv`
+  HDD65 is the unrounded daily sum for 2025 (2025-02 939.5 omits the then-missing 2025-02-24),
+  the replaced non-BDL daily rows for 2026-01 / 02 (1,229.9 / 1,089.0 vs BDL 1,263 / 1,120), and
+  neither for 2026-03..09 (e.g. Apr 472.3 vs BDL 412) [D]. Its Heating_Intensity and
+  Runtime_Per_HDD follow. Rebasing that column to ACIS monthly is Bill's call; not changed.
 
 ### Changed
 
