@@ -136,8 +136,8 @@ This directory contains raw operational data for the residential HVAC performanc
 
 **Description:** Whole-house electricity consumption from utility billing records
 
-**Period:** December 2021 - December 2025 (49 billing periods)
-**Rows:** 49
+**Period:** December 2021 - September 2026 (58 billing periods)
+**Rows:** 58
 **Source:** Eversource Energy utility bills
 **Frequency:** Monthly billing cycles (28-34 days per period)
 
@@ -154,6 +154,11 @@ This directory contains raw operational data for the residential HVAC performanc
 **Notes:**
 
 - Billing periods do not align with calendar months (15-day phase shift typical)
+- *Correction 2026-10-15:* the file's columns are `month,kwh,amount`; the table above describes the
+  source workbook. `month` is the first of the meter-read month, which is the HA archive slot and the
+  `monthly_summary.csv` month (the two agree for all 21 shared months, 2025-01..2026-09 [M]). Until
+  2026-10-15 the unquoted rows were labelled one month earlier, by usage month, which left no
+  2026-01 label; they were relabelled from the workbook's Read Date with every value unchanged.
 - Rates include both supply and delivery charges (~$0.29/kWh average in 2025)
 - 2025 calendar-year total: 6,730 kWh (via billing-aligned methodology)
 - Fixed charges (~$11/month) included in total but not in per-kWh rate
@@ -178,8 +183,8 @@ This directory contains raw operational data for the residential HVAC performanc
 
 **Description:** Whole-house natural gas consumption from utility billing records
 
-**Period:** December 2021 - December 2025 (49 billing periods)
-**Rows:** 49
+**Period:** December 2021 - September 2026 (58 billing periods)
+**Rows:** 58
 **Source:** Southern Connecticut Gas Company utility bills
 **Frequency:** Monthly billing cycles (28-34 days per period)
 
@@ -197,6 +202,14 @@ This directory contains raw operational data for the residential HVAC performanc
 
 - CCF = hundred cubic feet of natural gas (~100,000 BTU per CCF)
 - Billing periods do not align with calendar months
+- *Correction 2026-10-15:* the file's columns are `month,ccf`; the table above describes the source
+  workbook. `month` is the first of the bill-date month, which is the HA archive slot and the
+  `monthly_summary.csv` month (the two agree for all 21 shared months, 2025-01..2026-09 [M]). Until
+  2026-10-15, 46 of the 50 unquoted rows were labelled one month earlier, by usage month, while the
+  bills dated 2023-01-17, 2023-07-17, 2024-01-16 and 2024-09-16 already carried their bill month.
+  That gave duplicate labels at 2023-01, 2023-07, 2024-01 and 2024-09 and holes at 2022-12, 2023-06,
+  2023-12, 2024-08 and 2026-01. The rows were relabelled from the workbook's Bill Date with every
+  value unchanged.
 - Rates vary seasonally (winter ~$1.50/CCF, summer ~$1.00/CCF average)
 - 2025 calendar-year total: 787 CCF (via billing-aligned methodology)
 - Includes all gas consumption: space heating (furnace + fireplace), DHW, gas range

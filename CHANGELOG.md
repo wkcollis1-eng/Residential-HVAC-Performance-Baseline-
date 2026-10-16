@@ -57,6 +57,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   30.3 / 37.9 [D], the values `JANUARY_2026_UPDATE.md` already published. Totals and runtime/HDD are
   unchanged. `UPDATES.md` carried 69.7 / 62.1 and gets a dated correction note.
 
+- **Bill CSV month labels (2026-10-15)** - the 50 unquoted rows of `monthly_electricity_eversource.csv`
+  and `monthly_gas_scg.csv` are relabelled to the month of their read / bill date, taken from the
+  Resideo workbook's Monthly Utilities sheet with every value asserted equal. That is the convention
+  the quoted 2026-02+ rows and `monthly_summary.csv` already use. Electricity: 50 labels moved one
+  month later. Gas: 46 moved; the 2023-01, 2023-07, 2024-01 and 2024-09 bills already carried their
+  bill month, which had left duplicate labels there. Both files now run 2021-12..2026-09, 58 unique
+  contiguous months, and match the summary's Gas_CCF / Elec_kWh for all 21 shared months [M]. No
+  value changed. `validate_month.py` keys gas by this label, so its gas lookups are now slot-aligned
+  and 2026-01 V-HVAC-2/3 run (they WARNed "missing gas"). Its all-months counts went WARN 22 -> 19,
+  FLAG 18 -> 21, PASS 119 and HALT 8 unchanged [M, run before and after this commit]; Known issues
+  says why the 2025 shoulder months moved.
+
 ### Known issues (flagged, not corrected - each needs Bill's approval and a separate commit)
 
 - **The 2026-10-10 baseline uses the therm figure as CCF.** 566.2 CCF = 787 - 220.8, and 220.8 is
@@ -73,9 +85,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `monthly_summary.csv` 2026-02 Heat_1F/Heat_2F (72 / 86 h) split furnace runtime (158.2 h), while
   the daily zone sums are 86.4 / 99.2 h [M, `daily_temperature.csv`]; other months hold zone hours.
   2026-03 Zone_Balance_1F_Pct reads 49.6 where 40 / 81.4 gives 49.1 [D]. Not changed.
-- `monthly_electricity_eversource.csv` and `monthly_gas_scg.csv`: the unquoted rows through
-  2025-12-01 are labelled by usage month, the quoted rows from 2026-02-01 by slot month, and
-  there is no 2026-01-01 row. `monthly_summary.csv` is slot-month throughout.
+- `validate_month.py` V-HVAC-2/3 divide one bill (mid-month to mid-month) by calendar-month HDD65,
+  so in shoulder months the verdict follows the label convention, not the house. After the bill
+  CSV relabel, 2025 V-HVAC-2 went PASS -> FLAG for Feb-Apr and FLAG -> PASS for Dec; V-HVAC-3 went
+  FLAG -> PASS or WARN for Mar-May and PASS or WARN -> FLAG for Oct-Dec [M, validate_month output
+  before and after]. HDD65 summed over each billing period from the ACIS daily series would remove
+  the artifact. Not changed.
 - V-HVAC-7 HALTs for 2026-07..09 (and every month since March): `data/daily_temperature.csv`
   ends 2026-02-28.
 
