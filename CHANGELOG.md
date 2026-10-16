@@ -120,7 +120,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   (BASELINE_EFFICIENCY) and the Home Assistant helpers still carry 566.2 / 100.6 / 585. Rebasing
   is Bill's call; nothing was changed.
   *Resolved 2026-10-15 (Bill: "4. yes rebase"); see Changed.* `SYSTEM_SPECIFICATIONS.md`, listed
-  above, carries none of these values; listing it was an error.
+  above, carries none of these values; listing it was an error. *Correction, same day:* it carries
+  none of 566.2 / 100.6 / 585, but it does carry the therm figure as "220.8 CCF" and the gap built
+  on it, 15% [D: 220.8 / 188 - 1, therms over CCF]; see the Changed entry's follow-up.
 
 - Compressor draw is 2.725 +/- 0.020 kW per call-hour [D, n=90 days, R2 0.995]. That conflicts
   with "Measured Power Draw: 4.9 kW" in `SYSTEM_SPECIFICATIONS.md`, and so with the 1,694 kWh
@@ -189,6 +191,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   all-months PASS 127, WARN 14, FLAG 27, HALT 0 before and after, the same verdict on every check;
   25 V-HVAC-2 lines differ only in the % vs baseline [M]. The Home Assistant helpers move in a
   separate `home-assistant-config` commit.
+  *Follow-up, same day (R13):* that commit missed four sites still giving the therm figure as CCF
+  or the 15% DHW gap: `SYSTEM_SPECIFICATIONS.md` (220.8 CCF; 15%, 32.8 CCF) and `data/README.md`
+  (three "15% variance" lines). Each now carries a dated note: 212.9 CCF, a 24.9 CCF gap, 13% [D:
+  212.9 / 188 - 1]. Found by a repo-wide search for the old values after the commit.
 
 - **Baselines rebased to ACIS Bradley 2025 (2026-10-10)** - Heating intensity 90.3 -> 100.6 CCF/1k HDD65,
   UA 480 (493 corrected) -> 585 BTU/hr-°F, HDD59/HDD65 ratio 0.844 -> 0.751, 2025 HDD65 6,270 (NOAA) ->

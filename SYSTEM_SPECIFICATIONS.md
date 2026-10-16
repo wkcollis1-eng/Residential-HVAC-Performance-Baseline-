@@ -210,6 +210,8 @@
 - **2025 Navien Meter Reading:** 220.8 CCF
 - **2025 Billing-Aligned Value:** 188 CCF (used for EUI consistency)
 - **Variance:** 15% (32.8 CCF unresolved measurement gap)
+- *Correction 2026-10-15:* the 220.8 meter reading is therms; in CCF it is 212.9 [D: 220.7775 × 0.9643],
+  so the gap to the billing-aligned 188 CCF is 24.9 CCF, 13% [D: 212.9 / 188 − 1], not 32.8 CCF, 15%.
 
 **Installation:**
 - **Location:** Basement utility room

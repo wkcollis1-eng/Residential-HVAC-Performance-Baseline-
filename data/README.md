@@ -142,6 +142,7 @@ from 2026-01-23; source not recorded for 2026-01-01..01-22 and 2026-01-31..02-05
 
 - ✅ No missing values for available period
 - ⚠️ 15% variance between meter reading and billing-aligned calculation (see baseline report)
+  *Correction 2026-10-15:* 13% in CCF, a 24.9 CCF gap [D: 212.9 / 188 − 1]; 15% compared therms with CCF.
 - ✅ Consistent with seasonal inlet water temperature patterns
 
 ---
@@ -289,6 +290,7 @@ Period Days); 2026-07..09 from Home Assistant `input_datetime.gas_bill_date` his
 - ✅ Thermostat outdoor temperature vs. NOAA KBDL weather station (R² > 0.95)
 - ✅ Utility billing totals vs. calendar-year aggregations (within 2%)
 - ✅ Navien meter vs. billing-aligned DHW calculation (15% variance documented)
+  *Correction 2026-10-15:* 13% in CCF [D: 212.9 / 188 − 1]; see §3.
 
 **3. Statistical Validation:**
 
@@ -307,6 +309,7 @@ Period Days); 2026-07..09 from Home Assistant `input_datetime.gas_bill_date` his
 2. **Navien DHW Meter:**
    - Data availability: October 2024 onward (meter installed mid-2024)
    - 15% variance from billing-aligned calculation (seasonal baseline drift)
+     *Correction 2026-10-15:* 13% in CCF, 24.9 CCF [D: 212.9 / 188 − 1]; 15% compared therms with CCF.
    - Recirculation pump operation time may include non-heating runtime
 
 3. **Utility Billing:**
