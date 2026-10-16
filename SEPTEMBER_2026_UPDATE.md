@@ -258,25 +258,25 @@ Daily compressor kWh against daily BDL CDD gives 0.915 ± 0.070 kWh/CDD (interce
 | Sep 11–Oct 8 | 28 | 513 [M] | 362 [M] | 62 [D] | 30 [D] | 18.32 [D] | 12.93 [D] | 5.39 [D] |
 | **Total** | **120** | **3,141** [M] | **2,526** [M] | **779** [D] | **769** [D] | 26.18 [D] | 21.05 [D] | 5.15 mean, sd 0.39 [D, n=4] |
 
-Whole-house kWh per CDD over the 120 days was 4.032 in 2025 and 3.285 in 2026 [D: 3141 / 779; 2526 / 769]. That figure carries the base-load difference and **is not a thermostat metric**. The daily drop is nearly constant (sd 0.39 kWh/day across 4 windows [D]). It does not follow the CDD difference: the Aug 12–Sep 10 window was 49 CDD hotter in 2026 and still dropped 4.83 kWh/day. A drop driven by cooling would shrink in that window by about 1.5 kWh/day [D: 49 × 0.915 / 30]. The data therefore point to a change of roughly 215 W in continuous load between the two summers [I: 5.15 / 24; falsifier: identification of loads that ran in summer 2025 and not in 2026, or a cooling-driven drop that varies with ΔCDD once more windows are added]. The cause cannot be found in this data, because 2025 had no circuit-level metering. See Open Questions.
+Whole-house kWh per CDD over the 120 days was 4.032 in 2025 and 3.285 in 2026 [D: 3141 / 779; 2526 / 769]. That figure carries the base-load difference and **is not a thermostat metric**. The daily drop is nearly constant (sd 0.39 kWh/day across 4 windows [D]). It does not follow the CDD difference: the Aug 12–Sep 10 window was 49 CDD hotter in 2026 and still dropped 4.83 kWh/day. A drop driven by cooling would shrink in that window by about 1.5 kWh/day [D: 49 × 0.915 / 30]. The data therefore point to a change of roughly 215 W in continuous load between the two summers [I: 5.15 / 24; falsifier: identification of loads that ran in summer 2025 and not in 2026, or a cooling-driven drop that varies with ΔCDD once more windows are added]. The cause cannot be found in this data, because 2025 had no circuit-level metering. See Open Questions. *Update 2026-10-15 (Bill): the only changes between the summers were the DHW recirculation and the office computer, now shut down overnight with sleep modes enabled. Those are the candidate loads. Neither was metered in 2025, so how the ~215 W [I] splits between them is unmeasured.*
 
 The SEM whole-home total closes against the utility meter over the same windows: 705.2 vs 724, 485.7 vs 474, and 353.7 vs 362 kWh [M]. The SEM circuits are therefore a sound basis for the 2026 figures.
 
 ### Compressor draw — conflict with the spec file
 
-The SEM fit gives **2.725 ± 0.020 kW** of compressor draw per hour of thermostat call. The median day is 2.50 kW (p10 2.40, p90 2.70) [D, n=59 days with more than 0.5 h]. `SYSTEM_SPECIFICATIONS.md` lists "Measured Power Draw: 4.9 kW", and template §1 lists 4.9 kW as nameplate. The 2025 cooling-energy baseline in `BASELINE_REPORT.md`, 346 h × 4.9 kW = 1,694 kWh, rests on that figure. At the SEM-measured draw it would be 943 kWh [I: 346 × 2.725; assumes the 2025 draw equals 2026's; falsifier: the condenser nameplate (RLA, voltage) or a 2025 clamp reading near 4.9 kW]. An AC CT reading half the true value is ruled out: the July unmetered residual was 41.2 kWh of 914.0 [D], and a half-reading CT would have left at least 332.8 kWh unaccounted. **No correction is made here.** The 4.9 kW figure and the baseline stay as they are until the nameplate is read (Open Questions).
+The SEM fit gives **2.725 ± 0.020 kW** of compressor draw per hour of thermostat call. The median day is 2.50 kW (p10 2.40, p90 2.70) [D, n=59 days with more than 0.5 h]. `SYSTEM_SPECIFICATIONS.md` lists "Measured Power Draw: 4.9 kW", and template §1 lists 4.9 kW as nameplate. The 2025 cooling-energy baseline in `BASELINE_REPORT.md`, 346 h × 4.9 kW = 1,694 kWh, rests on that figure. At the SEM-measured draw it would be 943 kWh [I: 346 × 2.725; assumes the 2025 draw equals 2026's; falsifier: the condenser nameplate (RLA, voltage) or a 2025 clamp reading near 4.9 kW]. An AC CT reading half the true value is ruled out: the July unmetered residual was 41.2 kWh of 914.0 [D], and a half-reading CT would have left at least 332.8 kWh unaccounted. **No correction is made here.** The 4.9 kW figure and the baseline stay as they are until the nameplate is read (Open Questions). *Update 2026-10-15: the condenser is model 4A7A4048L1000AA, s/n 21014S4Y3F (Bill), the model `SYSTEM_SPECIFICATIONS.md` already lists. RLA and voltage were not available. The repo holds no record of a 4.9 kW measurement: `SYSTEM_SPECIFICATIONS.md` calls it measured, `BASELINE_REPORT.md` calls it the 4-ton unit "at rated conditions", and the monthly-report template calls it nameplate. The conflict stays open.*
 
 ### Confounds and limits (R11)
 
 1. **One season per controller.** Year and thermostat are fully confounded, with n = 1 summer each. Every difference above describes the two summers, and the thermostat is one candidate cause among the items below.
 2. **Setpoints, schedules and system mode are not recorded for 2025.** In September 2025 the AC ran on 3 of 30 days, against 16 of 30 in 2026 [M]. That fits a mode or setpoint difference (for example, cooling switched off) as well as a control difference.
-3. **2F supply vents** were closed about 50% on 2026-01-01 [M, Resideo note]. Their position in summer 2026 is unconfirmed. Because 2F carries more than 99% of cooling [D: 1 − 0.39 / 289.44], vent position changes the airflow the 2F zone delivers.
+3. **2F supply vents** were closed about 50% on 2026-01-01 [M, Resideo note]. Their position in summer 2026 is unconfirmed. *Update 2026-10-15 (Bill): "Summer Setting - all vents 100% open." The 50% closure is a winter setting, so vent position is removed as a confound for the summer comparison.* Because 2F carries more than 99% of cooling [D: 1 − 0.39 / 289.44], vent position changes the airflow the 2F zone delivers.
 4. **Ecobee minimum compressor runtime** was raised from 10 to 15 min on 2026-06-07 (per `JUNE_2026_UPDATE.md`). This affects cycle length and mild-day runtime.
 5. **Weather beyond CDD.** BDL is an airport station, not the site. CDD65 does not carry humidity (latent load), solar gain or wind. The linear model leaves 23% and 36% of daily variance unexplained [D: 1 − 0.770; 1 − 0.643].
 6. **Moisture removal changed.** In 2026 the dehumidifier was metered at 134.7 kWh in June, 131.9 in July, 28.2 in August and 24.0 in September [M]. It was replaced in August, and 2025 dehumidifier operation was not metered.
 7. **Missing days.** Jul 4–5 2026 are absent, a grid outage with partial-day operation (July report). Neither day affects the regression fits, which use only days with rows.
 8. **Extrapolation.** The fits cover 0–23 CDD/day. No figure here applies outside that range.
-9. **Not established:** that the Ecobee saves energy over a season; any 2025 cycle behaviour; any 2025 compressor energy.
+9. **Not established:** that the Ecobee saves energy over a season; any 2025 cycle behaviour (no 2025 cycle data exists, Bill 2026-10-15); any 2025 compressor energy.
 
 ### Conclusion
 
@@ -288,14 +288,14 @@ On the BDL basis over June–September, the 2026 Ecobee summer used **significan
 
 ### Monitoring Priorities
 1. **Record 2F cooling setpoints, schedules and system mode** each summer from 2027 on. Without them, the next comparison has the same confound.
-2. **Resolve the compressor draw.** Read the condenser nameplate (model, RLA). Until that is done, neither the 4.9 kW figure nor the 1,694 kWh 2025 baseline can be used for energy claims.
-3. **Explain the ~5 kWh/day base-load drop** between summers before attributing electricity savings to any one change.
+2. **Resolve the compressor draw.** Read the condenser nameplate (model, RLA). Until that is done, neither the 4.9 kW figure nor the 1,694 kWh 2025 baseline can be used for energy claims. *2026-10-15: model confirmed (4A7A4048L1000AA); RLA and voltage still unread, so this stands.*
+3. **Explain the ~5 kWh/day base-load drop** between summers before attributing electricity savings to any one change. *2026-10-15: Bill names the DHW recirculation and the office computer's overnight shutdown and sleep modes as the only changes; sizing each is still open.*
 4. **Heating season.** October brings the first furnace runtime since May. The heating-side Ecobee comparison (runtime/HDD, cycles) starts then, on BDL HDD65.
 
 ### Pending / Data Hygiene
-- **Historical rows** in `monthly_summary.csv`: DHW therms-as-CCF (2024-10..2026-01) and the 2025 Cool_1F/Cool_2F swap. A correction needs Bill's approval and goes in a separate commit.
-- **Month labels in the bill CSVs.** In `monthly_electricity_eversource.csv` and `monthly_gas_scg.csv`, the unquoted rows through 2025-12-01 are labelled by usage month (2025-06-01 = 1,129 kWh, the bill read 2025-07-14). The quoted rows from 2026-02-01 on are labelled by slot month, and there is no 2026-01-01 row. `monthly_summary.csv` uses slot months throughout, and every figure in these reports uses the slot basis. Relabelling needs Bill's approval and belongs in the same separate commit.
-- **`data/daily_temperature.csv` ends 2026-02-28.** V-HVAC-7 HALT is pre-existing for every month since March.
+- **Historical rows** in `monthly_summary.csv`: DHW therms-as-CCF (2024-10..2026-01) and the 2025 Cool_1F/Cool_2F swap. A correction needs Bill's approval and goes in a separate commit. *Corrected 2026-10-15 on Bill's approval, together with the Oct-Nov 2025 heating zone swap (CHANGELOG [Unreleased], Fixed).*
+- **Month labels in the bill CSVs.** In `monthly_electricity_eversource.csv` and `monthly_gas_scg.csv`, the unquoted rows through 2025-12-01 are labelled by usage month (2025-06-01 = 1,129 kWh, the bill read 2025-07-14). The quoted rows from 2026-02-01 on are labelled by slot month, and there is no 2026-01-01 row. `monthly_summary.csv` uses slot months throughout, and every figure in these reports uses the slot basis. Relabelling needs Bill's approval and belongs in the same separate commit. *Corrected 2026-10-15: every row is now labelled by bill / read-date month (CHANGELOG, Fixed).*
+- **`data/daily_temperature.csv` ends 2026-02-28.** V-HVAC-7 HALT is pre-existing for every month since March. *Corrected 2026-10-15: the file runs to 2026-09-30 on BDL, and V-HVAC-7 passes for every month.*
 - **`UPDATES.md`** has no entries for March–June 2026, which were never prepended. This update adds July–September only.
 
 ---
@@ -303,10 +303,10 @@ On the BDL basis over June–September, the 2026 Ecobee summer used **significan
 ## Open Questions
 
 These are physical facts and settings. They come from Bill, not from inference (R14).
-1. **Condenser nameplate:** model, RLA and voltage. What was the "4.9 kW measured" figure in `SYSTEM_SPECIFICATIONS.md` measured with? *Blocks: the 2025 cooling-energy baseline and any 2025 kWh/CDD.*
-2. **Summer settings:** were the 2F vents still about 50% closed in summer 2026? Were 2F cooling setpoints and schedules the same in both summers? Was cooling switched off for part of September 2025? *Blocks: attributing the runtime differences to the thermostat.*
-3. **Base load:** what ran continuously in summer 2025 and not in 2026 (or the reverse)? It amounts to about 5 kWh/day. *Blocks: attributing the electricity drop.*
-4. **2025 cycle data:** is there any source of 2025 cycle counts (Resideo app history, a Honeywell export)? *Blocks: the 2025 runtime-per-cycle comparison.*
+1. **Condenser nameplate:** model, RLA and voltage. What was the "4.9 kW measured" figure in `SYSTEM_SPECIFICATIONS.md` measured with? *Blocks: the 2025 cooling-energy baseline and any 2025 kWh/CDD.* *Answered in part 2026-10-15: model 4A7A4048L1000AA, s/n 21014S4Y3F. RLA, voltage and the origin of the 4.9 kW remain open.*
+2. **Summer settings:** were the 2F vents still about 50% closed in summer 2026? Were 2F cooling setpoints and schedules the same in both summers? Was cooling switched off for part of September 2025? *Blocks: attributing the runtime differences to the thermostat.* *Answered in part 2026-10-15: all vents 100% open in summer. Setpoints and schedules in both summers, and the September 2025 system mode, remain open.*
+3. **Base load:** what ran continuously in summer 2025 and not in 2026 (or the reverse)? It amounts to about 5 kWh/day. *Blocks: attributing the electricity drop.* *Answered 2026-10-15: the DHW recirculation, and the office computer now shut down overnight with sleep modes enabled. The split between them is unmeasured.*
+4. **2025 cycle data:** is there any source of 2025 cycle counts (Resideo app history, a Honeywell export)? *Blocks: the 2025 runtime-per-cycle comparison.* *Answered 2026-10-15: no such data exists. 2025 runtime per cycle stays unmeasured; closed.*
 
 ---
 

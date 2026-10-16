@@ -52,12 +52,12 @@ Bills are slot months (July–September); degree days are calendar months.
 | Mean runtime on mild days (1–4 CDD) | 0.94 h/day (n=29 days) | 1.45 h/day (n=24 days) | +0.51 h/day [D] | ⚠️ More on mild days |
 | Runtime per cycle | not recorded | 26.2 / 28.9 / 24.4 / 18.4 min (Jun–Sep) [D] | — | 🆕 Ecobee only |
 | Compressor energy per CDD (Jul–Sep) | not metered | 0.925 kWh/CDD [D: 564.3 kWh / 610 CDD] | — | 🆕 First measured season |
-| Compressor draw per call-hour | 4.9 kW (spec file) | 2.725 ± 0.020 kW [D, n=90 days, R² 0.995] | — | ⚠️ Conflict, open |
+| Compressor draw per call-hour | 4.9 kW (spec file) | 2.725 ± 0.020 kW [D, n=90 days, R² 0.995] | — | ⚠️ Conflict, open (model confirmed 2026-10-15; RLA unread) |
 
 **Key Insights:**
-1. **Less runtime per degree-day on hot days, more on mild days, no detectable season difference.** The daily-fit slope fell 6.05 min/CDD (p ≈ 0.010, week-block bootstrap, B=5000). The season-ratio difference is not significant (p ≈ 0.29). Year and thermostat are fully confounded (one summer each), and 2F vent position, setpoints and system mode are unrecorded for 2025, so **no difference is attributed to the thermostat** yet.
-2. **The electricity drop is base load, not cooling.** Over identical meter-read windows (120 days each, 779 vs 769 CDD [D]), use fell from 3,141 to 2,526 kWh [M]. It was about 5.15 kWh/day lower in every window [D, n=4, sd 0.39], including the window that ran 49 CDD hotter in 2026. That is roughly 215 W of continuous load [I: 5.15 / 24; falsifier: a drop that varies with ΔCDD as more windows are added]. The cause is unknown; 2025 had no circuit metering.
-3. **The first measured compressor draw conflicts with the spec file.** The SEM fit gives 2.725 kW per call-hour against the 4.9 kW in `SYSTEM_SPECIFICATIONS.md`, on which the 1,694 kWh 2025 cooling baseline rests. Nothing is corrected until the condenser nameplate is read.
+1. **Less runtime per degree-day on hot days, more on mild days, no detectable season difference.** The daily-fit slope fell 6.05 min/CDD (p ≈ 0.010, week-block bootstrap, B=5000). The season-ratio difference is not significant (p ≈ 0.29). Year and thermostat are fully confounded (one summer each), and 2F vent position, setpoints and system mode are unrecorded for 2025, so **no difference is attributed to the thermostat** yet. *Update 2026-10-15 (Bill): all vents were 100% open in summer, so vent position is not a summer confound. The 2025 setpoints and the September 2025 system mode remain unrecorded.*
+2. **The electricity drop is base load, not cooling.** Over identical meter-read windows (120 days each, 779 vs 769 CDD [D]), use fell from 3,141 to 2,526 kWh [M]. It was about 5.15 kWh/day lower in every window [D, n=4, sd 0.39], including the window that ran 49 CDD hotter in 2026. That is roughly 215 W of continuous load [I: 5.15 / 24; falsifier: a drop that varies with ΔCDD as more windows are added]. The cause is unknown; 2025 had no circuit metering. *Update 2026-10-15 (Bill): the only changes were the DHW recirculation and the office computer, now shut down overnight with sleep modes enabled. How the drop splits between them is unmeasured.*
+3. **The first measured compressor draw conflicts with the spec file.** The SEM fit gives 2.725 kW per call-hour against the 4.9 kW in `SYSTEM_SPECIFICATIONS.md`, on which the 1,694 kWh 2025 cooling baseline rests. Nothing is corrected until the condenser nameplate is read. *Update 2026-10-15: model 4A7A4048L1000AA confirmed (Bill). RLA and voltage are unread, and the repo holds no record of a 4.9 kW measurement. Still open.*
 4. **Jul 4–5 grid outage:** mains dead from 21:00 Jul 4; SEM data resume at 08:00 Jul 5. Neither day has thermostat rows, so July runtime per CDD uses the 29 logged days.
 
 ### DHW Recirculation Optimization (January–September 2026)
@@ -269,9 +269,9 @@ See [UTILITY_PROGRAM_ANALYSIS.md](UTILITY_PROGRAM_ANALYSIS.md) for detailed anal
 - Added July–September 2026 data and monthly reports ([July](JULY_2026_UPDATE.md), [August](AUGUST_2026_UPDATE.md), [September](SEPTEMBER_2026_UPDATE.md))
 - Extended dataset to 57 months
 - First cooling-season thermostat comparison, 2025 Honeywell T6 Pro vs 2026 Ecobee, on BDL CDD65: daily-fit runtime slope −6.05 min/CDD (p ≈ 0.010); season-ratio difference not significant (p ≈ 0.29); not attributed to the thermostat (confounds open)
-- First measured compressor energy, 0.925 kWh/CDD Jul–Sep [D]; the 2.725 kW draw per call-hour conflicts with the 4.9 kW spec figure (open question)
+- First measured compressor energy, 0.925 kWh/CDD Jul–Sep [D]; the 2.725 kW draw per call-hour conflicts with the 4.9 kW spec figure (open question; condenser model confirmed 2026-10-15, RLA still unread)
 - Q3 electricity −17.7% kWh / −31.7% $ [D]; Q3 DHW −45.3% [D]; Jul 4–5 grid outage documented
-- Flagged, not corrected: therms stored as CCF in DHW cells (2024-10..2026-01), the 2025 cooling zone swap, and usage-month labels on 2025 bill rows
+- Flagged, not corrected: therms stored as CCF in DHW cells (2024-10..2026-01), the 2025 cooling zone swap, and usage-month labels on 2025 bill rows *(all three corrected 2026-10-15 on Bill's approval; see CHANGELOG [Unreleased], Fixed)*
 
 ### v1.6.0 (July 2026)
 - Added March–June 2026 data; H1 2026 vs 2025 half-year analysis

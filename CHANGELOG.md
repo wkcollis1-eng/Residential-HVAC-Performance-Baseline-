@@ -39,6 +39,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   site EUI 41.8 -> 41.7 kBTU/ft2-yr [D: (784 x 103.7 + 6,004 x 3.412) / 2,440]; DHW Jan-Sep
   156.63 -> 101.01 CCF, -35.5% [D: 101.01 / 156.63 - 1, both years in CCF].
 
+- **Bill's 2026-10-15 answers recorded** - `SEPTEMBER_2026_UPDATE.md`, `README.md`, `UPDATES.md`
+  and `SYSTEM_SPECIFICATIONS.md` carry dated notes; published text is not rewritten. Summer vents
+  were all 100% open, so vent position is not a summer confound. The only base-load changes were
+  the DHW recirculation and the office computer's overnight shutdown and sleep modes; how the drop
+  splits between them is unmeasured. No 2025 cycle data exists, so 2025 runtime per cycle is closed
+  as unmeasurable. The condenser is model 4A7A4048L1000AA. Still open: 2025 vs 2026 setpoints and
+  schedules, the September 2025 system mode, and RLA / voltage.
+
 ### Fixed
 
 - **DHW therms stored as CCF (2026-10-15, Bill: "fix old data")** - `monthly_dhw_navien.csv`
@@ -94,7 +102,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Compressor draw is 2.725 +/- 0.020 kW per call-hour [D, n=90 days, R2 0.995]. That conflicts
   with "Measured Power Draw: 4.9 kW" in `SYSTEM_SPECIFICATIONS.md`, and so with the 1,694 kWh
   2025 cooling baseline in `BASELINE_REPORT.md`. Both stay unchanged until the condenser
-  nameplate is read.
+  nameplate is read. *2026-10-15:* Bill supplied the model, 4A7A4048L1000AA (s/n 21014S4Y3F),
+  which matches the spec file, but no RLA or voltage. The repo has no measurement record for
+  4.9 kW (`BASELINE_REPORT.md` calls it "at rated conditions"); `SYSTEM_SPECIFICATIONS.md` now
+  carries a dated note. Still open.
 - `monthly_summary.csv` 2026-02 Heat_1F/Heat_2F (72 / 86 h) split furnace runtime (158.2 h), while
   the daily zone sums are 86.4 / 99.2 h [M, `daily_temperature.csv`]; other months hold zone hours.
   2026-03 Zone_Balance_1F_Pct reads 49.6 where 40 / 81.4 gives 49.1 [D]. Not changed.

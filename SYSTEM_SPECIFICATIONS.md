@@ -66,7 +66,7 @@
 - **Compressor Type:** Single-stage Duration™ scroll compressor
 - **Refrigerant:** R-410A
 - **Voltage:** 240V single-phase
-- **Measured Power Draw:** 4.9 kW steady-state
+- **Measured Power Draw:** 4.9 kW steady-state *(Correction 2026-10-15: the repo holds no measurement record for this figure. `BASELINE_REPORT.md` calls it the 4-ton unit "at rated conditions" and `CLAUDE_Monthly_Report.md` calls it nameplate. The first metered value is 2.725 ± 0.020 kW per call-hour [D, SEM AC circuit, n=90 days Jul–Sep 2026, R² 0.995], see `SEPTEMBER_2026_UPDATE.md`. Left unchanged until the nameplate RLA is read.)*
 
 **Installation Details:**
 - **Location:** North side of house (shaded)
