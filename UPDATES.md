@@ -125,6 +125,8 @@ On track for projected **$77/year** savings.
 | Feb 2026 | 158 | 1,089 | **8.8** | 45.6% |
 | **Total** | **720** | **4,541** | **9.5** | **49.1%** |
 
+*Correction 2026-10-15: the Oct and Nov 2025 1F shares are 30.3% and 37.9% [D: 10 / 33, 39 / 103], as in `JANUARY_2026_UPDATE.md` and the Resideo export. The 69.7% and 62.1% above came from swapped Heat_1F/Heat_2F cells in `monthly_summary.csv`, fixed that day. The Total row's 49.1% reproduces from neither set; on the corrected cells the season share is 43.2% [D: 311 / 720].*
+
 ### Gas Consumption Decomposition
 
 ```

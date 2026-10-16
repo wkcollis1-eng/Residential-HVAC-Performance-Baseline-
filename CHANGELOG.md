@@ -50,6 +50,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   2025 meter total 220.8 Thm = 212.9 CCF [D]. `validate_month.py` V-HVAC-6 now compares CCF with
   CCF: -44.2% / -48.4% / -44.2% for Jul / Aug / Sep 2026 [D], as the reports state.
 
+- **2025 zone swap (2026-10-15)** - `monthly_summary.csv` had Cool_1F/Cool_2F swapped for 2025-06..09
+  and Heat_1F/Heat_2F swapped for 2025-10..11; `monthly_hvac_runtime.csv` had the same months' row
+  pairs in 2F, 1F order. Both now match the Resideo export's monthly sheet floor by floor for all
+  twelve 2025 months, and its daily sums agree. Zone_Balance_1F_Pct Oct / Nov 2025: 69.7 / 62.1 ->
+  30.3 / 37.9 [D], the values `JANUARY_2026_UPDATE.md` already published. Totals and runtime/HDD are
+  unchanged. `UPDATES.md` carried 69.7 / 62.1 and gets a dated correction note.
+
 ### Known issues (flagged, not corrected - each needs Bill's approval and a separate commit)
 
 - **The 2026-10-10 baseline uses the therm figure as CCF.** 566.2 CCF = 787 - 220.8, and 220.8 is
@@ -63,7 +70,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   with "Measured Power Draw: 4.9 kW" in `SYSTEM_SPECIFICATIONS.md`, and so with the 1,694 kWh
   2025 cooling baseline in `BASELINE_REPORT.md`. Both stay unchanged until the condenser
   nameplate is read.
-- `monthly_summary.csv`: the 2025 Cool_1F_Hrs / Cool_2F_Hrs columns are swapped.
+- `monthly_summary.csv` 2026-02 Heat_1F/Heat_2F (72 / 86 h) split furnace runtime (158.2 h), while
+  the daily zone sums are 86.4 / 99.2 h [M, `daily_temperature.csv`]; other months hold zone hours.
+  2026-03 Zone_Balance_1F_Pct reads 49.6 where 40 / 81.4 gives 49.1 [D]. Not changed.
 - `monthly_electricity_eversource.csv` and `monthly_gas_scg.csv`: the unquoted rows through
   2025-12-01 are labelled by usage month, the quoted rows from 2026-02-01 by slot month, and
   there is no 2026-01-01 row. `monthly_summary.csv` is slot-month throughout.

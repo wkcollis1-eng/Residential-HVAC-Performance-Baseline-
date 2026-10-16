@@ -43,6 +43,10 @@ This directory contains raw operational data for the residential HVAC performanc
 - Does not include fan-only circulation time
 - Single-stage equipment: all runtime is at full capacity
 - 2025 total: Heating = 831 hours, Cooling = 346 hours
+- Two rows per month, 1st floor first, 2nd floor second. *Correction 2026-10-15:* the 2025-06..2025-11 pairs
+  were in 2F, 1F order (and `monthly_summary.csv` had the same months' Cool or Heat 1F/2F cells swapped).
+  Both now match the Resideo export floor by floor for all of 2025; cooling is 2F 336 h, 1F 4 h [M, Resideo
+  export] (the 346 above does not reproduce from it).
 
 **Data Quality:**
 
