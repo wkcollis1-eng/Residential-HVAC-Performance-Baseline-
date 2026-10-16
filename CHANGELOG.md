@@ -138,6 +138,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   FLAG -> PASS or WARN for Mar-May and PASS or WARN -> FLAG for Oct-Dec [M, validate_month output
   before and after]. HDD65 summed over each billing period from the ACIS daily series would remove
   the artifact. Not changed.
+  *Resolved 2026-10-15* (Bill: "6. yes"; see Changed). The period HDD comes from
+  `daily_temperature.csv`, which the script already reads, not the ACIS daily series, which is not
+  in the repo; that basis runs 1.2% above ACIS [D: 5,696 / 5,629 - 1, 2025].
 - HDD65 has three bases in `data/`. ACIS BDL publishes daily HDD65 rounded to whole degree-days,
   and its monthly sums are the reference the reports and the 5,629 baseline use.
   `daily_temperature.csv` holds 65 - (High + Low) / 2 unrounded from the same BDL highs and lows, so
@@ -149,8 +152,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   *Resolved 2026-10-15 for `monthly_summary.csv`* (Bill: "5. yes"; see Fixed). `daily_temperature.csv`
   keeps its unrounded convention (`data/README.md`). *Correction, same day:* its sums run 0-9.5 HDD a
   month above ACIS, not 0-8 [D, 21 months 2025-01..2026-09].
+- `validate_month.py` V-HVAC-2 divides total gas, DHW included, by HDD65 and compares that with
+  the 102.0 baseline, which is space heat only; `CLAUDE_Monthly_Report.md` §3B says never to use
+  total gas in that formula. DHW is 8.74-22.0 CCF in each heating month [M, 14 months,
+  `monthly_dhw_navien.csv`], so heating bills read high: 13 of 14 FLAG after the billing-period
+  change [M, validate_month output]. Subtracting `dhw_ccf`, as V-HVAC-3 does, would remove it.
+  V-HVAC-3's low shoulder-month UAs (2025-10 36, 2025-11 293 [M]) follow from its HDD65 basis
+  with no balance point, as the note at its constant says. Neither changed: outside "6. yes".
 
 ### Changed
+
+- **`validate_month.py` V-HVAC-2/3 use billing-period HDD65 (2026-10-15, Bill: "6. yes")** - each
+  bill is divided by HDD65 over the days it covers, from the new `data/gas_billing_periods.csv`:
+  50 CNG bills 2021-12..2026-01 from the Resideo workbook, CCF equal to `monthly_gas_scg.csv` in
+  50 of 50 [M], and 2026-07..09 from HA statement dates. The 100-HDD gate for V-HVAC-2/3 uses the
+  same period HDD. A bill with no recorded period, or whose days `daily_temperature.csv` does not
+  cover, falls back to calendar HDD65 with a WARN naming the fix (R8): 2025-01 (starts 2024-12-13)
+  and 2026-02..06 (dates not supplied). All-months PASS 127 -> 123, WARN 14 -> 22, FLAG 27 -> 29,
+  HALT 0 -> 0 [M, validate_month output before and after]; 6 of the 8 added WARNs are those
+  fallbacks [M]. Verdict changes: V-HVAC-2 2025-06 PASS -> FLAG (its bill, 05-15..06-13, carries
+  133 HDD and now runs), 2025-11 FLAG -> PASS, 2025-12 PASS -> FLAG; V-HVAC-3 2025-02 FLAG -> PASS,
+  2025-03 PASS -> WARN, 2025-04 WARN -> FLAG, 2025-05 and 2025-06 PASS -> FLAG, 2025-12 FLAG ->
+  WARN, 2026-01 PASS -> WARN. Nine heating-bill period sums match an independent awk sum; a deleted
+  daily row fired the WARN, and the clean tree stays silent. DHW stays the calendar month.
+  V-HVAC-2 still FLAGs 13 of 14 heating bills [M]: see Known issues.
 
 - **Baselines rebased with the 2025 DHW in CCF (2026-10-15, Bill: "4. yes rebase")** - heating
   intensity 100.6 -> 102.0 CCF/1k HDD65 [D: 574.1 / 5.629] and UA 585 -> 593 BTU/hr-°F [D,

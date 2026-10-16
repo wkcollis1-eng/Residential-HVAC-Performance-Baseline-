@@ -19,12 +19,16 @@ Checks implemented (V-HVAC-1 through V-HVAC-8):
   V-HVAC-6  DHW CCF ≤ prior-year same month +5% (savings must hold)
   V-HVAC-7  daily_temperature row count = days-in-month (no partial months)
   V-HVAC-8  monthly_hvac_runtime exactly 2 rows per month
+
+V-HVAC-2/3 divide each gas bill by HDD65 summed over the bill's own days
+(data/gas_billing_periods.csv), not the calendar month; a bill with no usable
+period falls back to calendar HDD65 with a WARN.
 """
 
 import csv
 import sys
 import math
-from datetime import datetime
+from datetime import datetime, timedelta
 from collections import defaultdict
 from pathlib import Path
 
@@ -100,8 +104,16 @@ for row in load_csv("data/monthly_gas_scg.csv"):
         ccf_key = row.get("ccf") or row.get("Gas_CCF")
         gas_by_month[month_key] = float(ccf_key) if ccf_key else 0.0
 
+# Gas billing periods (month, bill_date, days): a bill covers (bill_date - days, bill_date].
+# 2026-10-15: one mid-month-to-mid-month bill over calendar HDD65 followed the label, not the house.
+bill_period = {}
+for row in load_csv("data/gas_billing_periods.csv"):
+    end = datetime.strptime(row["bill_date"], "%Y-%m-%d")
+    bill_period[row["month"]] = (end - timedelta(days=int(row["days"]) - 1), end)
+
 # HDD per month from daily
 monthly_hdd = {}
+daily_hdd = {}
 daily_row_count = defaultdict(int)
 for row in load_csv("data/daily_temperature.csv"):
     try:
@@ -110,6 +122,7 @@ for row in load_csv("data/daily_temperature.csv"):
         if mk not in monthly_hdd:
             monthly_hdd[mk] = 0.0
         monthly_hdd[mk] += float(row["HDD65"]) if row["HDD65"] else 0.0
+        daily_hdd[d] = float(row["HDD65"]) if row["HDD65"] else 0.0
         daily_row_count[mk] += 1
     except Exception:
         pass
@@ -149,6 +162,34 @@ for mk in validate_months:
     dhw_ccf = dhw.get(mk, {}).get("ccf", None)
     gas_ccf = gas_by_month.get(mk, None)
     is_heating = hdd is not None and hdd > HDD_THRESH_HEATING
+
+    # V-HVAC-2/3 HDD: the bill's own days when recorded and fully covered by daily rows, else calendar.
+    bill_hdd, basis, bill_heating = hdd, "calendar HDD65", is_heating
+    if gas_ccf is not None:
+        period = bill_period.get(mk)
+        if period is None:
+            why = "no row in data/gas_billing_periods.csv: add the bill's date and days"
+        else:
+            days = [
+                period[0] + timedelta(days=n)
+                for n in range((period[1] - period[0]).days + 1)
+            ]
+            gap = [d for d in days if d not in daily_hdd]
+            why = (
+                f"daily_temperature.csv lacks {len(gap)} of its {len(days)} days from {min(gap):%Y-%m-%d}"
+                if gap
+                else None
+            )
+        if why:
+            result(
+                "WARN",
+                "V-HVAC-2/3",
+                f"No usable billing period ({why}) — V-HVAC-2/3 use calendar HDD65",
+            )
+        else:
+            bill_hdd = sum(daily_hdd[d] for d in days)
+            basis = f"bill {period[0]:%m-%d}..{period[1]:%m-%d} HDD65={bill_hdd:.0f}"
+            bill_heating = bill_hdd > HDD_THRESH_HEATING
 
     # V-HVAC-8: Exactly 2 rows per month in runtime file
     if len(rt_rows) == 2:
@@ -227,51 +268,56 @@ for mk in validate_months:
         result("WARN", "V-HVAC-1", "Missing HDD or runtime data — cannot check")
 
     # V-HVAC-2: Heating efficiency vs BASELINE_EFFICIENCY
-    if is_heating and gas_ccf and hdd and hdd > 0:
-        eff = gas_ccf / (hdd / 1000)
+    if bill_heating and gas_ccf and bill_hdd and bill_hdd > 0:
+        eff = gas_ccf / (bill_hdd / 1000)
         delta_pct = (eff - BASELINE_EFFICIENCY) / BASELINE_EFFICIENCY * 100
         if abs(delta_pct) <= 15:
             result(
                 "PASS",
                 "V-HVAC-2",
-                f"Heating intensity={eff:.1f} CCF/1kHDD ({delta_pct:+.1f}% vs {BASELINE_EFFICIENCY} baseline)",
+                f"Heating intensity={eff:.1f} CCF/1kHDD ({delta_pct:+.1f}% vs {BASELINE_EFFICIENCY} baseline; {basis})",
             )
         else:
             result(
                 "FLAG",
                 "V-HVAC-2",
-                f"Heating intensity={eff:.1f} CCF/1kHDD ({delta_pct:+.1f}% vs baseline) — confirm billing alignment artifact",
+                f"Heating intensity={eff:.1f} CCF/1kHDD ({delta_pct:+.1f}% vs baseline; {basis}) — confirm billing alignment artifact",
             )
-    elif not is_heating:
-        result("PASS", "V-HVAC-2", "Non-heating month — efficiency check skipped")
+    elif not bill_heating:
+        result(
+            "PASS",
+            "V-HVAC-2",
+            f"Non-heating month — efficiency check skipped ({basis})",
+        )
     else:
         result("WARN", "V-HVAC-2", "Missing gas_ccf or HDD — cannot check efficiency")
 
     # V-HVAC-3: Space heat CCF vs HDD (UA proxy)
-    if is_heating and gas_ccf and dhw_ccf and hdd and hdd > 0:
+    # DHW stays the calendar month (Navien read on the 1st); only the bill and HDD share a period.
+    if bill_heating and gas_ccf and dhw_ccf and bill_hdd and bill_hdd > 0:
         space_heat = gas_ccf - dhw_ccf
-        implied_ua = (space_heat * GAS_BTU_PER_CCF * AFUE) / (hdd * 24)
+        implied_ua = (space_heat * GAS_BTU_PER_CCF * AFUE) / (bill_hdd * 24)
         delta_pct = (implied_ua - BASELINE_UA) / BASELINE_UA * 100
         if abs(delta_pct) <= 5:
             result(
                 "PASS",
                 "V-HVAC-3",
-                f"Implied UA={implied_ua:.0f} BTU/hr-°F ({delta_pct:+.1f}% vs {BASELINE_UA} baseline)",
+                f"Implied UA={implied_ua:.0f} BTU/hr-°F ({delta_pct:+.1f}% vs {BASELINE_UA} baseline; {basis})",
             )
         elif abs(delta_pct) <= 15:
             result(
                 "WARN",
                 "V-HVAC-3",
-                f"Implied UA={implied_ua:.0f} ({delta_pct:+.1f}%) — within expected billing variability",
+                f"Implied UA={implied_ua:.0f} ({delta_pct:+.1f}%; {basis}) — within expected billing variability",
             )
         else:
             result(
                 "FLAG",
                 "V-HVAC-3",
-                f"Implied UA={implied_ua:.0f} ({delta_pct:+.1f}% vs {BASELINE_UA}) — investigate if sustained",
+                f"Implied UA={implied_ua:.0f} ({delta_pct:+.1f}% vs {BASELINE_UA}; {basis}) — investigate if sustained",
             )
-    elif not is_heating:
-        result("PASS", "V-HVAC-3", "Non-heating month — UA check skipped")
+    elif not bill_heating:
+        result("PASS", "V-HVAC-3", f"Non-heating month — UA check skipped ({basis})")
     else:
         result("WARN", "V-HVAC-3", "Missing data — cannot compute UA proxy")
 

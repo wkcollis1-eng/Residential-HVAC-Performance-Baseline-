@@ -242,6 +242,38 @@ from 2026-01-23; source not recorded for 2026-01-01..01-22 and 2026-01-31..02-05
 
 ---
 
+### 6. `gas_billing_periods.csv`
+
+**Description:** The days each gas bill in `monthly_gas_scg.csv` covers, so that
+`validate_month.py` V-HVAC-2/3 divide a bill by HDD65 over its own days (added 2026-10-15)
+
+**Rows:** 53 (50 CNG bills 2021-12..2026-01, then 2026-07..2026-09)
+**Source:** CNG bills in the 2025 Resideo workbook, 'Monthly Utilities' sheet (Bill Date, Billing
+Period Days); 2026-07..09 from Home Assistant `input_datetime.gas_bill_date` history
+
+**Columns:**
+| Column | Type | Unit | Description |
+|--------|------|------|-------------|
+| `month` | date | YYYY-MM-01 | Slot: the same key as `monthly_gas_scg.csv` (first of the bill-date month) |
+| `bill_date` | date | YYYY-MM-DD | Bill date, taken as the last day the bill covers |
+| `days` | integer | days | Days covered: the bill covers (bill_date - days, bill_date] |
+| `source` | text | - | Where the row came from |
+
+**Notes:**
+
+- Every Resideo row's CCF equals `monthly_gas_scg.csv` for the same slot, 50 of 50 [M]. Adjacent
+  periods meet within -4..+3 days (32 of 52 boundaries non-zero) [M], so an edge is good to a few days.
+- The 2026 rows carry the HA statement date, and `days` is the gap to the prior statement. The
+  2026-09 meter was read 2026-09-11, four days before that statement [M]. All three are summer
+  bills under 100 HDD, so no verdict depends on them.
+- Not recorded: 2026-02..2026-06 (statement dates and days not yet supplied). `validate_month.py`
+  WARNs on each and falls back to calendar HDD65. The 2025-01 bill starts 2024-12-13, before
+  `daily_temperature.csv` begins, so it WARNs the same way.
+- HDD65 is summed from `daily_temperature.csv` (unrounded), not ACIS: the window changed, not the
+  basis. DHW in V-HVAC-3 stays the calendar month (Navien read on the 1st).
+
+---
+
 ## Data Quality and Validation
 
 ### Validation Methods
