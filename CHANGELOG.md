@@ -9,6 +9,52 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **July-September 2026 monthly reports (2026-10-15)** - `JULY_2026_UPDATE.md` (1.8.2),
+  `AUGUST_2026_UPDATE.md` (1.8.3) and `SEPTEMBER_2026_UPDATE.md` (1.9.0). Degree days are ACIS
+  Bradley (BDL) HDD65/CDD65 throughout; the HA proxy is secondary. September adds the 2025
+  Honeywell T6 Pro vs 2026 Ecobee cooling-season review (June-September): daily-fit runtime
+  slope 25.96 -> 19.91 min/CDD, difference -6.05, 95% CI [-11.06, -1.37], p ~ 0.010 [D,
+  week-block bootstrap, B=5000]; season ratio 25.54 -> 22.52 min/CDD, p ~ 0.29, not significant
+  [D]. Not attributed to the thermostat: year and controller are confounded, and the 2025
+  setpoints, system mode and 2F vent position are unrecorded. README 1.7.0 and UPDATES.md carry
+  the summaries.
+
+- **Data rows for slots 2026-07..09** - appended only; CRLF; prior bytes verified unchanged.
+  - `monthly_gas_scg.csv` 13 / 8 / 8 CCF; `monthly_electricity_eversource.csv` 966 / 724 /
+    474 kWh ($210.69 / $175.22 / $118.05); `monthly_dhw_navien.csv` 8.39 / 5.59 / 8.39 CCF [M,
+    HA archives].
+  - `monthly_hvac_runtime.csv` cooling 121.6 / 70.3 / 20.8 h, from the HA monthly accumulator
+    (`hvac_monthly.csv`, the source of truth). July's 121.6 h includes Jul 4-5 (grid outage),
+    which have no daily rows; the reports' July runtime per CDD uses the 29 logged days
+    (113.61 h / 256 CDD [D]).
+  - `monthly_summary.csv` three rows. The HDD65 column stays the HA proxy for continuity;
+    Space_Heat = Gas - DHW even when negative (September -0.39 CCF, as in the 2025-09 row).
+
+- **First measured cooling energy** - SEM AC circuit, compressor 332.8 / 180.9 / 50.6 kWh
+  Jul / Aug / Sep [M]; 0.925 kWh/CDD over Jul-Sep [D: 564.3 / 610].
+
+- **Metrics** - 12-month electricity 6,468 -> 6,004 kWh (Oct 2025-Sep 2026 bills [D]); 12-month
+  site EUI 41.8 -> 41.7 kBTU/ft2-yr [D: (784 x 103.7 + 6,004 x 3.412) / 2,440]; DHW Jan-Sep
+  156.63 -> 101.01 CCF, -35.5% [D: 101.01 / 156.63 - 1, both years in CCF].
+
+### Known issues (flagged, not corrected - each needs Bill's approval and a separate commit)
+
+- Compressor draw is 2.725 +/- 0.020 kW per call-hour [D, n=90 days, R2 0.995]. That conflicts
+  with "Measured Power Draw: 4.9 kW" in `SYSTEM_SPECIFICATIONS.md`, and so with the 1,694 kWh
+  2025 cooling baseline in `BASELINE_REPORT.md`. Both stay unchanged until the condenser
+  nameplate is read.
+- `monthly_summary.csv`: DHW cells 2024-10..2026-01 hold therms, not CCF; the 2025
+  Cool_1F_Hrs / Cool_2F_Hrs columns are swapped.
+- `monthly_electricity_eversource.csv` and `monthly_gas_scg.csv`: the unquoted rows through
+  2025-12-01 are labelled by usage month, the quoted rows from 2026-02-01 by slot month, and
+  there is no 2026-01-01 row. `monthly_summary.csv` is slot-month throughout.
+- `Scripts/validate_month.py` V-HVAC-6 uses unconverted 2025 therms. It prints -46.2% / -50.2% /
+  -46.2% for Jul / Aug / Sep; in consistent CCF the figures are -44.2% / -48.4% / -44.2% [D].
+- V-HVAC-7 HALTs for 2026-07..09 (and every month since March): `data/daily_temperature.csv`
+  ends 2026-02-28.
+
 ### Changed
 
 - **Baselines rebased to ACIS Bradley 2025 (2026-10-10)** - Heating intensity 90.3 -> 100.6 CCF/1k HDD65,

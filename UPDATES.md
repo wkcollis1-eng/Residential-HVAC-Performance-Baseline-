@@ -7,6 +7,78 @@ Updates are listed newest-first. Each month appended to the top of this file.
 
 ---
 
+## September 2026 Update
+
+**Version:** 1.9.0 | **Date:** October 15, 2026 | **Full report:** [SEPTEMBER_2026_UPDATE.md](SEPTEMBER_2026_UPDATE.md)
+
+### Executive Summary
+
+September 2026 was a shoulder month (62 CDD / 85 HDD, BDL [M]) with no furnace runtime in either year. The report adds the first full cooling-season comparison of the Honeywell T6 Pro (2025) against the Ecobee (2026), on BDL CDD65.
+
+| Metric | Sep 2025 | Sep 2026 | YoY Change | Interpretation |
+|--------|----------|----------|------------|----------------|
+| Total Gas | 11 CCF / $41.38 | 8 CCF / $37.02 | −3 CCF [D] | 2026 bill 5 days longer |
+| DHW (Navien) | 15.03 CCF | 8.39 CCF | **−44.2%** [D] | Recirc 51 → 17 h |
+| Electricity | 619 kWh / $173.58 | 474 kWh / $118.05 | −23.4% kWh / −32.0% $ [D] | Identical bill window |
+| CDD65 / HDD65 (BDL) | 66 / 39 | 62 / 85 | −4 / +46 [D] | Cooler month |
+| Cooling Runtime | 5.58 h (3 days) | 20.82 h (16 days, 68 cycles) | +15.24 h [D] | Mild-day running |
+| AC Compressor (SEM) | not metered | 50.6 kWh, 0.816 kWh/CDD [D] | — | |
+
+**Season review (June–September, BDL CDD65):**
+
+1. Daily-fit runtime slope 25.96 → 19.91 min/CDD: −6.05 min/CDD, 95% CI [−11.06, −1.37], p ≈ 0.010 [D, week-block bootstrap, B=5000]. Less runtime per degree-day on hot days.
+2. Season ratio 25.54 → 22.52 min/CDD: −3.02, 95% CI [−7.95, +2.72], p ≈ 0.29 [D]. Not significant, because the Ecobee ran more on mild days.
+3. Compressor energy 0.925 kWh/CDD over Jul–Sep [D: 564.3 / 610], at 2.725 kW per call-hour [D, n=90 days]. This conflicts with the 4.9 kW spec figure; the conflict is open.
+4. Whole-house electricity over identical 120-day bill windows fell from 3,141 to 2,526 kWh [M] at 779 vs 769 CDD. It was about 5.15 kWh/day lower in every window [D, n=4, sd 0.39]: a base-load change, not a cooling one.
+5. Year and thermostat are fully confounded. No difference is attributed to the thermostat until the 2025 setpoints, system mode and 2F vent position are known.
+
+---
+
+## August 2026 Update
+
+**Version:** 1.8.3 | **Date:** October 15, 2026 | **Full report:** [AUGUST_2026_UPDATE.md](AUGUST_2026_UPDATE.md)
+
+### Executive Summary
+
+August 2026 was hotter than August 2025 (263 vs 170 CDD, BDL [M]) and still used fewer minutes of cooling per CDD. The Aprilaire E080 dehumidifier replaced the Santa Fe Classic from 08-05.
+
+| Metric | Aug 2025 | Aug 2026 | YoY Change | Interpretation |
+|--------|----------|----------|------------|----------------|
+| Total Gas | 16 CCF / $48.43 | 8 CCF / $36.27 | −8 CCF [D] | DHW-led; 2025 bill 2 days longer |
+| DHW (Navien) | 10.83 CCF | 5.59 CCF | **−48.4%** [D] | Recirc 38 → 12 h |
+| Electricity | 880 kWh / $248.31 | 724 kWh / $175.22 | −17.7% kWh / −29.4% $ [D] | Identical bill window |
+| CDD65 (BDL) | 170 | 263 | +93 CDD [D] | Hotter |
+| Cooling Runtime | 62.07 h | 70.41 h (173 cycles) | +8.34 h [D] | |
+| Cooling Intensity (BDL) | 21.9 min/CDD | 16.1 min/CDD | −5.8 min/CDD [D] | Single month; see season review |
+| AC Compressor (SEM) | not metered | 180.9 kWh, 0.688 kWh/CDD [D] | — | |
+| Dehumidifier (Kasa) | — | 28.2 kWh [M] | — | E080 from 08-05 |
+
+**Key Insight:** runtime per CDD fell from July to August in both years (28.5 → 21.9 min/CDD in 2025, 26.6 → 16.1 in 2026 [D]), so a single month cannot separate the controller from the season.
+
+---
+
+## July 2026 Update
+
+**Version:** 1.8.2 | **Date:** October 15, 2026 | **Full report:** [JULY_2026_UPDATE.md](JULY_2026_UPDATE.md)
+
+### Executive Summary
+
+July 2026 was the first full month with the SEM-Meter metering the AC circuit, and was milder than July 2025 (285 vs 360 CDD, BDL [M]). A grid outage took the mains down from 21:00 Jul 4; SEM data resume at 08:00 Jul 5. Neither day has thermostat rows.
+
+| Metric | Jul 2025 | Jul 2026 | YoY Change | Interpretation |
+|--------|----------|----------|------------|----------------|
+| Total Gas | 17 CCF / $50.01 | 13 CCF / $44.30 | −4 CCF [D] | DHW-led |
+| DHW (Navien) | 15.03 CCF | 8.39 CCF | **−44.2%** [D] | Recirc 54 → 17 h |
+| Electricity | 1,129 kWh / $315.86 | 966 kWh / $210.69 | −14.4% kWh / −33.3% $ [D] | Identical bill window |
+| CDD65 (BDL) | 360 | 285 | −75 CDD [D] | Milder |
+| Cooling Runtime | 171.20 h | 113.61 h (29 days, 236 cycles) | not comparable as totals | 2 outage days missing |
+| Cooling Intensity (BDL) | 28.5 min/CDD | 26.6 min/CDD (29 days) | −1.9 min/CDD [D] | Single month |
+| AC Compressor (SEM) | not metered | 332.8 kWh, 1.168 kWh/CDD [D] | — | 2.62 kW per call-hour [D] |
+
+*March–June 2026 have individual reports (`MARCH_2026_UPDATE.md` … `JUNE_2026_UPDATE.md`) but were never added to this file; that gap is left open.*
+
+---
+
 ## February 2026 Update
 
 **Version:** 1.4.0 | **Date:** March 1, 2026

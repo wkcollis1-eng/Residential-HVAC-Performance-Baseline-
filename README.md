@@ -3,7 +3,7 @@
 **A Five-Year Longitudinal Study of High-Efficiency Residential Energy Systems in Climate Zone 5A**
 
 [![DOI](https://zenodo.org/badge/1132414420.svg)](https://doi.org/10.5281/zenodo.18232616)
-[![Version](https://img.shields.io/badge/Version-1.6.0-blue.svg)](https://github.com/wkcollis1-eng/Residential-HVAC-Performance-Baseline-)
+[![Version](https://img.shields.io/badge/Version-1.7.0-blue.svg)](https://github.com/wkcollis1-eng/Residential-HVAC-Performance-Baseline-)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2026.7.1-41BDF5?logo=homeassistant&logoColor=white)](https://www.home-assistant.io/)
 [![Climate Zone](https://img.shields.io/badge/IECC%20Climate%20Zone-5A-green.svg)](https://basc.pnnl.gov/images/iecc-climate-zone-map)
@@ -12,50 +12,62 @@
 
 ## Overview
 
-This repository documents a comprehensive energy performance baseline for a 2,440 sq. ft. high-efficiency residential structure in Central Connecticut (Climate Zone 5A). The analysis integrates **54 months** of verified utility data (January 2022 - June 2026), high-resolution HVAC runtime telemetry, and independent domestic hot water monitoring to establish diagnostic performance thresholds.
+This repository documents a comprehensive energy performance baseline for a 2,440 sq. ft. high-efficiency residential structure in Central Connecticut (Climate Zone 5A). The analysis integrates **57 months** of verified utility data (January 2022 - September 2026), high-resolution HVAC runtime telemetry, and independent domestic hot water monitoring to establish diagnostic performance thresholds.
 
 <!-- METRICS_START -->
-**Key Findings (Updated June 2026):**
-- **Site EUI (12-mo rolling):** 41.8 kBTU/ft²-yr (Jul 2025–Jun 2026; ~33% better than regional average)
-- **Baseline Site EUI:** 41.7 kBTU/ft²-yr — current +0.2% (back to baseline as the cold winter rolls off)
+**Key Findings (Updated September 2026):**
+- **Site EUI (12-mo rolling):** 41.7 kBTU/ft²-yr (Oct 2025–Sep 2026 bills [D: (784 CCF × 103.7 + 6,004 kWh × 3.412) / 2,440]; ~31% below the 60.6 regional average [D: 1 − 41.72 / 60.6])
+- **Baseline Site EUI:** 41.7 kBTU/ft²-yr — current +0.05% [D: 41.72 / 41.7 − 1], at baseline
 - **Heating Intensity:** 100.6 CCF/1k HDD (annual baseline, corrected with Navien DHW metering; rebased 2026-10-10 to ACIS Bradley 2025 HDD65 5,629, was 90.3 on a NOAA 6,270)
 - **Envelope UA:** 585 BTU/hr-°F (rebased 2026-10-10 to ACIS Bradley 2025 HDD59; 4-19% below the 2021 IECC code-minimum of 610-725 [D]; was 480 and 21-34% below, on NOAA HDD59; rolling recompute pending daily temps past Feb 2026)
-- **12-mo Electricity:** 6,468 kWh (65% below average for home size)
-- **DHW Optimization:** −33.9% H1 2026 YoY from recirculation schedule change (~$68 saved in H1, ahead of the ~$77/year projection)
+- **12-mo Electricity:** 6,004 kWh (Oct 2025–Sep 2026 bills [D]; was 6,468 through June)
+- **DHW Optimization:** −35.5% Jan–Sep 2026 YoY [D: 101.01 / 156.63 CCF − 1, both years in CCF] from the recirculation schedule change (~$102 saved in nine months [D: 55.62 CCF × $1.8332], past the ~$77/year projection)
 <!-- METRICS_END -->
 
 <!-- HIGHLIGHTS_START -->
-## 🆕 H1 2026 Update Highlights (January–June)
+## 🆕 Summer 2026 Update Highlights (July–September) + Cooling-Season Thermostat Review
 
-The first half of 2026 ran **12% colder** than 2025 (3,782 vs 3,371 HDD, BDL), yet total gas held essentially flat and the electric bill fell 22% — the DHW recirculation program offsetting the weather-driven heating increase.
+Q3 2026 carried slightly more cooling load than Q3 2025 (610 vs 596 CDD65, BDL [M]). Electricity still fell 17.7% in kWh and 31.7% in dollars [D], and gas fell on DHW alone. The September report adds the first full cooling-season comparison of the Honeywell T6 Pro (2025) against the Ecobee (2026), normalised on BDL CDD65: [SEPTEMBER_2026_UPDATE.md](SEPTEMBER_2026_UPDATE.md).
 
-| Metric | H1 2025 | H1 2026 | YoY Change | Status |
+| Metric | Q3 2025 | Q3 2026 | YoY Change | Status |
 |--------|---------|---------|------------|--------|
-| Weather Severity (HDD65, BDL) | 3,371 | 3,782 | +12.2% | ⚠️ Colder |
-| Total Gas | 557 CCF | 569 CCF | +2.2% | ✅ Flat on colder weather |
-| Gas Cost | $951.68 | $978.69 | +2.8% | ✅ Flat (rate +0.7%) |
-| Space Heating | 437 CCF | 483 CCF | +10.5% | ✅ Tracks weather (< HDD) |
-| DHW (Navien) | 120.0 CCF | 79.3 CCF | **−33.9%** | ✅ Recirc program |
-| Heating Intensity (net, BDL) | 129.6 | 127.7 CCF/1k HDD | −1.5% | ✅ Held |
-| Electricity | 2,656 kWh | 2,394 kWh | −9.9% | ✅ Lower use |
-| Electric Cost | $814.69 | $633.75 | **−22.2%** | ✅ Use + −14% rate |
+| Cooling Load (CDD65, BDL) | 596 | 610 | +2.3% [D] | ➖ Similar |
+| Heating Load (HDD65, BDL) | 58 | 87 | +29 HDD [D] | ➖ Cooler September |
+| Total Gas | 44 CCF | 29 CCF | −34.1% [D] | ✅ DHW-driven |
+| Gas Cost | $139.82 | $117.59 | −15.9% [D] | ✅ Lower |
+| DHW (Navien) | 40.89 CCF | 22.37 CCF | **−45.3%** [D] | ✅ Recirc program |
+| Electricity | 2,628 kWh | 2,164 kWh | −17.7% [D] | ✅ Lower use |
+| Electric Cost | $737.75 | $503.96 | **−31.7%** [D] | ✅ Use + rate (−17.0% $/kWh [D]) |
+| Cooling Runtime | 238.85 h | 204.84 h (90 of 92 days) | not comparable | ⚠️ Jul 4–5 outage |
+
+Bills are slot months (July–September); degree days are calendar months.
+
+### Cooling-Season Thermostat Review (June–September, BDL CDD65)
+
+| Metric | 2025 Honeywell T6 Pro | 2026 Ecobee | Difference | Status |
+|--------|-----------------------|-------------|------------|--------|
+| Cooling Load (CDD65, BDL) | 794 | 800 (771 on the 120 logged days) | +6 CDD [D] | ➖ Matched |
+| Runtime per CDD, daily-fit slope | 25.96 min/CDD | 19.91 min/CDD | −6.05 min/CDD (95% CI −11.06 to −1.37, p ≈ 0.010) [D] | ✅ Less on hot days |
+| Runtime per CDD, season ratio | 25.54 min/CDD | 22.52 min/CDD | −3.02 min/CDD (95% CI −7.95 to +2.72, p ≈ 0.29) [D] | ➖ Not significant |
+| Mean runtime on mild days (1–4 CDD) | 0.94 h/day (n=29 days) | 1.45 h/day (n=24 days) | +0.51 h/day [D] | ⚠️ More on mild days |
+| Runtime per cycle | not recorded | 26.2 / 28.9 / 24.4 / 18.4 min (Jun–Sep) [D] | — | 🆕 Ecobee only |
+| Compressor energy per CDD (Jul–Sep) | not metered | 0.925 kWh/CDD [D: 564.3 kWh / 610 CDD] | — | 🆕 First measured season |
+| Compressor draw per call-hour | 4.9 kW (spec file) | 2.725 ± 0.020 kW [D, n=90 days, R² 0.995] | — | ⚠️ Conflict, open |
 
 **Key Insights:**
-1. **Gas flat on a 12% colder half:** space heating rose +10.5% (weather), but −34% DHW nearly offset it, so total gas moved just +2.2%.
-2. **Heating efficiency held:** net intensity −1.5% (129.6 → 127.7 CCF/1k HDD); runtime rose +6.7%, below the +12.2% HDD.
-3. **Electric bill down 22%:** −9.9% usage compounded with a −13.7% effective-rate decline; gas had no such rate tailwind (+0.7%/CCF).
-4. **Vacation included:** each half-year carries the household's recurring 1–2 week winter vacation (Feb 2025 / Mar 2026), so the aggregate is apples-to-apples.
+1. **Less runtime per degree-day on hot days, more on mild days, no detectable season difference.** The daily-fit slope fell 6.05 min/CDD (p ≈ 0.010, week-block bootstrap, B=5000). The season-ratio difference is not significant (p ≈ 0.29). Year and thermostat are fully confounded (one summer each), and 2F vent position, setpoints and system mode are unrecorded for 2025, so **no difference is attributed to the thermostat** yet.
+2. **The electricity drop is base load, not cooling.** Over identical meter-read windows (120 days each, 779 vs 769 CDD [D]), use fell from 3,141 to 2,526 kWh [M]. It was about 5.15 kWh/day lower in every window [D, n=4, sd 0.39], including the window that ran 49 CDD hotter in 2026. That is roughly 215 W of continuous load [I: 5.15 / 24; falsifier: a drop that varies with ΔCDD as more windows are added]. The cause is unknown; 2025 had no circuit metering.
+3. **The first measured compressor draw conflicts with the spec file.** The SEM fit gives 2.725 kW per call-hour against the 4.9 kW in `SYSTEM_SPECIFICATIONS.md`, on which the 1,694 kWh 2025 cooling baseline rests. Nothing is corrected until the condenser nameplate is read.
+4. **Jul 4–5 grid outage:** mains dead from 21:00 Jul 4; SEM data resume at 08:00 Jul 5. Neither day has thermostat rows, so July runtime per CDD uses the 29 logged days.
 
-### DHW Recirculation Optimization (H1 2026 Results)
+### DHW Recirculation Optimization (January–September 2026)
 
-The recirculation-schedule reduction (recirc hours cut to ~30 h/mo by June; ~15 hr/day schedule, off 9 PM–6 AM) is the dominant efficiency lever of the half-year — and the reason total gas stayed flat on a much colder heating season.
+- **Jan–Sep DHW:** 156.63 → 101.01 CCF (**−35.5% YoY** [D], both years in CCF): 55.62 CCF saved, ~$102 at the 2026 YTD gas rate of $1.8332/CCF [D: $1,096.28 / 598 CCF]
+- **Q3 alone:** 40.89 → 22.37 CCF (−45.3% [D]); recirculation 143 → 46 h [M]
+- **Recirc hours Jan–Sep:** 487 → 275 h [M] (−43.5% [D])
+- **Unit correction:** the H1 figure published in v1.6.0 (−33.9%, 120.0 → 79.3 CCF) summed raw `monthly_summary.csv` cells, several of which hold therms (2024-10 … 2026-01). In consistent CCF, H1 was 115.73 → 78.64 CCF (−32.0% [D]). The historic cells stay uncorrected pending Bill's approval.
 
-- **H1 DHW savings:** 40.7 CCF (120.0 → 79.3 CCF, **−33.9% YoY**) — ~$68 in gas cost (−30.3%), already tracking above the original ~$77/year projection
-- **Recirc hours:** −33% H1 (344 → 229 h)
-- **Share of gas story:** DHW accounts for ~77% of the offset against the +46 CCF weather-driven heating increase
-- **Comfort:** no issues reported
-
-See [UPDATES.md](UPDATES.md) for complete monthly analysis.
+See [UPDATES.md](UPDATES.md) for complete monthly analysis, and the [July](JULY_2026_UPDATE.md), [August](AUGUST_2026_UPDATE.md) and [September](SEPTEMBER_2026_UPDATE.md) reports.
 <!-- HIGHLIGHTS_END -->
 
 ## 🏗️ System Architecture
@@ -114,12 +126,14 @@ flowchart TB
 
 | Metric | 2022 | 2023 | 2024 | 2025 | 2026 YTD |
 |--------|------|------|------|------|----------|
-| Annual Gas (CCF) | 815 | 764 | 694 | 787 | 569* |
-| Annual Elec (kWh) | 6,824 | 6,591 | 6,543 | 6,730 | 2,394* |
-| Heating Intensity | 89.8 | 90.8 | 80.3 | 95.5 | 127.7* |
+| Annual Gas (CCF) | 815 | 764 | 694 | 787 | 598* |
+| Annual Elec (kWh) | 6,824 | 6,591 | 6,543 | 6,730 | 4,558* |
+| Heating Intensity | 89.8 | 90.8 | 80.3 | 95.5 | 127.7† |
 | Site EUI | 42.1 | 40.8 | 38.2 | 41.7 | — |
 
-*Jan-Jun 2026 only (partial year; H1 intensity is winter-weighted and not comparable to the annual figures)
+*Jan-Sep 2026 only (partial year)
+
+†Jan-Jun 2026 only (no furnace runtime Jul-Sep; H1 intensity is winter-weighted and not comparable to the annual figures)
 
 ### Statistical Stability (4-Year Baseline)
 
@@ -175,12 +189,12 @@ template:
 │   │   └── hvac_baseline.yaml
 │   └── dashboards/
 └── data/                         # Raw operational datasets
-    ├── monthly_summary.csv       # 🆕 Derived monthly metrics (all-in-one) — through Jun 2026
+    ├── monthly_summary.csv       # 🆕 Derived monthly metrics (all-in-one) — through Sep 2026
     ├── daily_temperature.csv     # Updated through Feb 2026
-    ├── monthly_hvac_runtime.csv  # Updated through Feb 2026
-    ├── monthly_dhw_navien.csv    # Updated through Mar 2026
-    ├── monthly_electricity_eversource.csv   # Updated through Mar 2026
-    └── monthly_gas_scg.csv                   # Updated through Mar 2026
+    ├── monthly_hvac_runtime.csv  # Updated through Sep 2026
+    ├── monthly_dhw_navien.csv    # Updated through Sep 2026
+    ├── monthly_electricity_eversource.csv   # Updated through Sep 2026
+    └── monthly_gas_scg.csv                   # Updated through Sep 2026
 ```
 
 ## 🏠 Property Context
@@ -251,6 +265,14 @@ See [UTILITY_PROGRAM_ANALYSIS.md](UTILITY_PROGRAM_ANALYSIS.md) for detailed anal
 
 ## 📬 Recent Updates
 
+### v1.7.0 (October 2026)
+- Added July–September 2026 data and monthly reports ([July](JULY_2026_UPDATE.md), [August](AUGUST_2026_UPDATE.md), [September](SEPTEMBER_2026_UPDATE.md))
+- Extended dataset to 57 months
+- First cooling-season thermostat comparison, 2025 Honeywell T6 Pro vs 2026 Ecobee, on BDL CDD65: daily-fit runtime slope −6.05 min/CDD (p ≈ 0.010); season-ratio difference not significant (p ≈ 0.29); not attributed to the thermostat (confounds open)
+- First measured compressor energy, 0.925 kWh/CDD Jul–Sep [D]; the 2.725 kW draw per call-hour conflicts with the 4.9 kW spec figure (open question)
+- Q3 electricity −17.7% kWh / −31.7% $ [D]; Q3 DHW −45.3% [D]; Jul 4–5 grid outage documented
+- Flagged, not corrected: therms stored as CCF in DHW cells (2024-10..2026-01), the 2025 cooling zone swap, and usage-month labels on 2025 bill rows
+
 ### v1.6.0 (July 2026)
 - Added March–June 2026 data; H1 2026 vs 2025 half-year analysis
 - Extended dataset to 54 months
@@ -313,6 +335,6 @@ If this five-year baseline is useful for your own energy monitoring work, consid
 
 ---
 
-**Version:** 1.6.0 (July 2026)
-**Status:** Active Baseline — 54 months of validated data
-**Next Update:** July 2026 monthly + H2 mid-year review
+**Version:** 1.7.0 (October 2026)
+**Status:** Active Baseline — 57 months of data (validate_month.py V-HVAC-7 HALT open: daily temperatures end Feb 2026)
+**Next Update:** October 2026 monthly (first heating month on the Ecobee)
