@@ -115,6 +115,10 @@ This directory contains raw operational data for the residential HVAC performanc
 - CCF = hundred cubic feet of natural gas (~100,000 BTU per CCF)
 - Recirculation pump maintains hot water in distribution loop (standby losses ~23%)
 - 2025 annual total: 220.8 CCF (from meter), 188 CCF (billing-aligned calculation)
+- *Correction 2026-10-15:* the 220.8 above is therms, not CCF. The `ccf` cells for 2024-10..2026-01 held the
+  Navien export's Thm values unconverted (each is an integer m³ × 0.36245; 2025-06, 16.723, passes neither test
+  and was converted as Thm, its source column). They now hold CCF = Thm × 0.9643, and the 2025 meter total is
+  212.9 CCF [D: 220.7775 × 0.9643]. Rows from 2026-02 were already CCF.
 
 **Data Quality:**
 

@@ -39,19 +39,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   site EUI 41.8 -> 41.7 kBTU/ft2-yr [D: (784 x 103.7 + 6,004 x 3.412) / 2,440]; DHW Jan-Sep
   156.63 -> 101.01 CCF, -35.5% [D: 101.01 / 156.63 - 1, both years in CCF].
 
+### Fixed
+
+- **DHW therms stored as CCF (2026-10-15, Bill: "fix old data")** - `monthly_dhw_navien.csv`
+  2024-10..2026-01 (16 cells) and `monthly_summary.csv` DHW_CCF 2025-01..2026-01 (13 cells) held the
+  Navien export's Thm values (each an integer m³ × 0.36245). They are now CCF = Thm × 0.9643, 4 dp.
+  2025-06 (16.723) passes neither the therm nor the CCF test and was converted as Thm, its source
+  column. Space_Heat_CCF and Heating_Intensity_CCF_1kHDD were recomputed with the formulas that
+  reproduce every existing cell (Gas - DHW to 2 dp; / HDD65 x 1000 to 1 dp, blank under 100 HDD).
+  2025 meter total 220.8 Thm = 212.9 CCF [D]. `validate_month.py` V-HVAC-6 now compares CCF with
+  CCF: -44.2% / -48.4% / -44.2% for Jul / Aug / Sep 2026 [D], as the reports state.
+
 ### Known issues (flagged, not corrected - each needs Bill's approval and a separate commit)
+
+- **The 2026-10-10 baseline uses the therm figure as CCF.** 566.2 CCF = 787 - 220.8, and 220.8 is
+  therms. In CCF the 2025 space heat is 574.1 [D: 787 - 212.9], heating intensity 102.0 CCF/1k HDD65
+  [D: 574.1 / 5.629] vs 100.6, and UA 593 [D, METHODOLOGY formula] vs 585. `BASELINE_REPORT.md`,
+  `METHODOLOGY.md`, `DATA_SUMMARY.md`, `SYSTEM_SPECIFICATIONS.md`, `validate_month.py`
+  (BASELINE_EFFICIENCY) and the Home Assistant helpers still carry 566.2 / 100.6 / 585. Rebasing
+  is Bill's call; nothing was changed.
 
 - Compressor draw is 2.725 +/- 0.020 kW per call-hour [D, n=90 days, R2 0.995]. That conflicts
   with "Measured Power Draw: 4.9 kW" in `SYSTEM_SPECIFICATIONS.md`, and so with the 1,694 kWh
   2025 cooling baseline in `BASELINE_REPORT.md`. Both stay unchanged until the condenser
   nameplate is read.
-- `monthly_summary.csv`: DHW cells 2024-10..2026-01 hold therms, not CCF; the 2025
-  Cool_1F_Hrs / Cool_2F_Hrs columns are swapped.
+- `monthly_summary.csv`: the 2025 Cool_1F_Hrs / Cool_2F_Hrs columns are swapped.
 - `monthly_electricity_eversource.csv` and `monthly_gas_scg.csv`: the unquoted rows through
   2025-12-01 are labelled by usage month, the quoted rows from 2026-02-01 by slot month, and
   there is no 2026-01-01 row. `monthly_summary.csv` is slot-month throughout.
-- `Scripts/validate_month.py` V-HVAC-6 uses unconverted 2025 therms. It prints -46.2% / -50.2% /
-  -46.2% for Jul / Aug / Sep; in consistent CCF the figures are -44.2% / -48.4% / -44.2% [D].
 - V-HVAC-7 HALTs for 2026-07..09 (and every month since March): `data/daily_temperature.csv`
   ends 2026-02-28.
 
