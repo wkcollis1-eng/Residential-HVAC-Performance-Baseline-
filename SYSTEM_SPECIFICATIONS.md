@@ -371,7 +371,8 @@ therefore in unconditioned space.
 - **1st Floor:** 945 sq. ft. (living areas, kitchen)
 - **2nd Floor:** 1,500 sq. ft. (bedrooms)
 - **Attic Floor:** 2nd floor less the cathedral-ceilinged master bedroom (area not recorded)
-- **Garage:** attached, unconditioned; the 2nd-floor master bedroom is above it
+- **Garage:** attached, unconditioned; the 2nd-floor master bedroom is above it. Exterior walls
+  and ceiling are insulated (Bill, 2026-10-24); R-values not recorded
 
 *Correction 2026-10-24 (Bill):* the floor plan read basement 800 sq. ft. (finished, conditioned),
 1st floor 1,220, 2nd floor 420. The conditioned floors sum to 2,445 sq. ft. [D: 945 + 1,500],

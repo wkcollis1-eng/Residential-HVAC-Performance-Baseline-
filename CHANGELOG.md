@@ -62,7 +62,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   61.3% area share [D: 1,500 / 2,445]. The cathedral ceiling, listed under the living room in
   `SYSTEM_SPECIFICATIONS.md` and the main living area in `BASELINE_REPORT.md`, is over the
   2nd-floor master bedroom, which sits above the attached garage. The attic floor is therefore
-  the 2nd floor less the master bedroom, whose area is not recorded.
+  the 2nd floor less the master bedroom, whose area is not recorded. The garage's exterior walls
+  and ceiling are insulated; R-values not recorded.
 
 - **DHW therms stored as CCF (2026-10-15, Bill: "fix old data")** - `monthly_dhw_navien.csv`
   2024-10..2026-01 (16 cells) and `monthly_summary.csv` DHW_CCF 2025-01..2026-01 (13 cells) held the
