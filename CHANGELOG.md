@@ -55,15 +55,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - **Floor areas and basement condition (2026-10-24, Bill)** - `SYSTEM_SPECIFICATIONS.md` listed
-  the basement as conditioned and split the floors 800 / 1,220 / 420 sq. ft. Bill: the basement
-  is not conditioned; basement and 1st floor are 945 sq. ft. each, the 2nd floor 1,500. The
-  conditioned floors sum to 2,445 [D], 0.2% above the 2,440 used in EUI and UA/ft², which are not
-  restated. The zone-balance line gains a note: 53.2% of runtime to 2F is below the 2nd floor's
-  61.3% area share [D: 1,500 / 2,445]. The cathedral ceiling, listed under the living room in
-  `SYSTEM_SPECIFICATIONS.md` and the main living area in `BASELINE_REPORT.md`, is over the
-  2nd-floor master bedroom, which sits above the attached garage. The attic floor is therefore
-  the 2nd floor less the master bedroom, whose area is not recorded. The garage's exterior walls
-  and ceiling are insulated; R-values not recorded.
+  the basement as conditioned and split the floors 800 / 1,220 / 420 sq. ft. Bill says the
+  basement is not conditioned and supplied permit plan A101 (permit set 2021-02-14): 1st floor
+  1,005, 2nd floor 1,435, total finished 2,440 (the figure already used in EUI and UA/ft²),
+  garage 528, unfinished basement 908 sq. ft. The master suite over the garage is 24'-4" × 22'-0"
+  framing (535 sq. ft. [D]); the master bedroom is 14'-6" × 19'-3" (279 sq. ft. [D]). The
+  zone-balance line gains a note: 53.2% of runtime to 2F is below the 2nd floor's 58.8% area
+  share [D: 1,435 / 2,440]. The cathedral ceiling, listed under the living room in
+  `SYSTEM_SPECIFICATIONS.md` and the main living area in `BASELINE_REPORT.md`, is over the master
+  suite above the attached garage. The attic floor is therefore the 2nd floor less that cathedral
+  area, which is not recorded. The garage's exterior walls and ceiling are insulated; R-values not
+  recorded. The duct section gains the plan's supply/return chase and radon vent, and an [I] that
+  the 2nd-floor branches run through the attic.
 
 - **DHW therms stored as CCF (2026-10-15, Bill: "fix old data")** - `monthly_dhw_navien.csv`
   2024-10..2026-01 (16 cells) and `monthly_summary.csv` DHW_CCF 2025-01..2026-01 (13 cells) held the
