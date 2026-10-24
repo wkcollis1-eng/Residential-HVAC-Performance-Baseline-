@@ -66,7 +66,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   bedroom only, above the attached garage. The attic floor is therefore ~1,156 sq. ft. [D: 1,435 −
   279]. The garage's exterior walls and ceiling are insulated; R-values not recorded. The duct
   section gains the plan's supply/return chase and radon vent, and Bill's observation that the
-  2nd-floor supply runs in the attic as a large trunk with short flex runs to the registers.
+  2nd-floor supply runs in the attic as a large sheet-metal trunk wrapped in R-8, hung from the
+  trusses, with short flex runs to the registers. The 2nd-floor return ducts are at floor level,
+  not in the attic.
 
 - **DHW therms stored as CCF (2026-10-15, Bill: "fix old data")** - `monthly_dhw_navien.csv`
   2024-10..2026-01 (16 cells) and `monthly_summary.csv` DHW_CCF 2025-01..2026-01 (13 cells) held the

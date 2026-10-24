@@ -281,12 +281,13 @@
 
 *Note 2026-10-24:* permit plan A101 shows a supply chase and a return chase beside the stair on
 both the 1st- and 2nd-floor plans, next to a 3" PVC radon vent that runs up through the roof [S].
-The 2nd-floor supply runs in the attic: a large trunk line, then short flex runs to the registers
-(Bill, 2026-10-24). The attic trunk's material, size, length and insulation are not recorded.
+The 2nd-floor supply runs in the attic: a large sheet-metal trunk wrapped in R-8, hung from the
+trusses, then short flex runs to the registers (Bill, 2026-10-24). The trunk's size and length are
+not recorded.
 
 **Return Air:**
 - **1st Floor:** Central return (living room)
-- **2nd Floor:** Central return (hallway)
+- **2nd Floor:** Central return (hallway); return ducts are at floor level, not in the attic (Bill, 2026-10-24)
 - **Basement:** No dedicated return (door undercut provides air path)
 
 ---
