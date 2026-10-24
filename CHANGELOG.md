@@ -62,11 +62,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   framing (535 sq. ft. [D]); the master bedroom is 14'-6" × 19'-3" (279 sq. ft. [D]). The
   zone-balance line gains a note: 53.2% of runtime to 2F is below the 2nd floor's 58.8% area
   share [D: 1,435 / 2,440]. The cathedral ceiling, listed under the living room in
-  `SYSTEM_SPECIFICATIONS.md` and the main living area in `BASELINE_REPORT.md`, is over the master
-  suite above the attached garage. The attic floor is therefore the 2nd floor less that cathedral
-  area, which is not recorded. The garage's exterior walls and ceiling are insulated; R-values not
-  recorded. The duct section gains the plan's supply/return chase and radon vent, and an [I] that
-  the 2nd-floor branches run through the attic.
+  `SYSTEM_SPECIFICATIONS.md` and the main living area in `BASELINE_REPORT.md`, covers the master
+  bedroom only, above the attached garage. The attic floor is therefore ~1,156 sq. ft. [D: 1,435 −
+  279]. The garage's exterior walls and ceiling are insulated; R-values not recorded. The duct
+  section gains the plan's supply/return chase and radon vent, and Bill's observation that the
+  2nd-floor supply runs in the attic as a large trunk with short flex runs to the registers.
 
 - **DHW therms stored as CCF (2026-10-15, Bill: "fix old data")** - `monthly_dhw_navien.csv`
   2024-10..2026-01 (16 cells) and `monthly_summary.csv` DHW_CCF 2025-01..2026-01 (13 cells) held the

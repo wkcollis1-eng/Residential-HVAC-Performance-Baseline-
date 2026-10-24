@@ -281,8 +281,8 @@
 
 *Note 2026-10-24:* permit plan A101 shows a supply chase and a return chase beside the stair on
 both the 1st- and 2nd-floor plans, next to a 3" PVC radon vent that runs up through the roof [S].
-[I] The 2nd-floor branches run from that chase through the attic; falsified if the chase ends at
-the 2nd-floor ceiling with no ducts in the attic.
+The 2nd-floor supply runs in the attic: a large trunk line, then short flex runs to the registers
+(Bill, 2026-10-24). The attic trunk's material, size, length and insulation are not recorded.
 
 **Return Air:**
 - **1st Floor:** Central return (living room)
@@ -311,10 +311,11 @@ the 2nd-floor ceiling with no ducts in the attic.
 
 **Insulation:** Blown-in fiberglass insulation
 **R-Value:** R-49 to R-60
-**Attic Floor Area:** 2nd floor (1,435 sq. ft.) less the cathedral-ceilinged area over the garage; how much of the master suite is cathedral is not recorded
+**Attic Floor Area:** ~1,156 sq. ft. [D: 1,435 − 279], the 2nd floor less the cathedral-ceilinged master bedroom (279 sq. ft. is the room's interior dimensions, so this is approximate)
 **Ventilation:** Ridge and soffit vents (passive)
 
 **Cathedral Ceiling (2nd-Floor Master Bedroom, over the Garage):**
+- **Extent:** the master bedroom only, 14'-6" × 19'-3" (Bill, 2026-10-24); the suite's bath and closets have attic above
 - **Height:** 14 feet
 - **Insulation:** Batt insulation (R-30 to R-38)
 - **Challenge:** Potential stratification (monitored via setpoint stability)
@@ -379,7 +380,8 @@ therefore in unconditioned space.
   insulated (Bill, 2026-10-24); R-values not recorded
 - **Master Suite over the Garage:** 24'-4" × 22'-0" framing, 535 sq. ft. [D: 24.33 × 22.0];
   master bedroom 14'-6" × 19'-3", 279 sq. ft. [D: 14.5 × 19.25], plus bath and two closets [S]
-- **Attic Floor:** 2nd floor less the cathedral-ceilinged area over the garage (not recorded)
+- **Attic Floor:** ~1,156 sq. ft. [D: 1,435 − 279], the 2nd floor less the cathedral-ceilinged
+  master bedroom
 
 [S]: permit plan A101 (construction plan, 1st and 2nd floor), permit set dated 2021-02-14, table
 "Total Gross Square Footage" and room dimensions; supplied by Bill 2026-10-24.
