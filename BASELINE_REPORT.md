@@ -260,6 +260,9 @@ The UA value is derived from:
 
 **Architectural Challenge:** The 14-foot cathedral ceiling in the main living area creates potential for vertical stratification, which could theoretically increase the effective UA. The measured performance suggests this effect is well-controlled through proper return air placement and circulation strategies.
 
+> *Correction 2026-10-24 (Bill):* the cathedral ceiling is over the 2nd-floor master bedroom, which
+> sits above the attached garage, not the main living area. See `SYSTEM_SPECIFICATIONS.md`, Ceiling/Attic.
+
 ### Balance Point Resolution
 
 The 59°F balance point indicates that the home requires no heating when outdoor temperatures exceed 59°F, as internal gains from occupants, appliances, and solar exposure meet the total heat loss. This is consistent with:

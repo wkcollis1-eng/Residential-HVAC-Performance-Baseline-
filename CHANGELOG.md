@@ -56,10 +56,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **Floor areas and basement condition (2026-10-24, Bill)** - `SYSTEM_SPECIFICATIONS.md` listed
   the basement as conditioned and split the floors 800 / 1,220 / 420 sq. ft. Bill: the basement
-  is not conditioned; basement and 1st floor are 945 sq. ft. each, the 2nd floor 1,500, and the
-  attic floor equals the 2nd floor. The conditioned floors sum to 2,445 [D], 0.2% above the 2,440
-  used in EUI and UA/ft², which are not restated. The zone-balance line gains a note: 53.2% of
-  runtime to 2F is below the 2nd floor's 61.3% area share [D: 1,500 / 2,445].
+  is not conditioned; basement and 1st floor are 945 sq. ft. each, the 2nd floor 1,500. The
+  conditioned floors sum to 2,445 [D], 0.2% above the 2,440 used in EUI and UA/ft², which are not
+  restated. The zone-balance line gains a note: 53.2% of runtime to 2F is below the 2nd floor's
+  61.3% area share [D: 1,500 / 2,445]. The cathedral ceiling, listed under the living room in
+  `SYSTEM_SPECIFICATIONS.md` and the main living area in `BASELINE_REPORT.md`, is over the
+  2nd-floor master bedroom, which sits above the attached garage. The attic floor is therefore
+  the 2nd floor less the master bedroom, whose area is not recorded.
 
 - **DHW therms stored as CCF (2026-10-15, Bill: "fix old data")** - `monthly_dhw_navien.csv`
   2024-10..2026-01 (16 cells) and `monthly_summary.csv` DHW_CCF 2025-01..2026-01 (13 cells) held the

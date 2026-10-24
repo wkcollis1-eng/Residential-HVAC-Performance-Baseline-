@@ -306,13 +306,17 @@
 
 **Insulation:** Blown-in fiberglass insulation
 **R-Value:** R-49 to R-60
-**Attic Floor Area:** 1,500 sq. ft. (equals the 2nd floor; Bill, 2026-10-24)
+**Attic Floor Area:** 2nd floor (1,500 sq. ft.) less the cathedral-ceilinged master bedroom; the master bedroom's area is not recorded
 **Ventilation:** Ridge and soffit vents (passive)
 
-**Cathedral Ceiling (Living Room):**
+**Cathedral Ceiling (2nd-Floor Master Bedroom, over the Garage):**
 - **Height:** 14 feet
 - **Insulation:** Batt insulation (R-30 to R-38)
 - **Challenge:** Potential stratification (monitored via setpoint stability)
+
+*Correction 2026-10-24 (Bill):* this section was headed "Living Room". The cathedral ceiling is
+over the 2nd-floor master bedroom, which sits above the attached garage. The 14-foot height was
+recorded under the old location and has not been re-confirmed.
 
 ### Windows
 
@@ -366,12 +370,14 @@ therefore in unconditioned space.
 - **Basement:** 945 sq. ft. (unconditioned; not in the total)
 - **1st Floor:** 945 sq. ft. (living areas, kitchen)
 - **2nd Floor:** 1,500 sq. ft. (bedrooms)
-- **Attic Floor:** 1,500 sq. ft. (equals the 2nd floor)
+- **Attic Floor:** 2nd floor less the cathedral-ceilinged master bedroom (area not recorded)
+- **Garage:** attached, unconditioned; the 2nd-floor master bedroom is above it
 
 *Correction 2026-10-24 (Bill):* the floor plan read basement 800 sq. ft. (finished, conditioned),
 1st floor 1,220, 2nd floor 420. The conditioned floors sum to 2,445 sq. ft. [D: 945 + 1,500],
 0.2% above the 2,440 used in every EUI and UA/ft² figure [D: 2,445 / 2,440 − 1], so those figures
-are not restated.
+are not restated. The 2nd floor extends 555 sq. ft. beyond the 1st-floor footprint [D: 1,500 − 945]
+if it covers the whole 1st floor; that part is over the garage.
 
 **Occupancy:** 2 residents (full-time)
 
