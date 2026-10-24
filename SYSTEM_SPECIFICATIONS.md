@@ -256,6 +256,8 @@
 
 **2025 Performance:**
 - **Zone Balance:** 53.2% to 2F (slight 2F bias due to cathedral ceiling heat loss)
+  *Note 2026-10-24:* the 2nd floor is 61.3% of conditioned floor area [D: 1,500 / 2,445], so
+  53.2% is a bias only against an even split; it is below the 2nd floor's area share.
 - **Chaining Index:** 1.38 (moderate zone coordination)
 - **Zone Overlap:** 19% concurrent operation
 
@@ -304,6 +306,7 @@
 
 **Insulation:** Blown-in fiberglass insulation
 **R-Value:** R-49 to R-60
+**Attic Floor Area:** 1,500 sq. ft. (equals the 2nd floor; Bill, 2026-10-24)
 **Ventilation:** Ridge and soffit vents (passive)
 
 **Cathedral Ceiling (Living Room):**
@@ -323,7 +326,11 @@
 **Type:** Poured concrete with interior insulation
 **Wall Insulation:** R-15 (2" rigid insulation board or equivalent)
 **Floor:** Concrete slab (uninsulated)
-**Condition:** Conditioned space (included in 2,440 sq. ft. total)
+**Condition:** Unconditioned (not in the 2,440 sq. ft. total)
+
+*Correction 2026-10-24 (Bill):* this read "Conditioned space (included in 2,440 sq. ft. total)".
+The basement is not conditioned. The furnace, supply trunk, Navien and recirculation loop are
+therefore in unconditioned space.
 
 ### Air Sealing
 
@@ -356,9 +363,15 @@
 **Total Conditioned Area:** 2,440 sq. ft.
 
 **Floor Plan:**
-- **Basement:** 800 sq. ft. (finished, conditioned)
-- **1st Floor:** 1,220 sq. ft. (living areas, kitchen)
-- **2nd Floor:** 420 sq. ft. (bedrooms)
+- **Basement:** 945 sq. ft. (unconditioned; not in the total)
+- **1st Floor:** 945 sq. ft. (living areas, kitchen)
+- **2nd Floor:** 1,500 sq. ft. (bedrooms)
+- **Attic Floor:** 1,500 sq. ft. (equals the 2nd floor)
+
+*Correction 2026-10-24 (Bill):* the floor plan read basement 800 sq. ft. (finished, conditioned),
+1st floor 1,220, 2nd floor 420. The conditioned floors sum to 2,445 sq. ft. [D: 945 + 1,500],
+0.2% above the 2,440 used in every EUI and UA/ft² figure [D: 2,445 / 2,440 − 1], so those figures
+are not restated.
 
 **Occupancy:** 2 residents (full-time)
 

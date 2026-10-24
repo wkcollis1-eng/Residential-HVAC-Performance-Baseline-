@@ -54,6 +54,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- **Floor areas and basement condition (2026-10-24, Bill)** - `SYSTEM_SPECIFICATIONS.md` listed
+  the basement as conditioned and split the floors 800 / 1,220 / 420 sq. ft. Bill: the basement
+  is not conditioned; basement and 1st floor are 945 sq. ft. each, the 2nd floor 1,500, and the
+  attic floor equals the 2nd floor. The conditioned floors sum to 2,445 [D], 0.2% above the 2,440
+  used in EUI and UA/ft², which are not restated. The zone-balance line gains a note: 53.2% of
+  runtime to 2F is below the 2nd floor's 61.3% area share [D: 1,500 / 2,445].
+
 - **DHW therms stored as CCF (2026-10-15, Bill: "fix old data")** - `monthly_dhw_navien.csv`
   2024-10..2026-01 (16 cells) and `monthly_summary.csv` DHW_CCF 2025-01..2026-01 (13 cells) held the
   Navien export's Thm values (each an integer m³ × 0.36245). They are now CCF = Thm × 0.9643, 4 dp.
