@@ -256,7 +256,7 @@ UA = 481 BTU/hr-°F ≈ 480 BTU/hr-°F
 > - With corrected values (103,700 × 0.95 + 3.6 MMBTU fireplace), the equivalent UA is **493 BTU/hr-°F**.
 >   Going forward, all Home Assistant sensor formulas use these corrected values.
 >   Historical calculations in this document are preserved as-published for reproducibility.
-
+>
 > **Rebase (October 2026):** On 2026-10-10 the baselines were rebased to ACIS Bradley (BDL) 2025 degree days.
 > The NOAA HDD65 of 6,270 in Step 2 is 641 above ACIS BDL for the same year, and its HDD59 of 5,294 is 1,064
 > above [D]. The space heat is the Navien-corrected 566.2 CCF (787 − 220.8 Navien-metered DHW), the same
