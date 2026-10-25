@@ -256,6 +256,8 @@
 
 **2025 Performance:**
 - **Zone Balance:** 53.2% to 2F (slight 2F bias due to cathedral ceiling heat loss)
+  *Note 2026-10-24:* the 2nd floor is 58.8% of conditioned floor area [D: 1,435 / 2,440], so
+  53.2% is a bias only against an even split; it is below the 2nd floor's area share.
 - **Chaining Index:** 1.38 (moderate zone coordination)
 - **Zone Overlap:** 19% concurrent operation
 
@@ -277,9 +279,15 @@
 - **Branches:** Flex duct (R-6 insulation)
 - **Registers:** Standard steel (adjustable dampers)
 
+*Note 2026-10-24:* permit plan A101 shows a supply chase and a return chase beside the stair on
+both the 1st- and 2nd-floor plans, next to a 3" PVC radon vent that runs up through the roof [S].
+The 2nd-floor supply runs in the attic: a large sheet-metal trunk wrapped in R-8, hung from the
+trusses, then short flex runs to the registers (Bill, 2026-10-24). The trunk's size and length are
+not recorded.
+
 **Return Air:**
 - **1st Floor:** Central return (living room)
-- **2nd Floor:** Central return (hallway)
+- **2nd Floor:** Central return (hallway); return ducts are at floor level, not in the attic (Bill, 2026-10-24)
 - **Basement:** No dedicated return (door undercut provides air path)
 
 ---
@@ -304,12 +312,18 @@
 
 **Insulation:** Blown-in fiberglass insulation
 **R-Value:** R-49 to R-60
+**Attic Floor Area:** ~1,156 sq. ft. [D: 1,435 − 279], the 2nd floor less the cathedral-ceilinged master bedroom (279 sq. ft. is the room's interior dimensions, so this is approximate)
 **Ventilation:** Ridge and soffit vents (passive)
 
-**Cathedral Ceiling (Living Room):**
+**Cathedral Ceiling (2nd-Floor Master Bedroom, over the Garage):**
+- **Extent:** the master bedroom only, 14'-6" × 19'-3" (Bill, 2026-10-24); the suite's bath and closets have attic above
 - **Height:** 14 feet
 - **Insulation:** Batt insulation (R-30 to R-38)
 - **Challenge:** Potential stratification (monitored via setpoint stability)
+
+*Correction 2026-10-24 (Bill):* this section was headed "Living Room". The cathedral ceiling is
+over the 2nd-floor master bedroom, which sits above the attached garage. The 14-foot height was
+recorded under the old location and has not been re-confirmed.
 
 ### Windows
 
@@ -323,7 +337,11 @@
 **Type:** Poured concrete with interior insulation
 **Wall Insulation:** R-15 (2" rigid insulation board or equivalent)
 **Floor:** Concrete slab (uninsulated)
-**Condition:** Conditioned space (included in 2,440 sq. ft. total)
+**Condition:** Unconditioned (not in the 2,440 sq. ft. total)
+
+*Correction 2026-10-24 (Bill):* this read "Conditioned space (included in 2,440 sq. ft. total)".
+The basement is not conditioned. The furnace, supply trunk, Navien and recirculation loop are
+therefore in unconditioned space.
 
 ### Air Sealing
 
@@ -356,9 +374,22 @@
 **Total Conditioned Area:** 2,440 sq. ft.
 
 **Floor Plan:**
-- **Basement:** 800 sq. ft. (finished, conditioned)
-- **1st Floor:** 1,220 sq. ft. (living areas, kitchen)
-- **2nd Floor:** 420 sq. ft. (bedrooms)
+- **Basement:** 908 sq. ft. (unfinished, unconditioned; not in the total) [S]
+- **1st Floor:** 1,005 sq. ft. (living areas, kitchen) [S]
+- **2nd Floor:** 1,435 sq. ft. (bedrooms) [S]
+- **Garage:** 528 sq. ft., two-car, attached, unconditioned [S]. Exterior walls and ceiling are
+  insulated (Bill, 2026-10-24); R-values not recorded
+- **Master Suite over the Garage:** 24'-4" × 22'-0" framing, 535 sq. ft. [D: 24.33 × 22.0];
+  master bedroom 14'-6" × 19'-3", 279 sq. ft. [D: 14.5 × 19.25], plus bath and two closets [S]
+- **Attic Floor:** ~1,156 sq. ft. [D: 1,435 − 279], the 2nd floor less the cathedral-ceilinged
+  master bedroom
+
+[S]: permit plan A101 (construction plan, 1st and 2nd floor), permit set dated 2021-02-14, table
+"Total Gross Square Footage" and room dimensions; supplied by Bill 2026-10-24.
+
+*Correction 2026-10-24 (Bill):* the floor plan read basement 800 sq. ft. (finished, conditioned),
+1st floor 1,220, 2nd floor 420. The permit plan's total finished area is 2,440 sq. ft.
+[S: 1,005 + 1,435], the figure already used in every EUI and UA/ft² calculation.
 
 **Occupancy:** 2 residents (full-time)
 
