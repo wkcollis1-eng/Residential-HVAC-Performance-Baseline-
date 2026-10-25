@@ -385,7 +385,10 @@ therefore in unconditioned space.
   master bedroom
 
 [S]: permit plan A101 (construction plan, 1st and 2nd floor), permit set dated 2021-02-14, table
-"Total Gross Square Footage" and room dimensions; supplied by Bill 2026-10-24.
+"Total Gross Square Footage" and room dimensions; supplied by Bill 2026-10-24. Redacted copy, with
+the project name and address removed:
+[`docs/drawings/A101_construction_plan_redacted.pdf`](docs/drawings/A101_construction_plan_redacted.pdf).
+The drawing is the builder's work and is not covered by this repository's MIT license.
 
 *Correction 2026-10-24 (Bill):* the floor plan read basement 800 sq. ft. (finished, conditioned),
 1st floor 1,220, 2nd floor 420. The permit plan's total finished area is 2,440 sq. ft.

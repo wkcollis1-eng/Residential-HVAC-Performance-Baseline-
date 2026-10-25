@@ -11,6 +11,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Permit plan A101, redacted (2026-10-25)** - `docs/drawings/A101_construction_plan_redacted.pdf`,
+  the 1st- and 2nd-floor construction plan (permit set 2021-02-14) that sources the floor areas in
+  `SYSTEM_SPECIFICATIONS.md`. The title block's project name, lot, street address and town, and a
+  second copy of the development name, were painted out in the scan's pixels, not covered by an
+  overlay. The PDF was rebuilt from that image alone: one 300 ppi 8-color image, no text layer,
+  title as the only metadata, 468 KB. The decoded image matches the redacted source pixel for
+  pixel. The drawing is the builder's work and is not covered by the MIT license.
+
 - **July-September 2026 monthly reports (2026-10-15)** - `JULY_2026_UPDATE.md` (1.8.2),
   `AUGUST_2026_UPDATE.md` (1.8.3) and `SEPTEMBER_2026_UPDATE.md` (1.9.0). Degree days are ACIS
   Bradley (BDL) HDD65/CDD65 throughout; the HA proxy is secondary. September adds the 2025
