@@ -1,7 +1,10 @@
 # CLAUDE_Monthly_Report.md
-# Monthly HVAC Performance Report — Claude Code Prompt
-# Version: 1.0  |  Property: 2,440 sq ft Colonial, East Hampton CT (06424), Climate Zone 5A
-# Usage: Place in repo root. Run: claude "Follow CLAUDE_Monthly_Report.md to write the [Month] [Year] report"
+
+Monthly HVAC Performance Report — Claude Code Prompt
+
+Version: 1.0  |  Property: 2,440 sq ft Colonial, East Hampton CT (06424), Climate Zone 5A
+
+Usage: Place in repo root. Run: claude "Follow CLAUDE_Monthly_Report.md to write the [Month] [Year] report"
 
 ---
 

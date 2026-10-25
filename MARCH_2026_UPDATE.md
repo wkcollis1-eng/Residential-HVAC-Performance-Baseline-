@@ -39,7 +39,7 @@ note above and §DHW.
 > 96.0 CCF). This produced inflated values of 144.4 (Mar 2026) and 152.4 (Mar 2025)
 > and incorrectly reported a year-over-year improvement. The corrected net values (after the v1.5.3 DHW fix) are 133.2 (Mar 2026)
 > and 120.1 (Mar 2025) on the proxy basis — a +10.9% increase, itself a low-DHW artifact (see Revision 1.5.3).
-
+>
 > **HDD proxy note:** The HA proxy records 767.6 HDD for March vs. BDL's official 744
 > HDD (ACIS) — the proxy over-counts by +24 HDD (+3.2%), the same shoulder-season
 > direction seen in April. Using authoritative BDL HDD yields net intensity of **137.4
