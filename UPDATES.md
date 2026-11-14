@@ -7,6 +7,30 @@ Updates are listed newest-first. Each month appended to the top of this file.
 
 ---
 
+## Q3 2026 Update (July–September)
+
+**Version:** 1.10.0 | **Date:** November 13, 2026 | **Full report:** [Q3_2026_UPDATE.md](Q3_2026_UPDATE.md)
+
+### Executive Summary
+
+A quarterly report replacing the October monthly update. It compares Q3 2026 with Q3 2025 on bills, adds the SEM-Meter circuits (July–September) and the SDR radio meters (September, the only full SDR month in Q3), and covers the AC with CDD against last year. It closes with a January–September summary. Q3 CDD were nearly equal (610 vs 596 [M]), and the daily CDD distributions cannot be told apart (Mann-Whitney p = 0.76, n = 92 / 92). The house was empty for 11 days in mid-August 2026 (Bill, 2026-11-13). Those days are dropped from the AC fits and adjusted for in the electricity and gas figures. 2025 had a 10–12-day absence in September; its dates are not known, so the AC rows below also drop the 23 September 2025 days it could have covered, and the adjusted electricity figures are lower bounds.
+
+| Metric | Q3 2025 | Q3 2026 | Change | Interpretation |
+|--------|---------|---------|--------|----------------|
+| CDD65 / HDD65 (BDL) | 596 / 58 | 610 / 87 | +14 / +29 [D] | July 2025 hotter, August 2026 hotter |
+| Electricity | 2,628 kWh / $737.75 | 2,164 kWh / $503.96 | −17.66% kWh / −31.69% $ [D] | Same 92-day bill window; 2.90 kWh/day lower after the absence adjustment [D], a lower bound |
+| Total gas | 44 CCF / $139.82 | 29 CCF / $117.59 | −34.09% CCF [D] | September bill resolved: read actual 09-14, absence |
+| DHW (Navien) | 40.89 CCF | 22.37 CCF | −45.29% [D] | Recirculation 143 → 46 h [M] |
+| AC slope, daily fit | 24.05 min/CDD (n = 69) | 22.95 min/CDD (n = 79) | −1.10, 95% CI [−5.36, +3.04], p ≈ 0.54 [D] | Not distinguishable |
+| AC quarter ratio | 25.49 min/CDD (n = 69) | 24.87 min/CDD (n = 79) | −0.63, p ≈ 0.78 [D] | Not distinguishable |
+| AC run days | 47 of 69 | 64 of 79 | Fisher exact p = 0.087 [D] | At 1–4 CDD, 6 of 14 against 14 of 15 (p = 0.0052 [D]) |
+| AC compressor (SEM) | not metered | 564.27 kWh, 0.925 kWh/CDD [D] | — | 29.6% of whole-home SEM [D] |
+| SEM vs utility (SDR, Sep) | — | 439.10 vs 437.31 kWh | SEM +0.41% [D] | Daily sd 0.18%, n = 30 |
+
+**Nine months (Jan–Sep):** electricity 5,284 → 4,558 kWh (paired monthly t = −2.72, p = 0.026, n = 9), or a drop of at least 528.7 kWh adjusted for the absence (t = −2.19, p = 0.060 [D]); gas 601 → 598 CCF on 12.83% more HDD (p = 0.93, n = 9); DHW 156.63 → 101.01 CCF, lower in 9 of 9 months (p = 0.0001); Jan–May heating intensity unchanged (regression difference +0.24 ± 7.71 CCF/1k HDD, p = 0.98, n = 10).
+
+---
+
 ## September 2026 Update
 
 **Version:** 1.9.0 | **Date:** October 15, 2026 | **Full report:** [SEPTEMBER_2026_UPDATE.md](SEPTEMBER_2026_UPDATE.md)

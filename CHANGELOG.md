@@ -11,6 +11,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Q3 2026 quarterly report (2026-11-13)** - `Q3_2026_UPDATE.md` (1.10.0), in place of the
+  October monthly update. Q3 2026 vs Q3 2025 on the bill-slot basis; SEM-Meter circuits for
+  July-September (calendar); SDR radio meters for September, the only full SDR month in Q3; an
+  AC section on BDL CDD; and a January-September summary. The house was empty for 11 days in
+  mid-August 2026 (Bill, 2026-11-13); those days are dropped from the AC fits and adjusted for
+  in the bill figures. 2025 had a 10-12-day absence in September (Bill, same day), dates not
+  known, so the 2025 AC fits drop the 23 days it could have covered. AC daily-fit slope 24.05 ->
+  22.95 min/CDD, difference -1.10, 95% CI [-5.36, +3.04], p ~ 0.54 [D, week-block bootstrap,
+  B=5000]; quarter ratio 25.49 -> 24.87, p ~ 0.78 [D]; neither is significant, for any of three
+  trip placements tested. Nine-month electricity 5,284 -> 4,558 kWh (paired monthly t = -2.72,
+  p = 0.026, n = 9), or at least -528.7 kWh absence-adjusted (p = 0.060 [D]). The
+  September gas bill is resolved: the read was actual on 09-14, and the absence explains the
+  low bill. UPDATES.md and the README carry pointers.
+
 - **Permit plan A101, redacted (2026-10-25)** - `docs/drawings/A101_construction_plan_redacted.pdf`,
   the 1st- and 2nd-floor construction plan (permit set 2021-02-14) that sources the floor areas in
   `SYSTEM_SPECIFICATIONS.md`. The title block's project name, lot, street address and town, and a
@@ -61,6 +75,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   16 in 2026 despite more BDL CDD65 (66 vs 62 [M]); no recorded factor explains it.
 
 ### Fixed
+
+- **Cooling-season review and README insights, absence correction (2026-11-13, R13)** -
+  `SEPTEMBER_2026_UPDATE.md` and README Key Insights 1 and 2 included 11 days in mid-August 2026
+  when the house was empty (Bill, 2026-11-13). Dated correction notes were added at each site;
+  the published text is unchanged. Excluding those days and the span of a 10-12-day September
+  2025 absence (Bill, same day), the season slope difference is -2.99 min/CDD, 95% CI
+  [-6.78, +0.81], p ~ 0.12 (was -6.05, p ~ 0.010) [D]. The electricity drop over the 120-day
+  windows is at least 3.48 kWh/day adjusted (was 5.15) [D], about 4.05-4.35 allowing for the
+  2025 trip [I: 2026 fit applied to 2025]. It falls as the CDD difference rises (Spearman rho
+  = -1.0, n = 4, exact p ~ 0.083 [D]; -1.0 or -0.8 over the trip's possible dates [I]), so
+  "base load, not cooling" is withdrawn.
 
 - **Floor areas and basement condition (2026-10-24, Bill)** - `SYSTEM_SPECIFICATIONS.md` listed
   the basement as conditioned and split the floors 800 / 1,220 / 420 sq. ft. Bill says the
