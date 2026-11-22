@@ -76,6 +76,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- **Q3 2026 report 1.11.0 and cooling-season notes, 2025 trip dates (2026-11-22, R13)** - the
+  2025 absence was about 8 days in mid-August 2025, not 10-12 days in September (Bill,
+  2026-11-22; the exact days, and whether the water heater was off, are not known). 1.10.0 and
+  the 2026-11-13 notes excluded 23 September 2025 days, the wrong month. `Q3_2026_UPDATE.md`
+  1.11.0 excludes a 12-day mid-August span instead and checks five 8-day placements inside it;
+  the 1.10.0 figures stay in the report, marked superseded. Dated correction notes were added
+  to `SEPTEMBER_2026_UPDATE.md`, README Key Insights 1 and 2 and the Q3 entry in UPDATES.md.
+  AC slope difference: Q3 -2.81 min/CDD, 95% CI [-6.30, +0.21], p ~ 0.063, p 0.033-0.062 over
+  the placements (was -1.10, p ~ 0.54); June-September -4.32, 95% CI [-7.69, -1.13],
+  p ~ 0.006 (was -2.99, p ~ 0.12) [D, week-block bootstrap, B=5000]. The ratio differences stay
+  not significant (Q3 +0.26, p ~ 0.92; season -0.75, p ~ 0.71 [D]). Electricity: the trip
+  lowered 2025 use by an estimated 101-168 kWh [I: the 2026 occupied-day fit applied to 2025;
+  falsifier: the utility's daily usage for August 2025]. With both absences adjusted, the Q3
+  drop is 4.00-4.73 kWh/day, the 120-day drop 4.32-4.88 and the nine-month drop 630-697 kWh
+  (paired t p = 0.031-0.035) [I]; the window drops no longer fall as the CDD difference rises
+  (rho -0.8 to +0.2 [I]). DHW with both absences put back: 44.3-45.3 CCF in Q3 2025 against
+  24.9-25.5 in 2026 [I].
+
 - **Cooling-season review and README insights, absence correction (2026-11-13, R13)** -
   `SEPTEMBER_2026_UPDATE.md` and README Key Insights 1 and 2 included 11 days in mid-August 2026
   when the house was empty (Bill, 2026-11-13). Dated correction notes were added at each site;
